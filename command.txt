@@ -1,0 +1,31 @@
+python3.11 -m venv .venv
+
+Command+Shift+P -> select inspectere
+
+Command+J -> Python panel
+
+pip install Flask
+
+flask run
+
+docker build -t map-app .
+docker run -dp 5005:5000 -w /app -v "$(pwd):/app" map-app   
+
+
+
+pip install -r requirements.txt
+
+
+Authorization
+Bearer 
+
+
+
+
+flask db init
+flask db migrate -m "Initial migration."
+flask db upgrade
+flask db --help
+migrate = Migrate(app, db, command='migrate')
+
+
