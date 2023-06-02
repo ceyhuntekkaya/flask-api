@@ -1,27 +1,20 @@
 from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
-
 from flask_migrate import Migrate
+import os
 
 from db import db
 from blocklist import BLOCKLIST
-
-from dotenv import load_dotenv
-
-import secrets
-import os
 
 from resources.user import blp as UserBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
 
-# RENDER.COM    	"url": "https://flask-api-dlhg.onrender.com",
 
 def create_app(db_url=None):
     app = Flask(__name__)
-    load_dotenv()
     app.config["API_TITLE"] = "Stores REST API"
     app.config["API_VERSION"] = "v1"
     app.config["OPENAPI_VERSION"] = "3.0.3"
@@ -30,18 +23,15 @@ def create_app(db_url=None):
     app.config[
         "OPENAPI_SWAGGER_UI_URL"
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL", "sqlite:///data.db")
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL") # or "sqlite:///data.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["PROPAGATE_EXCEPTIONS"] = True
     db.init_app(app)
     migrate = Migrate(app, db)
     api = Api(app)
 
-    app.config["JWT_SECRET_KEY"] =  "jose" # secrets.SystemRandom().getrandbits(128) 
+    app.config["JWT_SECRET_KEY"] = "jose"
     jwt = JWTManager(app)
-
-    #op.execute("UPDATE tablo_adi SET kolon_adi='Default_value' ")
-
 
     # @jwt.additional_claims_loader
     # def add_claims_to_jwt(identity):
@@ -49,8 +39,6 @@ def create_app(db_url=None):
     #     if identity == 1:
     #         return {"is_admin": True}
     #     return {"is_admin": False}
-
-
 
     @jwt.token_in_blocklist_loader
     def check_if_token_in_blocklist(jwt_header, jwt_payload):
@@ -94,7 +82,6 @@ def create_app(db_url=None):
                 }
             ),
             401,
-
         )
 
     @jwt.revoked_token_loader
@@ -105,16 +92,11 @@ def create_app(db_url=None):
             ),
             401,
         )
-
-    # JWT configuration ends
-
     with app.app_context():
-        import models  # noqa: F401
         db.create_all()
 
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(StoreBlueprint)
     api.register_blueprint(TagBlueprint)
-
     return app

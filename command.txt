@@ -15,8 +15,6 @@ docker run -dp 5005:5000 -w /app -v "$(pwd):/app" map-app sh -c "flask run"
 docker run -dp 5005:5000 -w /app -v "$(pwd):/app" map-app sh -c "flask run --host 0.0.0.0"
 
 
-
-
 pip install -r requirements.txt
 
 
@@ -33,3 +31,24 @@ flask db --help
 migrate = Migrate(app, db, command='migrate')
 
 
+
+brew install libpq --build-from-source
+brew install openssl
+
+export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib -L/opt/homebrew/opt/libpq/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include -I/opt/homebrew/opt/libpq/include"
+
+pip install psycopg2
+pip3 install psycopg2
+
+
+
+
+def send_simple_message():
+	return requests.post(
+		"https://api.mailgun.net/v3/sandbox671b2d2100de4f60b049c2a5480d1697.mailgun.org",
+		auth=("api", "04541efd3019e936648ab2bd8a66de95-5d9bd83c-297f9b0e"),
+		data={"from": "Excited User <mailgun@YOUR_DOMAIN_NAME>",
+			"to": ["bar@example.com", "YOU@YOUR_DOMAIN_NAME"],
+			"subject": "Hello",
+			"text": "Testing some Mailgun awesomeness!"})
