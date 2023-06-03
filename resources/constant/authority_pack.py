@@ -3,46 +3,61 @@ from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
 from db import db
-from models import StoreModel
-from old_schemas import StoreSchema
+from models.constant.authority_pack import AuthorityPackModel
+from schemas.constant.authority_pack import AuthorityPackSchema
 
 
-blp = Blueprint("Stores", "stores", description="Operations on stores")
+blp = Blueprint("AuthorityPacks", "authority_paks", description="Operations on authority packs")
 
 
-@blp.route("/store/<string:store_id>")
-class Store(MethodView):
-    @blp.response(200, StoreSchema)
-    def get(self, store_id):
-        store = StoreModel.query.get_or_404(store_id)
-        return store
+@blp.route("/authority_pack/<string:item_id>")
+class WithId(MethodView):
+    @blp.response(200, AuthorityPackSchema)
+    def get(self, item_id):
+        item = AuthorityPackModel.query.get_or_404(item_id)
+        return item
 
-    def delete(self, store_id):
-        store = StoreModel.query.get_or_404(store_id)
-        db.session.delete(store)
+    def delete(self, item_id):
+        item = AuthorityPackModel.query.get_or_404(item_id)
+        db.session.delete(item)
         db.session.commit()
-        return {"message": "Store deleted"}, 200
+        return {"message": "authority pack deleted"}, 200
 
+     
+    @blp.arguments(AuthorityPackSchema)
+    @blp.response(201, AuthorityPackSchema)
+    def put(self, item_data, item_id):
+        item = AuthorityPackModel.query.get(item_id)
+        if item:
+            item.price = item_data["price"]
+            item.name = item_data["name"]
+        else:
+            item = AuthorityPackModel(id=item_id, **item_data)
+        db.session.add(item)
+        db.session.commit()
 
-@blp.route("/store")
-class StoreList(MethodView):
-    @blp.response(200, StoreSchema(many=True))
+        return item
+
+@blp.route("/authority_pack")
+class Plain(MethodView):
+    @blp.response(200, AuthorityPackSchema(many=True))
     def get(self):
-        return StoreModel.query.all()
+        return AuthorityPackModel.query.all()
 
-    @blp.arguments(StoreSchema)
-    @blp.response(201, StoreSchema)
-    def post(self, store_data):
-        store = StoreModel(**store_data)
+    @blp.arguments(AuthorityPackSchema)
+    @blp.response(201, AuthorityPackSchema)
+    def post(self, item_data):
+        item = AuthorityPackModel(**item_data)
         try:
-            db.session.add(store)
+            db.session.add(item)
             db.session.commit()
         except IntegrityError:
             abort(
                 400,
-                message="A store with that name already exists.",
+                message="A authority pack with that name already exists.",
             )
         except SQLAlchemyError:
-            abort(500, message="An error occurred creating the store.")
+            abort(500, message="An error occurred creating the authority pack.")
 
-        return store
+        return item
+    

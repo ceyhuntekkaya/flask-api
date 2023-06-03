@@ -1,22 +1,22 @@
 from marshmallow import Schema, fields
 
 
-class PlainScreenShotSchema(Schema):
+class PlainScreenshotSchema(Schema):
     id = fields.Int(dump_only=True)
 
 
-class ScreenShotSchema(PlainScreenShotSchema):
+class ScreenshotSchema(PlainScreenshotSchema):
     store_id = fields.Int(required=True, load_only=True)
 
 
-class ScreenShotUpdateSchema(Schema):
+class ScreenshotUpdateSchema(Schema):
     name = fields.Str()
     price = fields.Float()
 
 
-class ScreenShotDeleteSchema(PlainScreenShotSchema):
+class ScreenshotDeleteSchema(PlainScreenshotSchema):
     id = fields.Int(dump_only=True)
 
 
-class ScreenShotCreateSchema(PlainScreenShotSchema):
+class ScreenshotCreateSchema(PlainScreenshotSchema):
     id = fields.Int(dump_only=True)

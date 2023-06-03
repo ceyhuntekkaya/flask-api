@@ -1,22 +1,22 @@
 from marshmallow import Schema, fields
 
 
-class PlainLayerCoordinatesSchema(Schema):
+class PlainLayerCoordinateSchema(Schema):
     id = fields.Int(dump_only=True)
 
 
-class LayerCoordinatesSchema(PlainLayerCoordinatesSchema):
+class LayerCoordinateSchema(PlainLayerCoordinateSchema):
     store_id = fields.Int(required=True, load_only=True)
 
 
-class LayerCoordinatesUpdateSchema(Schema):
+class LayerCoordinateUpdateSchema(Schema):
     name = fields.Str()
     price = fields.Float()
 
 
-class LayerCoordinatesDeleteSchema(PlainLayerCoordinatesSchema):
+class LayerCoordinateDeleteSchema(PlainLayerCoordinateSchema):
     id = fields.Int(dump_only=True)
 
 
-class LayerCoordinatesCreateSchema(PlainLayerCoordinatesSchema):
+class LayerCoordinateCreateSchema(PlainLayerCoordinateSchema):
     id = fields.Int(dump_only=True)
