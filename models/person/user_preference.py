@@ -7,3 +7,12 @@ class UserPreferenceModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     preference_id = db.Column(db.Integer, db.ForeignKey("preferences.id"))
     value = db.Column(db.String, unique=False, nullable=True)
+
+    create_at = db.Column(db.Integer,nullable=True)
+    update_at = db.Column(db.Integer, nullable=True)
+    delete_at = db.Column(db.Integer, nullable=True)
+    active = db.Column(db.Boolean, nullable=True)
+
+    create_by = db.Column(db.Integer,nullable=True)
+    update_by = db.Column(db.Integer, nullable=True)
+    delete_by = db.Column(db.Integer, nullable=True)

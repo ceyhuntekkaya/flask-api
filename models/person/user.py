@@ -23,6 +23,12 @@ class UserModel(db.Model):
     delete_at = db.Column(db.Integer, nullable=True)
     active = db.Column(db.Boolean, nullable=True)
 
+    create_by = db.Column(db.Integer,nullable=True)
+    update_by = db.Column(db.Integer, nullable=True)
+    delete_by = db.Column(db.Integer, nullable=True)
+    last_login = db.Column(db.Integer,nullable=True)
+    last_login_ip = db.Column(db.String(80), unique=False, nullable=True)
+
     role_id = db.Column(
         db.Integer, db.ForeignKey("roles.id"), unique=False, nullable=False
     )

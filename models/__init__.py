@@ -12,6 +12,7 @@ from models.communication.notification import NotificationModel
 
 
 from models.constant.authority import AuthorityModel
+from models.constant.authority_pack import AuthorityPackModel
 from models.constant.hierarchy import HierarchyModel
 from models.constant.role import RoleModel
 from models.constant.preference import PreferenceModel
