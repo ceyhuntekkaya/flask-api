@@ -1,4 +1,44 @@
-authority_list = [
+from db import db
+from models import UserModel
+from passlib.hash import pbkdf2_sha256
+
+
+
+
+class FirstRecords():
+    
+    def role_register():
+        user = {"name":"Admin"}
+        is_found =  UserModel.query.filter(UserModel.username == user["username"]).first()
+        if not is_found:
+            user = UserModel(**user
+            )
+            db.session.add(user)
+            db.session.commit()
+            print('created user ok.')  
+
+
+    def chechjk():
+        user = {"name":"Ceyhun", "surname":"Tekkaya", "registration_number":"123456", "phone":"3123121212", "phone_extension_line":"0101", "mail":"ceyhun@genixo.ai", "code":"007", "username":"admin", "password":"123", "create_at":1685791783117, "update_at":None, 
+                "delete_at":None, "active":True, "create_by":None, "update_by":None, "delete_by":None, "last_login":None, "last_login_ip":None, 
+                "role_id":0, "hierarchy_id":0, "command_id":0, "command_collar_mark_id":0, "command_collar_mark_rank_id":0}
+        is_found =  UserModel.query.filter(UserModel.username == user["username"]).first()
+        if not is_found:
+            user = UserModel(**user
+            )
+            db.session.add(user)
+            db.session.commit()
+            print('created user ok.')  
+
+
+    
+
+    def check():
+        x=5
+        #role_register()
+
+
+    authority_list = [
         {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"KURMAY" },
         {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"PİYADE" },
         {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"SÜVARİ" },
@@ -29,7 +69,7 @@ authority_list = [
         {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"HARİTA TEKNİSYENİ" },
         {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"UÇAK VE HELİKOPTER TEKNİSYENİ" },
     ]
-authority_list_2 = [
+    authority_list_2 = [
             {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"ORGENERAL", "order":1, "type":"General", "logo":""},
             {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"KORGENERAL", "order":2, "type":"General", "logo":""},
             {"komuta":"Kara Kuvvetleri Komutanlığı", "name":"TÜMGENERAL", "order":3, "type":"General", "logo":""},

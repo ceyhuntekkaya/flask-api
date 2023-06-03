@@ -7,10 +7,56 @@ import os
 from db import db
 from blocklist import BLOCKLIST
 
-from resources.user import blp as UserBlueprint
+#from resources._user import blp as UserBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
+
+
+from resources.communication.data_package import blp as DataPackageBlueprint
+from resources.communication.message import blp as MessageBlueprint
+from resources.communication.message_template import blp as MessageTemplateBlueprint
+from resources.communication.notification import blp as NotificationBlueprint
+
+from resources.constant.authority import blp as AuthorityBlueprint
+from resources.constant.authority_pack import blp as AuthorityPackBlueprint
+from resources.constant.command import blp as CommandBlueprint
+from resources.constant.command_collar_mark import blp as CommandCollarMarkBlueprint
+from resources.constant.command_collar_mark_rank import blp as CommandCollarMarkRankBlueprint
+from resources.constant.hierarchy import blp as HierarchyBlueprint
+from resources.constant.preference import blp as PreferenceBlueprint
+from resources.constant.role import blp as RoleBlueprint
+
+
+from resources.detection.detection import blp as DetectionPrint
+from resources.detection.detection_route import blp as DetectionRoutePrint
+
+from resources.library.media import blp as MediaBlueprint
+from resources.library.screenshot import blp as ScreenshotBlueprint
+
+from resources.location.unity import blp as UnityBlueprint
+
+from resources.log.log import blp as LogBlueprint
+
+# from.resources.map.map import blp as MapBlueprint
+# from.resources.map.layer import blp as LayerBlueprint
+# from.resources.map.layer_coordinates import blp as LayerCoordinateBlueprint
+
+from resources.material.marker import blp as MarkerBlueprint
+from resources.material.sensor import blp as SensorBlueprint
+from resources.material.symbol import blp as SymbolBlueprint
+
+from resources.person.user import blp as UserBlueprint
+from resources.person.user_authority import blp as UserAuthorityBlueprint
+from resources.person.user_preference import blp as UserPreferenceBlueprint
+from resources.person.user_recent import blp as UserRecentBlueprint
+
+from resources.report.detection_report import blp as DetectionReportBlueprint
+
+
+
+
+import initialize
 
 
 def create_app(db_url=None):
@@ -94,9 +140,54 @@ def create_app(db_url=None):
         )
     with app.app_context():
         db.create_all()
+        initialize.FirstRecords.check()
 
-    api.register_blueprint(UserBlueprint)
+    #api.register_blueprint(UserBlueprint)
     api.register_blueprint(ItemBlueprint)
     api.register_blueprint(StoreBlueprint)
     api.register_blueprint(TagBlueprint)
+
+    api.register_blueprint(DataPackageBlueprint)
+    api.register_blueprint(MessageBlueprint)
+    api.register_blueprint(MessageTemplateBlueprint)
+    api.register_blueprint(NotificationBlueprint)
+
+    api.register_blueprint(AuthorityBlueprint)
+    api.register_blueprint(AuthorityPackBlueprint)
+    api.register_blueprint(CommandBlueprint)
+    api.register_blueprint(CommandCollarMarkBlueprint)
+    api.register_blueprint(CommandCollarMarkRankBlueprint)
+    api.register_blueprint(HierarchyBlueprint)
+    api.register_blueprint(PreferenceBlueprint)
+    api.register_blueprint(RoleBlueprint)
+
+
+    api.register_blueprint(DetectionPrint)
+    api.register_blueprint(DetectionRoutePrint)
+
+    api.register_blueprint(MediaBlueprint)
+    api.register_blueprint(ScreenshotBlueprint)
+
+    api.register_blueprint(UnityBlueprint)
+
+    api.register_blueprint(LogBlueprint)
+
+    # api.register_blueprint(MapBlueprint)
+    # api.register_blueprint(LayerBlueprint)
+    # api.register_blueprint(LayerCoordinateBlueprint)
+
+    api.register_blueprint(MarkerBlueprint)
+    api.register_blueprint(SensorBlueprint)
+    api.register_blueprint(SymbolBlueprint)
+
+    api.register_blueprint(UserBlueprint)
+    api.register_blueprint(UserAuthorityBlueprint)
+    api.register_blueprint(UserPreferenceBlueprint)
+    api.register_blueprint(UserRecentBlueprint)
+
+    api.register_blueprint(DetectionReportBlueprint)
+
+
+
+
     return app

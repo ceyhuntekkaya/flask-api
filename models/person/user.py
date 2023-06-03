@@ -30,7 +30,7 @@ class UserModel(db.Model):
     last_login_ip = db.Column(db.String(80), unique=False, nullable=True)
 
     role_id = db.Column(
-        db.Integer, db.ForeignKey("roles.id"), unique=False, nullable=False
+        db.Integer, db.ForeignKey("roles.id"), unique=False, nullable=True
     )
     hierarchy_id = db.Column(
         db.Integer, db.ForeignKey("hierarchies.id"), unique=False, nullable=False

@@ -5,7 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from db import db
 from models import ItemModel
-from schemas import ItemSchema, ItemUpdateSchema
+from old_schemas import ItemSchema, ItemUpdateSchema
 
 blp = Blueprint("Items", "items", description="Operations on items")
 
