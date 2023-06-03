@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.map.layer_coordinates import LayerCoordinateModel
 from schemas.map.layer_coordinates import LayerCoordinateSchema
@@ -12,11 +14,13 @@ blp = Blueprint("LayerCoordinates", "layer_coordinatess", description="Operation
 
 @blp.route("/layer_coordinate/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, LayerCoordinateSchema)
     def get(self, item_id):
         item = LayerCoordinateModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = LayerCoordinateModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/layer_coordinate")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, LayerCoordinateSchema(many=True))
     def get(self):
         return LayerCoordinateModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(LayerCoordinateSchema)
     @blp.response(201, LayerCoordinateSchema)
     def post(self, item_data):

@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.location.unity import UnityModel
 from schemas.location.unity import UnitySchema
@@ -12,11 +14,13 @@ blp = Blueprint("Unities", "unitys", description="Operations on unity")
 
 @blp.route("/unity/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, UnitySchema)
     def get(self, item_id):
         item = UnityModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = UnityModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/unity")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, UnitySchema(many=True))
     def get(self):
         return UnityModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(UnitySchema)
     @blp.response(201, UnitySchema)
     def post(self, item_data):

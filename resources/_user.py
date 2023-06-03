@@ -69,7 +69,8 @@
 #     when we are manipulating data regarding the users.
 #     """
 
-#     @blp.response(200, UserSchema)
+#     @jwt_required()
+#    @blp.response(200, UserSchema)
 #     def get(self, user_id):
 #         user = UserModel.query.get_or_404(user_id)
 #         return user

@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.report.detection_report import DetectionReportModel
 from schemas.report.detection_report import DetectionReportSchema
@@ -12,11 +14,13 @@ blp = Blueprint("DetectionReports", "detection_reports", description="Operations
 
 @blp.route("/detection_report/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, DetectionReportSchema)
     def get(self, item_id):
         item = DetectionReportModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = DetectionReportModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/detection_report")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, DetectionReportSchema(many=True))
     def get(self):
         return DetectionReportModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(DetectionReportSchema)
     @blp.response(201, DetectionReportSchema)
     def post(self, item_data):

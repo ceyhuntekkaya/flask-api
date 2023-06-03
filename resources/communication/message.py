@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.communication.message import MessageModel
 from schemas.communication.message import MessageSchema
@@ -12,11 +14,13 @@ blp = Blueprint("Messages", "messages", description="Operations on messages")
 
 @blp.route("/message/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, MessageSchema)
     def get(self, item_id):
         item = MessageModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = MessageModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/message")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, MessageSchema(many=True))
     def get(self):
         return MessageModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(MessageSchema)
     @blp.response(201, MessageSchema)
     def post(self, item_data):

@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.constant.role import RoleModel
 from schemas.constant.role import RoleSchema
@@ -12,11 +14,13 @@ blp = Blueprint("Roles", "roles", description="Operations on roles")
 
 @blp.route("/role/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, RoleSchema)
     def get(self, item_id):
         item = RoleModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = RoleModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/role")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, RoleSchema(many=True))
     def get(self):
         return RoleModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(RoleSchema)
     @blp.response(201, RoleSchema)
     def post(self, item_data):

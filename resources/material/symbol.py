@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.material.symbol import SymbolModel
 from schemas.material.symbol import SymbolSchema
@@ -12,11 +14,13 @@ blp = Blueprint("Symbols", "symbols", description="Operations on symbol")
 
 @blp.route("/symbol/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, SymbolSchema)
     def get(self, item_id):
         item = SymbolModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = SymbolModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/symbol")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, SymbolSchema(many=True))
     def get(self):
         return SymbolModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(SymbolSchema)
     @blp.response(201, SymbolSchema)
     def post(self, item_data):

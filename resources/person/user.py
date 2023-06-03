@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.person.user import UserModel
 from schemas.person.user import UserSchema
@@ -12,11 +14,13 @@ blp = Blueprint("Users", "users", description="Operations on user")
 
 @blp.route("/user/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, UserSchema)
     def get(self, item_id):
         item = UserModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = UserModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/user")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, UserSchema(many=True))
     def get(self):
         return UserModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(UserSchema)
     @blp.response(201, UserSchema)
     def post(self, item_data):

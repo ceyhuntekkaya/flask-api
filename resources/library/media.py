@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.library.media import MediaModel
 from schemas.library.media import MediaSchema
@@ -12,11 +14,13 @@ blp = Blueprint("Media", "media", description="Operations on media")
 
 @blp.route("/media/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, MediaSchema)
     def get(self, item_id):
         item = MediaModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = MediaModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/media")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, MediaSchema(many=True))
     def get(self):
         return MediaModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(MediaSchema)
     @blp.response(201, MediaSchema)
     def post(self, item_data):

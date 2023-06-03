@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.material.sensor import SensorModel
 from schemas.material.sensor import SensorSchema
@@ -12,11 +14,13 @@ blp = Blueprint("Sensors", "sensors", description="Operations on sensor")
 
 @blp.route("/sensor/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, SensorSchema)
     def get(self, item_id):
         item = SensorModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = SensorModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/sensor")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, SensorSchema(many=True))
     def get(self):
         return SensorModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(SensorSchema)
     @blp.response(201, SensorSchema)
     def post(self, item_data):

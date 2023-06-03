@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.constant.command_collar_mark_rank import CommandCollarMarkRankModel
 from schemas.constant.command_collar_mark_rank import CommandCollarMarkRankSchema
@@ -12,11 +14,14 @@ blp = Blueprint("CommandCollarMarkRanks", "command_collar_mark_ranks", descripti
 
 @blp.route("/command_collar_mark_rank/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
+    @jwt_required()
     @blp.response(200, CommandCollarMarkRankSchema)
     def get(self, item_id):
         item = CommandCollarMarkRankModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = CommandCollarMarkRankModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +45,12 @@ class WithId(MethodView):
 
 @blp.route("/command_collar_mark_rank")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, CommandCollarMarkRankSchema(many=True))
     def get(self):
         return CommandCollarMarkRankModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(CommandCollarMarkRankSchema)
     @blp.response(201, CommandCollarMarkRankSchema)
     def post(self, item_data):

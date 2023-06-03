@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.person.user_preference import UserPreferenceModel
 from schemas.person.user_preference import UserPreferenceSchema
@@ -12,11 +14,13 @@ blp = Blueprint("UserPreferences", "user_preferences", description="Operations o
 
 @blp.route("/user_preference/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, UserPreferenceSchema)
     def get(self, item_id):
         item = UserPreferenceModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = UserPreferenceModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/user_preference")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, UserPreferenceSchema(many=True))
     def get(self):
         return UserPreferenceModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(UserPreferenceSchema)
     @blp.response(201, UserPreferenceSchema)
     def post(self, item_data):

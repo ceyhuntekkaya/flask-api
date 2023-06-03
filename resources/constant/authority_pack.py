@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.constant.authority_pack import AuthorityPackModel
 from schemas.constant.authority_pack import AuthorityPackSchema
@@ -12,11 +14,13 @@ blp = Blueprint("AuthorityPacks", "authority_paks", description="Operations on a
 
 @blp.route("/authority_pack/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, AuthorityPackSchema)
     def get(self, item_id):
         item = AuthorityPackModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = AuthorityPackModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/authority_pack")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, AuthorityPackSchema(many=True))
     def get(self):
         return AuthorityPackModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(AuthorityPackSchema)
     @blp.response(201, AuthorityPackSchema)
     def post(self, item_data):

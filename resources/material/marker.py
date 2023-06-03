@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.material.marker import MarkerModel
 from schemas.material.marker import MarkerSchema
@@ -12,11 +14,13 @@ blp = Blueprint("Markers", "markers", description="Operations on marker")
 
 @blp.route("/marker/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, MarkerSchema)
     def get(self, item_id):
         item = MarkerModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = MarkerModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/marker")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, MarkerSchema(many=True))
     def get(self):
         return MarkerModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(MarkerSchema)
     @blp.response(201, MarkerSchema)
     def post(self, item_data):

@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.person.user_recent import UserRecentModel
 from schemas.person.user_recent import UserRecentSchema
@@ -12,11 +14,13 @@ blp = Blueprint("UserRecents", "user_recents", description="Operations on user r
 
 @blp.route("/user_recent/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, UserRecentSchema)
     def get(self, item_id):
         item = UserRecentModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = UserRecentModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/user_recent")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, UserRecentSchema(many=True))
     def get(self):
         return UserRecentModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(UserRecentSchema)
     @blp.response(201, UserRecentSchema)
     def post(self, item_data):

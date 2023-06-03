@@ -2,6 +2,8 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
+from flask_jwt_extended import jwt_required 
+
 from db import db
 from models.detection.detection_route import DetectionRouteModel
 from schemas.detection.detection_route import DetectionRouteSchema
@@ -12,11 +14,13 @@ blp = Blueprint("DetectionRoutes", "detection_routes", description="Operations o
 
 @blp.route("/detection_route/<string:item_id>")
 class WithId(MethodView):
+    @jwt_required()
     @blp.response(200, DetectionRouteSchema)
     def get(self, item_id):
         item = DetectionRouteModel.query.get_or_404(item_id)
         return item
 
+    @jwt_required()
     def delete(self, item_id):
         item = DetectionRouteModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -40,10 +44,12 @@ class WithId(MethodView):
 
 @blp.route("/detection_route")
 class Plain(MethodView):
+    @jwt_required()
     @blp.response(200, DetectionRouteSchema(many=True))
     def get(self):
         return DetectionRouteModel.query.all()
 
+    @jwt_required(fresh=True)
     @blp.arguments(DetectionRouteSchema)
     @blp.response(201, DetectionRouteSchema)
     def post(self, item_data):
