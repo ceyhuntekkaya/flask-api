@@ -1,22 +1,22 @@
 from marshmallow import Schema, fields
 
 
-class PlainItemSchema(Schema):
+class PlainMapSchema(Schema):
     id = fields.Int(dump_only=True)
 
 
-class ItemSchema(PlainItemSchema):
+class MapSchema(PlainMapSchema):
     store_id = fields.Int(required=True, load_only=True)
 
 
-class ItemUpdateSchema(Schema):
+class MapUpdateSchema(Schema):
     name = fields.Str()
     price = fields.Float()
 
 
-class ItemDeleteSchema(PlainItemSchema):
+class MapDeleteSchema(PlainMapSchema):
     id = fields.Int(dump_only=True)
 
 
-class ItemCreateSchema(PlainItemSchema):
+class MapCreateSchema(PlainMapSchema):
     id = fields.Int(dump_only=True)
