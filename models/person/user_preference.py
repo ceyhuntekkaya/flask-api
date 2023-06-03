@@ -5,4 +5,5 @@ class UserPreferenceModel(db.Model):
     __tablename__ = "user_preferences"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
+    preference_id = db.Column(db.Integer, db.ForeignKey("preferences.id"))
+    value = db.Column(db.String, unique=False, nullable=True)

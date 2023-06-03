@@ -14,6 +14,7 @@ from models.communication.notification import NotificationModel
 from models.constant.authority import AuthorityModel
 from models.constant.hierarchy import HierarchyModel
 from models.constant.role import RoleModel
+from models.constant.preference import PreferenceModel
 
 from models.detection.detection_route import DetectionRouteModel
 from models.detection.detection import DetectionModel

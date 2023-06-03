@@ -5,4 +5,5 @@ class UserRecentModel(db.Model):
     __tablename__ = "user_recents"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
+    type = db.Column(db.String, unique=False, nullable=True)
+    value = db.Column(db.String, unique=False, nullable=True)
