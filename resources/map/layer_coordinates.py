@@ -5,8 +5,8 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_jwt_extended import jwt_required 
 
 from db import db
-from models.map_item.layer_coordinates import LayerCoordinateModel
-from schemas.map_item.layer_coordinates import LayerCoordinateSchema
+from models.map.layer_coordinates import LayerCoordinateModel
+from schemas.map.layer_coordinates import LayerCoordinateSchema
 
 
 blp = Blueprint("LayerCoordinates", "layer_coordinatess", description="Operations on layer coordinates")

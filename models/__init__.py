@@ -29,9 +29,9 @@ from models.location.unity import UnityModel
 
 from models.log.log import LogModel
 
-from models.map_item.map import MapModel
-from models.map_item.layer import LayerModel
-from models.map_item.layer_coordinates import LayerCoordinateModel
+from models.map.map import MapModel
+from models.map.layer import LayerModel
+from models.map.layer_coordinates import LayerCoordinateModel
 
 from models.material.sensor import SensorModel
 from models.material.symbol import SymbolModel
