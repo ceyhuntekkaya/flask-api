@@ -21,7 +21,7 @@ pip install -r requirements.txt
 Authorization
 Bearer 
 
-
+https://api.elephantsql.com/console/1ddee338-37fc-43f6-be34-02deda78d36b/browser?
 
 
 flask db init

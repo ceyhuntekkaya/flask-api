@@ -6,8 +6,8 @@ class DataPackageModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
-    data_from = db.Column(db.Integer, db.ForeignKey("user.id"))
-    data_to = db.Column(db.Integer, db.ForeignKey("user.id"))
+    data_from = db.Column(db.Integer, db.ForeignKey("users.id"))
+    data_to = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     header = db.Column(db.String, nullable=False)
     content = db.Column(db.String, nullable=False)
