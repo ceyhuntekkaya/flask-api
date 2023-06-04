@@ -1,41 +1,118 @@
 from db import db
-from models import UserModel
+from models.constant.role import RoleModel
+from models.constant.hierarchy import HierarchyModel
+from models.constant.command import CommandModel
+from models.constant.command_collar_mark import CommandCollarMarkModel
+from models.constant.command_collar_mark_rank import CommandCollarMarkRankModel
+
+from models.person.user import UserModel
 from passlib.hash import pbkdf2_sha256
 
 
+class FirstRecords:
+    def __init__(self, status):
+           pass
 
-
-class FirstRecords():
-    
-    def role_register():
-        user = {"name":"Admin"}
-        is_found =  UserModel.query.filter(UserModel.username == user["username"]).first()
-        if not is_found:
-            user = UserModel(**user
-            )
-            db.session.add(user)
-            db.session.commit()
-            print('created user ok.')  
-
-
-    def chechjk():
-        user = {"name":"Ceyhun", "surname":"Tekkaya", "registration_number":"123456", "phone":"3123121212", "phone_extension_line":"0101", "mail":"ceyhun@genixo.ai", "code":"007", "username":"admin", "password":"123", "create_at":1685791783117, "update_at":None, 
-                "delete_at":None, "active":True, "create_by":None, "update_by":None, "delete_by":None, "last_login":None, "last_login_ip":None, 
-                "role_id":0, "hierarchy_id":0, "command_id":0, "command_collar_mark_id":0, "command_collar_mark_rank_id":0}
-        is_found =  UserModel.query.filter(UserModel.username == user["username"]).first()
-        if not is_found:
-            user = UserModel(**user
-            )
-            db.session.add(user)
-            db.session.commit()
-            print('created user ok.')  
-
-
-    
 
     def check():
-        x=5
-        #role_register()
+        role_data = {"name":"Ceyhun"}
+        role_id=0
+        is_found =  RoleModel.query.filter(RoleModel.name == role_data["name"]).first()
+        if not is_found:
+            role = RoleModel(**role_data
+            )
+            db.session.add(role)
+            db.session.flush()
+            db.session.commit()
+            role_id = role.id  
+        
+        hierarchy_data = {"name":"Ceyhun", "hierarchical_order":1}
+        hierarchy_id=0
+        is_found =  HierarchyModel.query.filter(HierarchyModel.name == hierarchy_data["name"]).first()
+        if not is_found:
+            hierarchy = HierarchyModel(**hierarchy_data
+            )
+            db.session.add(hierarchy)
+            db.session.flush()
+            db.session.commit()
+            hierarchy_id = hierarchy.id  
+
+        command_data = {"name":"Ceyhun", "hierarchical_order":1}
+        command_id=0
+        is_found =  CommandModel.query.filter(CommandModel.name == command_data["name"]).first()
+        if not is_found:
+            command = CommandModel(**command_data
+            )
+            db.session.add(command)
+            db.session.flush()
+            db.session.commit()
+            command_id = command.id  
+
+        command_coolar_mark_data = {"name":"Ceyhun", "hierarchical_order":1, "command_id":command_id}
+        command_coolar_mark_id=0
+        is_found =  CommandCollarMarkModel.query.filter(CommandCollarMarkModel.name == command_coolar_mark_data["name"]).first()
+        if not is_found:
+            ommand_coolar_mark = CommandCollarMarkModel(**command_coolar_mark_data
+            )
+            db.session.add(ommand_coolar_mark)
+            db.session.flush()
+            db.session.commit()
+            command_coolar_mark_id = ommand_coolar_mark.id  
+
+        command_coolar_mark_rank_data = {"name":"Ceyhun", "hierarchical_order":1, "command_collar_mark_id":command_coolar_mark_id}
+        ommand_coolar_mark_rank_id=0
+        is_found =  CommandCollarMarkRankModel.query.filter(CommandCollarMarkRankModel.name == command_coolar_mark_rank_data["name"]).first()
+        if not is_found:
+            command_coolar_mark_rank = CommandCollarMarkRankModel(**command_coolar_mark_rank_data
+            )
+            db.session.add(command_coolar_mark_rank)
+            db.session.flush()
+            db.session.commit()
+            ommand_coolar_mark_rank_id = command_coolar_mark_rank.id  
+
+        user_data = {"name":"Ceyhun", "surname":"Tekkaya",
+                     "username":"admin","password":"admin",
+                     "role_id":1,
+                     "hierarchy_id":1,
+                     "command_id":1,
+                     "command_collar_mark_id":1,
+                     "command_collar_mark_rank_id":1
+                     }
+        user_id=0
+        is_found =  UserModel.query.filter(UserModel.username == user_data["username"]).first()
+        if not is_found:
+            user_data["password"] = pbkdf2_sha256.hash(user_data["password"])
+            user = UserModel(**user_data
+            )
+            db.session.add(user)
+            db.session.flush()
+            db.session.commit()
+            user_id = user.id          
+
+
+
+
+
+
+
+
+
+
+
+    def add_user(role_id):
+        user = {"name":"Ceyhun", "surname":"Tekkaya", "registration_number":"123456", "phone":"3123121212", "phone_extension_line":"0101", "mail":"ceyhun@genixo.ai", "code":"007", "username":"admin", "password":"123", "create_at":1685791783117, "update_at":None, 
+                "delete_at":None, "active":True, "create_by":None, "update_by":None, "delete_by":None, "last_login":None, "last_login_ip":None, 
+                "role_id":role_id, "hierarchy_id":0, "command_id":0, "command_collar_mark_id":0, "command_collar_mark_rank_id":0}
+        is_found =  UserModel.query.filter(UserModel.username == user["username"]).first()
+        if not is_found:
+            user = UserModel(**user
+            )
+            db.session.add(user)
+            db.session.commit()
+            print('created user ok.')  
+
+    def check2():
+        check()
 
 
     authority_list = [

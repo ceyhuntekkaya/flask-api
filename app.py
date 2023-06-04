@@ -56,7 +56,7 @@ from resources.report.detection_report import blp as DetectionReportBlueprint
 
 
 
-import initialize
+from initialize import FirstRecords
 
 
 def create_app(db_url=None):
@@ -140,7 +140,7 @@ def create_app(db_url=None):
         )
     with app.app_context():
         db.create_all()
-        initialize.FirstRecords.check()
+        FirstRecords.check()
 
     #api.register_blueprint(UserBlueprint)
     api.register_blueprint(ItemBlueprint)
