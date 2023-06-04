@@ -5,7 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_jwt_extended import jwt_required 
 
 from db import db
-from models.location.unity import UnityModel
+from models.material.unity import UnityModel
 from schemas.location.unity import UnitySchema
 
 

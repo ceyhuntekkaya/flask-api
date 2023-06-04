@@ -34,7 +34,7 @@ from resources.detection.detection_route import blp as DetectionRoutePrint
 from resources.library.media import blp as MediaBlueprint
 from resources.library.screenshot import blp as ScreenshotBlueprint
 
-from resources.location.unity import blp as UnityBlueprint
+from resources.material.unity import blp as UnityBlueprint
 
 from resources.log.log import blp as LogBlueprint
 
@@ -42,7 +42,7 @@ from resources.log.log import blp as LogBlueprint
 # from.resources.map_item.layer import blp as LayerBlueprint
 # from.resources.map_item.layer_coordinates import blp as LayerCoordinateBlueprint
 
-from resources.material.marker import blp as MarkerBlueprint
+from resources.material.sign import blp as SingBlueprint
 from resources.material.sensor import blp as SensorBlueprint
 from resources.material.symbol import blp as SymbolBlueprint
 from resources.map.map import blp as MapBlueprint
@@ -179,7 +179,7 @@ def create_app(db_url=None):
     api.register_blueprint(LayerBlueprint)
     api.register_blueprint(LayerCoordinatesBlueprint)
 
-    api.register_blueprint(MarkerBlueprint)
+    api.register_blueprint(SingBlueprint)
     api.register_blueprint(SensorBlueprint)
     api.register_blueprint(SymbolBlueprint)
 

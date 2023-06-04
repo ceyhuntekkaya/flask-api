@@ -1,22 +1,22 @@
 from marshmallow import Schema, fields
 
 
-class PlainMarkerSchema(Schema):
+class PlainSignSchema(Schema):
     id = fields.Int(dump_only=True)
 
 
-class MarkerSchema(PlainMarkerSchema):
+class SignSchema(PlainSignSchema):
     store_id = fields.Int(required=True, load_only=True)
 
 
-class MarkerUpdateSchema(Schema):
+class SignUpdateSchema(Schema):
     name = fields.Str()
     price = fields.Float()
 
 
-class MarkerDeleteSchema(PlainMarkerSchema):
+class SignDeleteSchema(PlainSignSchema):
     id = fields.Int(dump_only=True)
 
 
-class MarkerCreateSchema(PlainMarkerSchema):
+class SignCreateSchema(PlainSignSchema):
     id = fields.Int(dump_only=True)

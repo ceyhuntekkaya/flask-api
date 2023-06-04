@@ -12,7 +12,7 @@ class MessageModel(db.Model):
     send_ip = db.Column(db.String)
     message_type = db.Column(db.String)
 
-    messege_from = db.Column(db.Integer, db.ForeignKey("user.id"))
+    messege_from = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     orginal_message_id = db.Column(db.Integer, db.ForeignKey("messages.id"), nullable=True)
 

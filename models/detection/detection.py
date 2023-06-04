@@ -12,6 +12,7 @@ class DetectionModel(db.Model):
     longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
     detection_at = db.Column(db.Integer, nullable=False)
     anomaly_level = db.Column(db.Integer, nullable=False)
+    anomaly_color = db.Column(db.String, nullable=True)
 
     map_id = db.Column(db.Integer, db.ForeignKey("maps.id"), nullable=True)
     layer_id = db.Column(db.Integer, db.ForeignKey("layers.id"), nullable=True)

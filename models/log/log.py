@@ -5,13 +5,9 @@ class LogModel(db.Model):
     __tablename__ = "kogs"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
-
-    create_at = db.Column(db.Integer,nullable=True)
-    update_at = db.Column(db.Integer, nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
-    active = db.Column(db.Boolean, nullable=True)
-
-    create_by = db.Column(db.Integer,nullable=True)
-    update_by = db.Column(db.Integer, nullable=True)
-    delete_by = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+    event_type = db.Column(db.String, nullable=False)
+    event_at = db.Column(db.String, nullable=False)
+    user_ip = db.Column(db.String, nullable=False)
+    unity_id = db.Column(db.Integer, db.ForeignKey("unities.id"), nullable=True)
+    description = db.Column(db.String, nullable=True)

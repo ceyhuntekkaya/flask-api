@@ -1,5 +1,5 @@
 from enum import Enum
  
-class Season(Enum):
+class RoleType(Enum):
     ADMIN = "ADMIN"
     USER = "USER"

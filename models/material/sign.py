@@ -1,13 +1,18 @@
 from db import db
 
 
-class MarkerModel(db.Model):
-    __tablename__ = "markers"
+class SingModel(db.Model):
+    __tablename__ = "sings"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
-    latitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
-    longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
+    name = db.Column(db.String, unique=False, nullable=False)
+    source = db.Column(db.String, unique=False, nullable=False)
+    description = db.Column(db.String)
+
+    hierarchy_id = db.Column(
+        db.Integer, db.ForeignKey("hierarchies.id"), unique=False, nullable=False
+    )
+    official_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
 
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)

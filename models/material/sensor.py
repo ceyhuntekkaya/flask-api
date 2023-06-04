@@ -6,9 +6,13 @@ class SensorModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
+    source = db.Column(db.String, unique=False, nullable=False)
     description = db.Column(db.String)
-    latitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
-    longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
+
+    hierarchy_id = db.Column(
+        db.Integer, db.ForeignKey("hierarchies.id"), unique=False, nullable=False
+    )
+    official_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
 
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)

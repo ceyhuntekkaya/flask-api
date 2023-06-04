@@ -7,7 +7,15 @@ class LayerModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     description = db.Column(db.String)
-    price = db.Column(db.Float(precision=2), unique=False, nullable=False)
+    hierarchy_id = db.Column(
+        db.Integer, db.ForeignKey("hierarchies.id"), unique=False, nullable=False
+    )
+    official_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+
+    color = db.Column(db.String, unique=False, nullable=False)
+    layer_type = db.Column(db.String, unique=False, nullable=False)
+    critical_area_type =db.Column(db.String, unique=False, nullable=True)
+
 
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)
