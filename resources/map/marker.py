@@ -5,11 +5,11 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_jwt_extended import jwt_required 
 
 from db import db
-from models.material.sign import MarkerModel
-from schemas.material.sign import MarkerSchema
+from models.map.marker import MarkerModel
+from schemas.map.marker import MarkerSchema
 
 
-blp = Blueprint("Signs", "markers", description="Operations on marker")
+blp = Blueprint("Markers", "markers", description="Operations on marker")
 
 
 @blp.route("/marker/<string:item_id>")

@@ -17,6 +17,8 @@ from resources.communication.data_package import blp as DataPackageBlueprint
 from resources.communication.message import blp as MessageBlueprint
 from resources.communication.message_template import blp as MessageTemplateBlueprint
 from resources.communication.notification import blp as NotificationBlueprint
+from resources.communication.message_to import blp as MessageToListBlueprint
+from resources.communication.notification_to import blp as NotificationToListBlueprint
 
 from resources.constant.authority import blp as AuthorityBlueprint
 from resources.constant.authority_pack import blp as AuthorityPackBlueprint
@@ -29,18 +31,18 @@ from resources.constant.role import blp as RoleBlueprint
 
 
 from resources.detection.detection import blp as DetectionPrint
+from resources.detection.detection_note import blp as DetectionNotePrint
+from resources.detection.detection_process import blp as DetectionProcessPrint
 from resources.detection.detection_route import blp as DetectionRoutePrint
 
 from resources.library.media import blp as MediaBlueprint
+from resources.library.media_source import blp as MediaSourceBlueprint
 from resources.library.screenshot import blp as ScreenshotBlueprint
 
 from resources.material.unity import blp as UnityBlueprint
 
 from resources.log.log import blp as LogBlueprint
 
-# from.resources.map_item.map import blp as MapBlueprint
-# from.resources.map_item.layer import blp as LayerBlueprint
-# from.resources.map_item.layer_coordinates import blp as LayerCoordinateBlueprint
 
 from resources.material.sign import blp as SingBlueprint
 from resources.material.sensor import blp as SensorBlueprint
@@ -48,6 +50,7 @@ from resources.material.symbol import blp as SymbolBlueprint
 from resources.map.map import blp as MapBlueprint
 from resources.map.layer import blp as LayerBlueprint
 from resources.map.layer_coordinates import blp as LayerCoordinatesBlueprint
+from resources.map.marker import blp as MarkerBlueprint
 
 from resources.person.user import blp as UserBlueprint
 from resources.person.user_authority import blp as UserAuthorityBlueprint
@@ -154,6 +157,8 @@ def create_app(db_url=None):
     api.register_blueprint(MessageBlueprint)
     api.register_blueprint(MessageTemplateBlueprint)
     api.register_blueprint(NotificationBlueprint)
+    api.register_blueprint(MessageToListBlueprint)
+    api.register_blueprint(NotificationToListBlueprint)
 
     api.register_blueprint(AuthorityBlueprint)
     api.register_blueprint(AuthorityPackBlueprint)
@@ -167,8 +172,11 @@ def create_app(db_url=None):
 
     api.register_blueprint(DetectionPrint)
     api.register_blueprint(DetectionRoutePrint)
+    api.register_blueprint(DetectionNotePrint)
+    api.register_blueprint(DetectionProcessPrint)
 
     api.register_blueprint(MediaBlueprint)
+    api.register_blueprint(MediaSourceBlueprint)
     api.register_blueprint(ScreenshotBlueprint)
 
     api.register_blueprint(UnityBlueprint)
@@ -176,6 +184,7 @@ def create_app(db_url=None):
     api.register_blueprint(LogBlueprint)
 
     api.register_blueprint(MapBlueprint)
+    api.register_blueprint(MarkerBlueprint)
     api.register_blueprint(LayerBlueprint)
     api.register_blueprint(LayerCoordinatesBlueprint)
 
