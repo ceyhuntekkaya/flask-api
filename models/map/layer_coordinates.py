@@ -6,7 +6,7 @@ class LayerCoordinateModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     row_number = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=False, nullable=False)
+    name = db.Column(db.String, unique=False, nullable=False)
     latitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
     longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
 

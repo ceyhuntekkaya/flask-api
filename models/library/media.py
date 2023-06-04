@@ -5,7 +5,7 @@ class MediaModel(db.Model):
     __tablename__ = "media"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
+    name = db.Column(db.String, unique=True, nullable=False)
 
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)

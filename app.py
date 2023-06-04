@@ -8,9 +8,9 @@ from db import db
 from blocklist import BLOCKLIST
 
 #from resources._user import blp as UserBlueprint
-from resources.item import blp as ItemBlueprint
-from resources.store import blp as StoreBlueprint
-from resources.tag import blp as TagBlueprint
+# from resources._item import blp as ItemBlueprint
+# from resources._store import blp as StoreBlueprint
+# from resources._tag import blp as TagBlueprint
 
 
 from resources.communication.data_package import blp as DataPackageBlueprint
@@ -38,9 +38,9 @@ from resources.location.unity import blp as UnityBlueprint
 
 from resources.log.log import blp as LogBlueprint
 
-# from.resources.map.map import blp as MapBlueprint
-# from.resources.map.layer import blp as LayerBlueprint
-# from.resources.map.layer_coordinates import blp as LayerCoordinateBlueprint
+from.resources.map.map import blp as MapBlueprint
+from.resources.map.layer import blp as LayerBlueprint
+from.resources.map.layer_coordinates import blp as LayerCoordinateBlueprint
 
 from resources.material.marker import blp as MarkerBlueprint
 from resources.material.sensor import blp as SensorBlueprint
@@ -143,9 +143,9 @@ def create_app(db_url=None):
         FirstRecords.check()
 
     #api.register_blueprint(UserBlueprint)
-    api.register_blueprint(ItemBlueprint)
-    api.register_blueprint(StoreBlueprint)
-    api.register_blueprint(TagBlueprint)
+    # api.register_blueprint(ItemBlueprint)
+    # api.register_blueprint(StoreBlueprint)
+    # api.register_blueprint(TagBlueprint)
 
     api.register_blueprint(DataPackageBlueprint)
     api.register_blueprint(MessageBlueprint)
@@ -172,9 +172,9 @@ def create_app(db_url=None):
 
     api.register_blueprint(LogBlueprint)
 
-    # api.register_blueprint(MapBlueprint)
-    # api.register_blueprint(LayerBlueprint)
-    # api.register_blueprint(LayerCoordinateBlueprint)
+    api.register_blueprint(MapBlueprint)
+    api.register_blueprint(LayerBlueprint)
+    api.register_blueprint(LayerCoordinateBlueprint)
 
     api.register_blueprint(MarkerBlueprint)
     api.register_blueprint(SensorBlueprint)

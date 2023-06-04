@@ -6,9 +6,7 @@ class UserAuthorityModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    authority_id = db.Column(db.Integer, db.ForeignKey("authorities.id"))
-    authority_type = db.Column(db.String(80), unique=False, nullable=True)
-
+    authority_type = db.Column(db.String, unique=False, nullable=True)
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)
     delete_at = db.Column(db.Integer, nullable=True)
@@ -17,3 +15,5 @@ class UserAuthorityModel(db.Model):
     create_by = db.Column(db.Integer,nullable=True)
     update_by = db.Column(db.Integer, nullable=True)
     delete_by = db.Column(db.Integer, nullable=True)
+
+    authority_id = db.Column(db.Integer, db.ForeignKey("authorities.id"))
