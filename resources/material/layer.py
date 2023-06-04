@@ -5,8 +5,8 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_jwt_extended import jwt_required 
 
 from db import db
-from models.map.layer import LayerModel
-from schemas.map.layer import LayerSchema
+from models.map_item.layer import LayerModel
+from schemas.map_item.layer import LayerSchema
 
 
 blp = Blueprint("Layers", "layers", description="Operations on layer")

@@ -38,13 +38,16 @@ from resources.location.unity import blp as UnityBlueprint
 
 from resources.log.log import blp as LogBlueprint
 
-from.resources.map.map import blp as MapBlueprint
-from.resources.map.layer import blp as LayerBlueprint
-from.resources.map.layer_coordinates import blp as LayerCoordinateBlueprint
+# from.resources.map_item.map import blp as MapBlueprint
+# from.resources.map_item.layer import blp as LayerBlueprint
+# from.resources.map_item.layer_coordinates import blp as LayerCoordinateBlueprint
 
 from resources.material.marker import blp as MarkerBlueprint
 from resources.material.sensor import blp as SensorBlueprint
 from resources.material.symbol import blp as SymbolBlueprint
+from resources.material.map import blp as MapBlueprint
+from resources.material.layer import blp as LayerBlueprint
+from resources.material.layer_coordinates import blp as LayerCoordinatesBlueprint
 
 from resources.person.user import blp as UserBlueprint
 from resources.person.user_authority import blp as UserAuthorityBlueprint
@@ -174,7 +177,7 @@ def create_app(db_url=None):
 
     api.register_blueprint(MapBlueprint)
     api.register_blueprint(LayerBlueprint)
-    api.register_blueprint(LayerCoordinateBlueprint)
+    api.register_blueprint(LayerCoordinatesBlueprint)
 
     api.register_blueprint(MarkerBlueprint)
     api.register_blueprint(SensorBlueprint)

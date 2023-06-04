@@ -5,65 +5,65 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_jwt_extended import jwt_required 
 
 from db import db
-from models.map.map import MapModel
-from schemas.map.map import MapSchema
+from models.map_item.layer import LayerModel
+from schemas.map_item.layer import LayerSchema
 
 
-blp = Blueprint("Maps", "maps", description="Operations on map")
+blp = Blueprint("Layers", "layers", description="Operations on layer")
 
 
-@blp.route("/map/<string:item_id>")
+@blp.route("/layer/<string:item_id>")
 class WithId(MethodView):
     @jwt_required()
-    @blp.response(200, MapSchema)
+    @blp.response(200, LayerSchema)
     def get(self, item_id):
-        item = MapModel.query.get_or_404(item_id)
+        item = LayerModel.query.get_or_404(item_id)
         return item
 
     @jwt_required()
     def delete(self, item_id):
-        item = MapModel.query.get_or_404(item_id)
+        item = LayerModel.query.get_or_404(item_id)
         db.session.delete(item)
         db.session.commit()
-        return {"message": "Map deleted"}, 200
+        return {"message": "Layer deleted"}, 200
 
      
-    @blp.arguments(MapSchema)
-    @blp.response(201, MapSchema)
+    @blp.arguments(LayerSchema)
+    @blp.response(201, LayerSchema)
     def put(self, item_data, item_id):
-        item = MapModel.query.get(item_id)
+        item = LayerModel.query.get(item_id)
         if item:
             item.price = item_data["price"]
             item.name = item_data["name"]
         else:
-            item = MapModel(id=item_id, **item_data)
+            item = LayerModel(id=item_id, **item_data)
         db.session.add(item)
         db.session.commit()
 
         return item
 
-@blp.route("/map")
+@blp.route("/layer")
 class Plain(MethodView):
     @jwt_required()
-    @blp.response(200, MapSchema(many=True))
+    @blp.response(200, LayerSchema(many=True))
     def get(self):
-        return MapModel.query.all()
+        return LayerModel.query.all()
 
     @jwt_required(fresh=True)
-    @blp.arguments(MapSchema)
-    @blp.response(201, MapSchema)
+    @blp.arguments(LayerSchema)
+    @blp.response(201, LayerSchema)
     def post(self, item_data):
-        item = MapModel(**item_data)
+        item = LayerModel(**item_data)
         try:
             db.session.add(item)
             db.session.commit()
         except IntegrityError:
             abort(
                 400,
-                message="A map with that name already exists.",
+                message="A layer with that name already exists.",
             )
         except SQLAlchemyError:
-            abort(500, message="An error occurred creating the map.")
+            abort(500, message="An error occurred creating the layer.")
 
         return item
     

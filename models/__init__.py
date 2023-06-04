@@ -1,15 +1,14 @@
 #from models.user import UserModel
-from models.item import ItemModel
-from models.tag import TagModel
-from models.store import StoreModel
-from models.item_tags import ItemsTags
+# from models.item import ItemModel
+# from models.tag import TagModel
+# from models.store import StoreModel
+# from models.item_tags import ItemsTags
 
 
 from models.communication.data_package import DataPackageModel
 from models.communication.message_template import MessageTemplateModel
 from models.communication.message import MessageModel
 from models.communication.notification import NotificationModel
-
 
 from models.constant.authority import AuthorityModel
 from models.constant.authority_pack import AuthorityPackModel
@@ -23,19 +22,16 @@ from models.constant.command_collar_mark_rank import CommandCollarMarkRankModel
 from models.detection.detection_route import DetectionRouteModel
 from models.detection.detection import DetectionModel
 
-
 from models.library.media import MediaModel
 from models.library.screenshot import ScreenshotModel
 
 from models.location.unity import UnityModel
 
-
 from models.log.log import LogModel
 
-from models.map.map import MapModel
-from models.map.layer import LayerModel
-from models.map.layer_coordinates import LayerCoordinateModel
-
+from models.map_item.map import MapModel
+from models.map_item.layer import LayerModel
+from models.map_item.layer_coordinates import LayerCoordinateModel
 
 from models.material.sensor import SensorModel
 from models.material.symbol import SymbolModel
