@@ -9,6 +9,8 @@ from models.communication.data_package import DataPackageModel
 from models.communication.message_template import MessageTemplateModel
 from models.communication.message import MessageModel
 from models.communication.notification import NotificationModel
+from models.communication.message_to import MessageToListModel
+from models.communication.notification_to import NotificationToListModel
 
 from models.constant.authority import AuthorityModel
 from models.constant.authority_pack import AuthorityPackModel
@@ -21,6 +23,8 @@ from models.constant.command_collar_mark_rank import CommandCollarMarkRankModel
 
 from models.detection.detection_route import DetectionRouteModel
 from models.detection.detection import DetectionModel
+from models.detection.detection_note import DetectionNoteModel
+from models.detection.detection_process import DetectionProcessModel
 
 from models.library.media import MediaModel
 from models.library.screenshot import ScreenshotModel

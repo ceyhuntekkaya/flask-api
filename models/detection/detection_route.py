@@ -5,13 +5,10 @@ class DetectionRouteModel(db.Model):
     __tablename__ = "detection_routes"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
+    detection_id = db.Column(db.Integer, db.ForeignKey("detections.id"))
 
-    create_at = db.Column(db.Integer,nullable=True)
-    update_at = db.Column(db.Integer, nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
-    active = db.Column(db.Boolean, nullable=True)
-
-    create_by = db.Column(db.Integer,nullable=True)
-    update_by = db.Column(db.Integer, nullable=True)
-    delete_by = db.Column(db.Integer, nullable=True)
+    latitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
+    longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
+    description = db.Column(db.String, unique=True, nullable=False)
+    detection_at = db.Column(db.Integer, nullable=False)
+    anomaly_level = db.Column(db.Integer, nullable=False)

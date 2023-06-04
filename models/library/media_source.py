@@ -1,14 +1,14 @@
 from db import db
 
 
-class MessageTemplateModel(db.Model):
-    __tablename__ = "message_templates"
+class MediaSourceModel(db.Model):
+    __tablename__ = "media_sources"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
-    header = db.Column(db.String, unique=True, nullable=False)
-    content = db.Column(db.String, unique=True, nullable=False)
-
+    latitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
+    longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
+    credential = db.Column(db.String)
 
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)

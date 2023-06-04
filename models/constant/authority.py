@@ -7,9 +7,6 @@ class AuthorityModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
 
-
-
-
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)
     delete_at = db.Column(db.Integer, nullable=True)
