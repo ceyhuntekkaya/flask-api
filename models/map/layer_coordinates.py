@@ -12,7 +12,6 @@ class LayerCoordinateModel(db.Model):
     layer_id = db.Column(
         db.Integer, db.ForeignKey("layers.id"), unique=False, nullable=False
     )
-   
 
     create_at = db.Column(db.Integer,nullable=True)
     update_at = db.Column(db.Integer, nullable=True)

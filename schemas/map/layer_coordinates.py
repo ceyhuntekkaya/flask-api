@@ -2,21 +2,37 @@ from marshmallow import Schema, fields
 
 
 class PlainLayerCoordinateSchema(Schema):
-    id = fields.Int(dump_only=True)
-
+    id = fields.Int()
+    row_number = fields.Int()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    layer_id = fields.Int()
+    create_at = fields.Int()
 
 class LayerCoordinateSchema(PlainLayerCoordinateSchema):
-    store_id = fields.Int(required=True, load_only=True)
-
+    update_at = fields.Int()
+    delete_at = fields.Int()
+    active = fields.Boolean()
+    create_by = fields.Int()
+    update_by = fields.Int()
+    delete_by = fields.Int()
 
 class LayerCoordinateUpdateSchema(Schema):
-    name = fields.Str()
-    price = fields.Float()
-
+    id = fields.Int()
+    row_number = fields.Int()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    layer_id = fields.Int()
+    update_by = fields.Int()
 
 class LayerCoordinateDeleteSchema(PlainLayerCoordinateSchema):
-    id = fields.Int(dump_only=True)
-
+    id = fields.Int()
+    delete_at = fields.Int()
 
 class LayerCoordinateCreateSchema(PlainLayerCoordinateSchema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    row_number = fields.Int()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    layer_id = fields.Int()
+    create_by = fields.Int()

@@ -2,21 +2,67 @@ from marshmallow import Schema, fields
 
 
 class PlainMarkerSchema(Schema):
-    id = fields.Int(dump_only=True)
-
+    id = fields.Int()
+    name = fields.Str()
+    type = fields.Str()
+    color = fields.Str()
+    sensor_id = fields.Int()
+    sign_id = fields.Int()
+    symbol_id = fields.Int()
+    unity_id = fields.Int()
+    description = fields.Str()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    map_id = fields.Int()
+    layer_id = fields.Int()
+    hierarchy_id = fields.Int()
+    official_user_id = fields.Int()
+    create_at = fields.Int()
 
 class MarkerSchema(PlainMarkerSchema):
-    store_id = fields.Int(required=True, load_only=True)
-
+    update_at = fields.Int()
+    delete_at = fields.Int()
+    active = fields.Boolean()
+    create_by = fields.Int()
+    update_by = fields.Int()
+    delete_by = fields.Int()
 
 class MarkerUpdateSchema(Schema):
+    id = fields.Int()
     name = fields.Str()
-    price = fields.Float()
-
+    type = fields.Str()
+    color = fields.Str()
+    sensor_id = fields.Int()
+    sign_id = fields.Int()
+    symbol_id = fields.Int()
+    unity_id = fields.Int()
+    description = fields.Str()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    map_id = fields.Int()
+    layer_id = fields.Int()
+    hierarchy_id = fields.Int()
+    official_user_id = fields.Int()
+    update_by = fields.Int()
 
 class MarkerDeleteSchema(PlainMarkerSchema):
-    id = fields.Int(dump_only=True)
-
+    id = fields.Int()
+    delete_by = fields.Int()
 
 class MarkerCreateSchema(PlainMarkerSchema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    name = fields.Str()
+    type = fields.Str()
+    color = fields.Str()
+    sensor_id = fields.Int()
+    sign_id = fields.Int()
+    symbol_id = fields.Int()
+    unity_id = fields.Int()
+    description = fields.Str()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    map_id = fields.Int()
+    layer_id = fields.Int()
+    hierarchy_id = fields.Int()
+    official_user_id = fields.Int()
+    create_by = fields.Int()
