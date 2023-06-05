@@ -14,8 +14,6 @@ class PlainUserSchema(Schema):
     password = fields.Str(required=True)
 
 class UserSchema(PlainUserSchema):
-    #id = fields.Int(required=True, load_only=True)
-    
     registration_number = fields.Str(required=False)
     phone = fields.Str(required=False)
     mail = fields.Str(required=False)
@@ -32,7 +30,6 @@ class UserSchema(PlainUserSchema):
     delete_by = fields.Int(required=False)
     last_login = fields.Int(required=False)
     last_login_ip = fields.Int(required=False)
-
     
 class UserLoginSchema(Schema):
     id = fields.Int(dump_only=False)
@@ -50,7 +47,6 @@ class UserLoginSchema(Schema):
     mail = fields.Str(required=False)
     code = fields.Str(required=False)
     phone_extension_line = fields.Str(required=False)
-    
 
     create_at = fields.Int(required=False)
     update_at = fields.Int(required=False)
