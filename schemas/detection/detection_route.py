@@ -2,21 +2,40 @@ from marshmallow import Schema, fields
 
 
 class PlainDetectionRouteSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id =  fields.Int()
+    detection_id =  fields.Int()
+    latitude =  fields.Int()
+    longitude =  fields.Int()
+    description =  fields.Str()
+    detection_at = fields.Int()
+    anomaly_level = fields.Int()
 
 
 class DetectionRouteSchema(PlainDetectionRouteSchema):
-    store_id = fields.Int(required=True, load_only=True)
-
+    create_at = fields.Int()
+    delete_at = fields.Int()
+    delete_by = fields.Int()
 
 class DetectionRouteUpdateSchema(Schema):
-    name = fields.Str()
-    price = fields.Float()
+    id =  fields.Int()
+    detection_id =  fields.Int()
+    latitude =  fields.Int()
+    longitude =  fields.Int()
+    description =  fields.Str()
+    detection_at = fields.Int()
+    anomaly_level = fields.Int()
 
 
 class DetectionRouteDeleteSchema(PlainDetectionRouteSchema):
-    id = fields.Int(dump_only=True)
+    id =  fields.Int()
+    delete_by = fields.Int()
 
 
 class DetectionRouteCreateSchema(PlainDetectionRouteSchema):
-    id = fields.Int(dump_only=True)
+    id =  fields.Int()
+    detection_id =  fields.Int()
+    latitude =  fields.Int()
+    longitude =  fields.Int()
+    description =  fields.Str()
+    detection_at = fields.Int()
+    anomaly_level = fields.Int()

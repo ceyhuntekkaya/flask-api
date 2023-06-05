@@ -6,7 +6,7 @@ from flask_jwt_extended import jwt_required
 
 from db import db
 from models.material.unity import UnityModel
-from schemas.location.unity import UnitySchema
+from schemas.material.unity import UnitySchema
 
 
 blp = Blueprint("Unities", "unitys", description="Operations on unity")

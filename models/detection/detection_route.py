@@ -12,3 +12,6 @@ class DetectionRouteModel(db.Model):
     description = db.Column(db.String, unique=True, nullable=False)
     detection_at = db.Column(db.Integer, nullable=False)
     anomaly_level = db.Column(db.Integer, nullable=False)
+    create_at = db.Column(db.Integer)
+    delete_at = db.Column(db.Integer)
+    delete_by = db.Column(db.Integer)
