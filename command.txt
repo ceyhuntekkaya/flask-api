@@ -23,6 +23,10 @@ Bearer
 
 https://api.elephantsql.com/console/1ddee338-37fc-43f6-be34-02deda78d36b/browser?
 
+API_URL = https://flask-api-dlhg.onrender.com
+
+https://dashboard.render.com/web/srv-chqa7fu7avjb90ml3log/events
+https://flask-api-dlhg.onrender.com/swagger-ui
 
 flask db init
 flask db migrate -m "Initial migration."

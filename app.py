@@ -7,10 +7,6 @@ import os
 from db import db
 from blocklist import BLOCKLIST
 
-#from resources._user import blp as UserBlueprint
-# from resources._item import blp as ItemBlueprint
-# from resources._store import blp as StoreBlueprint
-# from resources._tag import blp as TagBlueprint
 
 
 from resources.communication.data_package import blp as DataPackageBlueprint
@@ -42,7 +38,6 @@ from resources.library.screenshot import blp as ScreenshotBlueprint
 from resources.material.unity import blp as UnityBlueprint
 
 from resources.log.log import blp as LogBlueprint
-
 
 from resources.material.sign import blp as SingBlueprint
 from resources.material.sensor import blp as SensorBlueprint
@@ -148,11 +143,6 @@ def create_app(db_url=None):
         db.create_all()
         FirstRecords.check()
 
-    #api.register_blueprint(UserBlueprint)
-    # api.register_blueprint(ItemBlueprint)
-    # api.register_blueprint(StoreBlueprint)
-    # api.register_blueprint(TagBlueprint)
-
     api.register_blueprint(DataPackageBlueprint)
     api.register_blueprint(MessageBlueprint)
     api.register_blueprint(MessageTemplateBlueprint)
@@ -168,7 +158,6 @@ def create_app(db_url=None):
     api.register_blueprint(HierarchyBlueprint)
     api.register_blueprint(PreferenceBlueprint)
     api.register_blueprint(RoleBlueprint)
-
 
     api.register_blueprint(DetectionPrint)
     api.register_blueprint(DetectionRoutePrint)
@@ -198,8 +187,5 @@ def create_app(db_url=None):
     api.register_blueprint(UserRecentBlueprint)
 
     api.register_blueprint(DetectionReportBlueprint)
-
-
-
 
     return app

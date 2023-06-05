@@ -2,21 +2,51 @@ from marshmallow import Schema, fields
 
 
 class PlainDataPackageSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    name = fields.Str()
+    data_from = fields.Int()
+    data_to = fields.Int()
+    header = fields.Str()
+    content = fields.Str()
+    priority = fields.Int()
+    data_type = fields.Str()
+    create_at = fields.Int()
 
 
 class DataPackageSchema(Schema):
-    store_id = fields.Int(required=True, load_only=True)
+    send_ip = fields.Str()
+    update_at = fields.Int()
+    delete_at = fields.Int()
+    active = fields.Boolean()
+    create_by = fields.Int()
+    update_by = fields.Int()
+    delete_by = fields.Int()
 
 
-class DataPackagepdateSchema(Schema):
+class DataPackageUpdateSchema(Schema):
+    id = fields.Int()
     name = fields.Str()
-    price = fields.Float()
-
+    data_from = fields.Int()
+    data_to = fields.Int()
+    header = fields.Str()
+    content = fields.Str()
+    priority = fields.Int()
+    data_type = fields.Str()
+    active = fields.Boolean()
+    update_by = fields.Int()
 
 class DataPackageDeleteSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    delete_by = fields.Int()
 
 
 class DataPackageCreateSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    name = fields.Str()
+    data_from = fields.Int()
+    data_to = fields.Int()
+    header = fields.Str()
+    content = fields.Str()
+    priority = fields.Int()
+    data_type = fields.Str()
+    send_ip = fields.Str()

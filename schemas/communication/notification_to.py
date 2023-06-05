@@ -2,21 +2,25 @@ from marshmallow import Schema, fields
 
 
 class PlainNotificationToListSchema(Schema):
-    id = fields.Int(dump_only=True)
-
+    id = fields.Int()
+    messege_id = fields.Int()
+    read_at = fields.Int()
 
 class NotificationToListSchema(PlainNotificationToListSchema):
-    store_id = fields.Int(required=True, load_only=True)
+    read_ip = fields.Str()
 
 
 class NotificationToListUpdateSchema(Schema):
-    name = fields.Str()
-    price = fields.Float()
-
+    id = fields.Int()
+    messege_id = fields.Int()
+    read_at = fields.Int()
+    read_ip = fields.Str()
 
 class NotificationToListDeleteSchema(PlainNotificationToListSchema):
-    id = fields.Int(dump_only=True)
-
+    id = fields.Int()
 
 class NotificationToListCreateSchema(PlainNotificationToListSchema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    messege_id = fields.Int()
+    read_at = fields.Int()
+    read_ip = fields.Str()

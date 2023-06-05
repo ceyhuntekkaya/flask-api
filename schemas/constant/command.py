@@ -2,29 +2,35 @@ from marshmallow import Schema, fields
 
 
 class PlainCommandSchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
-    hierarchical_order = fields.Str(required=True)
-    active = fields.Bool(required=False, default=True)
+    id = fields.Int()
+    name = fields.Str()
+    hierarchical_order = fields.Int()
 
 
 class CommandSchema(PlainCommandSchema):
-    create_at = fields.Int(required=True)
-    update_at = fields.Int(required=False)
-    delete_at = fields.Int(required=False)
-    create_by = fields.Int(required=False)
-    update_by = fields.Int(required=False)
-    delete_by = fields.Int(required=False)
+    create_at = fields.Int()
+    update_at = fields.Int()
+    delete_at = fields.Int()
+    active = fields.Bool()
+    create_by = fields.Int()
+    update_by = fields.Int()
+    delete_by = fields.Int()
 
 
 class CommandUpdateSchema(Schema):
+    id = fields.Int()
     name = fields.Str()
-    price = fields.Float()
+    hierarchical_order = fields.Int()
+    active = fields.Bool()
+    update_by = fields.Int()
 
 
 class CommandDeleteSchema(PlainCommandSchema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    delete_by = fields.Int()
 
 
 class CommandCreateSchema(PlainCommandSchema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    name = fields.Str()
+    hierarchical_order = fields.Int()

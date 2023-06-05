@@ -19,13 +19,23 @@ class CommandCollarMarkRankSchema(PlainCommandCollarMarkRankSchema):
 
 
 class CommandCollarMarkRankUpdateSchema(Schema):
-    name = fields.Str()
-    price = fields.Float()
+    id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
+    hierarchical_order = fields.Str(required=True)
+    active = fields.Bool(required=False, default=True)
+    command_collar_mark_id = fields.Int()
+    update_by = fields.Int(required=False)
 
 
 class CommandCollarMarkRankDeleteSchema(PlainCommandCollarMarkRankSchema):
     id = fields.Int(dump_only=True)
+    delete_by = fields.Int(required=False)
 
 
 class CommandCollarMarkRankCreateSchema(PlainCommandCollarMarkRankSchema):
     id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
+    hierarchical_order = fields.Str(required=True)
+    active = fields.Bool(required=False, default=True)
+    command_collar_mark_id = fields.Int()
+    create_by = fields.Int(required=False)

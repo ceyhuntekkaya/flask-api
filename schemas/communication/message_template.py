@@ -2,21 +2,37 @@ from marshmallow import Schema, fields
 
 
 class PlainMessageTemplateSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    name = fields.Str()
+    header = fields.Str()
+    content = fields.Str()
 
 
 class MessageTemplateSchema(Schema):
-    store_id = fields.Int(required=True, load_only=True)
-
+    create_at = fields.Int()
+    update_at = fields.Int()
+    delete_at = fields.Int()
+    active = fields.Boolean()
+    create_by = fields.Int()
+    update_by = fields.Int()
+    delete_by = fields.Int()
 
 class MessageTemplateUpdateSchema(Schema):
+    id = fields.Int()
     name = fields.Str()
-    price = fields.Float()
+    header = fields.Str()
+    content = fields.Str()
+    active = fields.Boolean()
+    update_by = fields.Int()
 
 
-class MessageTemplateeleteSchema(Schema):
-    id = fields.Int(dump_only=True)
+class MessageTemplateDeleteSchema(Schema):
+    id = fields.Int()
+    delete_by = fields.Int()
 
 
 class MessageTemplateCreateSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
+    name = fields.Str()
+    header = fields.Str()
+    content = fields.Str()
