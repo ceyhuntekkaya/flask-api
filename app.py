@@ -7,55 +7,49 @@ import os
 from db import db
 from blocklist import BLOCKLIST
 
+from project.resources.communication.data_package import blp as DataPackageBlueprint
+from project.resources.communication.message import blp as MessageBlueprint
+from project.resources.communication.message_template import blp as MessageTemplateBlueprint
+from project.resources.communication.notification import blp as NotificationBlueprint
+from project.resources.communication.message_to import blp as MessageToListBlueprint
+from project.resources.communication.notification_to import blp as NotificationToListBlueprint
 
+from project.resources.constant.authority import blp as AuthorityBlueprint
+from project.resources.constant.authority_pack import blp as AuthorityPackBlueprint
+from project.resources.constant.command import blp as CommandBlueprint
+from project.resources.constant.command_collar_mark import blp as CommandCollarMarkBlueprint
+from project.resources.constant.command_collar_mark_rank import blp as CommandCollarMarkRankBlueprint
+from project.resources.constant.hierarchy import blp as HierarchyBlueprint
+from project.resources.constant.preference import blp as PreferenceBlueprint
+from project.resources.constant.role import blp as RoleBlueprint
 
-from resources.communication.data_package import blp as DataPackageBlueprint
-from resources.communication.message import blp as MessageBlueprint
-from resources.communication.message_template import blp as MessageTemplateBlueprint
-from resources.communication.notification import blp as NotificationBlueprint
-from resources.communication.message_to import blp as MessageToListBlueprint
-from resources.communication.notification_to import blp as NotificationToListBlueprint
+from project.resources.detection.detection import blp as DetectionPrint
+from project.resources.detection.detection_note import blp as DetectionNotePrint
+from project.resources.detection.detection_process import blp as DetectionProcessPrint
+from project.resources.detection.detection_route import blp as DetectionRoutePrint
 
-from resources.constant.authority import blp as AuthorityBlueprint
-from resources.constant.authority_pack import blp as AuthorityPackBlueprint
-from resources.constant.command import blp as CommandBlueprint
-from resources.constant.command_collar_mark import blp as CommandCollarMarkBlueprint
-from resources.constant.command_collar_mark_rank import blp as CommandCollarMarkRankBlueprint
-from resources.constant.hierarchy import blp as HierarchyBlueprint
-from resources.constant.preference import blp as PreferenceBlueprint
-from resources.constant.role import blp as RoleBlueprint
+from project.resources.library.media import blp as MediaBlueprint
+from project.resources.library.media_source import blp as MediaSourceBlueprint
+from project.resources.library.screenshot import blp as ScreenshotBlueprint
 
+from project.resources.material.unity import blp as UnityBlueprint
 
-from resources.detection.detection import blp as DetectionPrint
-from resources.detection.detection_note import blp as DetectionNotePrint
-from resources.detection.detection_process import blp as DetectionProcessPrint
-from resources.detection.detection_route import blp as DetectionRoutePrint
+from project.resources.log.log import blp as LogBlueprint
 
-from resources.library.media import blp as MediaBlueprint
-from resources.library.media_source import blp as MediaSourceBlueprint
-from resources.library.screenshot import blp as ScreenshotBlueprint
+from project.resources.material.sign import blp as SingBlueprint
+from project.resources.material.sensor import blp as SensorBlueprint
+from project.resources.material.symbol import blp as SymbolBlueprint
+from project.resources.map.map import blp as MapBlueprint
+from project.resources.map.layer import blp as LayerBlueprint
+from project.resources.map.layer_coordinates import blp as LayerCoordinatesBlueprint
+from project.resources.map.marker import blp as MarkerBlueprint
 
-from resources.material.unity import blp as UnityBlueprint
+from project.resources.person.user import blp as UserBlueprint
+from project.resources.person.user_authority import blp as UserAuthorityBlueprint
+from project.resources.person.user_preference import blp as UserPreferenceBlueprint
+from project.resources.person.user_recent import blp as UserRecentBlueprint
 
-from resources.log.log import blp as LogBlueprint
-
-from resources.material.sign import blp as SingBlueprint
-from resources.material.sensor import blp as SensorBlueprint
-from resources.material.symbol import blp as SymbolBlueprint
-from resources.map.map import blp as MapBlueprint
-from resources.map.layer import blp as LayerBlueprint
-from resources.map.layer_coordinates import blp as LayerCoordinatesBlueprint
-from resources.map.marker import blp as MarkerBlueprint
-
-from resources.person.user import blp as UserBlueprint
-from resources.person.user_authority import blp as UserAuthorityBlueprint
-from resources.person.user_preference import blp as UserPreferenceBlueprint
-from resources.person.user_recent import blp as UserRecentBlueprint
-
-from resources.report.detection_report import blp as DetectionReportBlueprint
-
-
-
+from project.resources.detection.detection import blp as DetectionReportBlueprint
 
 from initialize import FirstRecords
 
@@ -70,7 +64,7 @@ def create_app(db_url=None):
     app.config[
         "OPENAPI_SWAGGER_UI_URL"
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL") # or "sqlite:///data.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or os.getenv("DATABASE_URL")  # or "sqlite:///data.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["PROPAGATE_EXCEPTIONS"] = True
     db.init_app(app)
@@ -139,6 +133,7 @@ def create_app(db_url=None):
             ),
             401,
         )
+
     with app.app_context():
         db.create_all()
         FirstRecords.check()

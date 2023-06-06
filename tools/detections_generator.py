@@ -6,8 +6,8 @@ from datetime import datetime
 
 from faker import Faker
 
-from resources.database import orm_session_add
-from resources.database.models import Detection
+from project.resources.database import orm_session_add
+from project.resources import Detection
 
 fake = Faker("tr_TR")
 

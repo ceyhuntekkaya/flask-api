@@ -5,7 +5,6 @@ import socketio
 
 from setting import logger
 
-
 sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*', async_handlers=True, monitor_clients=True)
 
 

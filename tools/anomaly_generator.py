@@ -7,8 +7,8 @@ from datetime import datetime, timedelta
 
 from faker import Faker
 
-from resources.database import orm_session_add
-from models.data.anomaly import Anomaly
+from project.resources.database import orm_session_add
+from project.models.data.anomaly import Anomaly
 
 from setting.socket import sio
 

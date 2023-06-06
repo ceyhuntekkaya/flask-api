@@ -1,11 +1,11 @@
 from db import db
-from models.constant.role import RoleModel
-from models.constant.hierarchy import HierarchyModel
-from models.constant.command import CommandModel
-from models.constant.command_collar_mark import CommandCollarMarkModel
-from models.constant.command_collar_mark_rank import CommandCollarMarkRankModel
+from project.models.constant.role import RoleModel
+from project.models.constant.hierarchy import HierarchyModel
+from project.models.constant.command import CommandModel
+from project.models import CommandCollarMarkModel
+from project.models.constant.command_collar_mark_rank import CommandCollarMarkRankModel
 
-from models.person.user import UserModel
+from project.models.person.user import UserModel
 from passlib.hash import pbkdf2_sha256
 
 
