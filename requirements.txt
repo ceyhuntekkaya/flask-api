@@ -11,3 +11,7 @@ passlib
 python-dotenv
 psycopg2-binary
 requests
+Faker
+socketio
+PyYAML
+pytest

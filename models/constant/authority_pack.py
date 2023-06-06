@@ -13,7 +13,7 @@ class AuthorityPackModel(db.Model):
         db.Integer, db.ForeignKey("roles.id"), unique=False, nullable=False
     )
 
-    create_at = db.Column(db.Integer,nullable=True)
+    create_at = db.Column(db.Integer, nullable=True)
     update_at = db.Column(db.Integer, nullable=True)
     delete_at = db.Column(db.Integer, nullable=True)
     is_active = db.Column(db.Boolean, nullable=True)
