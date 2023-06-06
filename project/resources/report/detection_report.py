@@ -2,12 +2,11 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
-from flask_jwt_extended import jwt_required 
+from flask_jwt_extended import jwt_required
 
 from db import db
 from project.models.report.detection_report import DetectionReportModel
 from project.schemas.report.detection_report import DetectionReportSchema
-
 
 blp = Blueprint("DetectionReports", "detection_reports", description="Operations on detection_report")
 
@@ -27,7 +26,6 @@ class WithId(MethodView):
         db.session.commit()
         return {"message": "Detection report deleted"}, 200
 
-     
     @blp.arguments(DetectionReportSchema)
     @blp.response(201, DetectionReportSchema)
     def put(self, item_data, item_id):
@@ -41,6 +39,7 @@ class WithId(MethodView):
         db.session.commit()
 
         return item
+
 
 @blp.route("/detection_report")
 class Plain(MethodView):
@@ -66,4 +65,3 @@ class Plain(MethodView):
             abort(500, message="An error occurred creating the detection report.")
 
         return item
-    

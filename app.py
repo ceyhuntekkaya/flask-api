@@ -49,8 +49,6 @@ from project.resources.person.user_authority import blp as UserAuthorityBlueprin
 from project.resources.person.user_preference import blp as UserPreferenceBlueprint
 from project.resources.person.user_recent import blp as UserRecentBlueprint
 
-from project.resources.detection.detection import blp as DetectionReportBlueprint
-
 from initialize import FirstRecords
 
 
@@ -181,6 +179,5 @@ def create_app(db_url=None):
     api.register_blueprint(UserPreferenceBlueprint)
     api.register_blueprint(UserRecentBlueprint)
 
-    api.register_blueprint(DetectionReportBlueprint)
 
     return app
