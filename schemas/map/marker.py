@@ -22,7 +22,7 @@ class PlainMarkerSchema(Schema):
 class MarkerSchema(PlainMarkerSchema):
     update_at = fields.Int()
     delete_at = fields.Int()
-    active = fields.Boolean()
+    is_active = fields.Boolean()
     create_by = fields.Int()
     update_by = fields.Int()
     delete_by = fields.Int()

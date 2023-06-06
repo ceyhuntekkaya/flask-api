@@ -24,7 +24,7 @@ class MediaSchema(PlainMediaSchema):
     create_at = fields.Int()
     update_at = fields.Int()
     delete_at = fields.Int()
-    active = fields.Boolean()
+    is_active = fields.Boolean()
     status = fields.Str()
     create_by = fields.Int()
     update_by = fields.Int()

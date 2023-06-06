@@ -5,7 +5,7 @@ class PlainCommandCollarMarkSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
     hierarchical_order = fields.Str(required=True)
-    active = fields.Bool(required=False, default=True)
+    is_active = fields.Bool(required=False, default=True)
     command_id = fields.Int(dump_only=True)
 
 class CommandCollarMarkSchema(PlainCommandCollarMarkSchema):
@@ -20,7 +20,7 @@ class CommandCollarMarkUpdateSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
     hierarchical_order = fields.Str(required=True)
-    active = fields.Bool(required=False, default=True)
+    is_active = fields.Bool(required=False, default=True)
     command_id = fields.Int()
     update_by = fields.Int(required=False)
 
@@ -32,6 +32,6 @@ class CommandCollarMarkCreateSchema(PlainCommandCollarMarkSchema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
     hierarchical_order = fields.Str(required=True)
-    active = fields.Bool(required=False, default=True)
+    is_active = fields.Bool(required=False, default=True)
     command_id = fields.Int()
     create_by = fields.Int(required=False)

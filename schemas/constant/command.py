@@ -11,7 +11,7 @@ class CommandSchema(PlainCommandSchema):
     create_at = fields.Int()
     update_at = fields.Int()
     delete_at = fields.Int()
-    active = fields.Bool()
+    is_active = fields.Bool()
     create_by = fields.Int()
     update_by = fields.Int()
     delete_by = fields.Int()
@@ -21,7 +21,7 @@ class CommandUpdateSchema(Schema):
     id = fields.Int()
     name = fields.Str()
     hierarchical_order = fields.Int()
-    active = fields.Bool()
+    is_active = fields.Bool()
     update_by = fields.Int()
 
 

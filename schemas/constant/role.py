@@ -4,7 +4,7 @@ from marshmallow import Schema, fields
 class PlainRoleSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-    active = fields.Bool(required=False, default=True)
+    is_active = fields.Bool(required=False, default=True)
     create_at = fields.Int(required=True)
     create_by = fields.Int(required=False)
 
@@ -18,7 +18,7 @@ class RoleSchema(PlainRoleSchema):
 class RoleUpdateSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-    active = fields.Bool(required=False, default=True)
+    is_active = fields.Bool(required=False, default=True)
     update_by = fields.Int()
 
 class RoleDeleteSchema(Schema):
@@ -28,6 +28,6 @@ class RoleDeleteSchema(Schema):
 class RoleCreateSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-    active = fields.Bool(required=False, default=True)
+    is_active = fields.Bool(required=False, default=True)
     create_at = fields.Int(required=True)
     create_by = fields.Int(required=False)

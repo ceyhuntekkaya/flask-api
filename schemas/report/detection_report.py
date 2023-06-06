@@ -13,7 +13,7 @@ class DetectionReportSchema(PlainDetectionReportSchema):
     
     update_at = fields.Int(required=False)
     delete_at = fields.Int(required=False)
-    active = fields.Bool(required=True)
+    is_active = fields.Bool(required=True)
     create_by = fields.Int(required=False)
     update_by = fields.Int(required=False)
     delete_by = fields.Int(required=False)

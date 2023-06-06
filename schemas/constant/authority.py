@@ -11,7 +11,7 @@ class AuthoritySchema(PlainAuthoritySchema):
     create_at = fields.Int()
     update_at = fields.Int()
     delete_at = fields.Int()
-    active = fields.Int()
+    is_active = fields.Int()
     update_by = fields.Int()
     delete_by = fields.Int()
 

@@ -1,0 +1,37 @@
+app:
+  port: 8080
+  version: v1.0.0
+  software_version: v1
+  date: 2022-11-20 00:00
+  logout: False
+  test: False
+  environment: stage
+postgres:
+  database: postgres
+  user: postgres
+  password: postgres
+  host: 127.0.0.1 #database
+  port: 5432
+  min_size: 1
+  max_size: 2
+  max_inactive_connection_lifetime: 30
+  command_timeout: 60
+mirsad_postgres:
+  database: kardelenDB
+  user: postgres
+  password: aselsan
+  host: 11.61.1.86
+  port: '5432'
+  min_size: 1
+  max_size: 2
+  max_inactive_connection_lifetime: 30
+  command_timeout: 60
+auth:
+  JWT_SECRET: 4IN)rONsEEVOp)LV$DtCSL5J!t2H9!WH
+  JWT_ALGORITHM: HS256
+  JWT_EXP_DELTA_SECONDS: 6048000  # 70 days
+  REFRESH_JWT_SECRET: lh&0d0O3oi8tGdX!K9#$eMr4zXAg4PrJ
+  REFRESH_JWT_ALGORITHM: HS256
+  REFRESH_JWT_EXP_DELTA_SECONDS: 25920000  # 300 days
+ai:
+  ip_address: http://ai:9000

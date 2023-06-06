@@ -1,6 +1,9 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
+from flask import jsonify, make_response
+
+from repository.person.user import UserRepository
 
 from flask_jwt_extended import (
     create_access_token,
@@ -61,17 +64,34 @@ class Plain(MethodView):
 class UserRegister(MethodView):
     @blp.arguments(UserSchema)
     def post(self, user_data):
-        if UserModel.query.filter(UserModel.username == user_data["username"]).first():
-            abort(409, message="A user with that username already exists.")
-
         user = UserModel(
             username=user_data["username"],
             password=pbkdf2_sha256.hash(user_data["password"]),
+            name=user_data["name"],
+            surname=user_data["surname"],
+            role_id=user_data["role_id"],
+            hierarchy_id=user_data["hierarchy_id"],
+            command_id=user_data["command_id"],
+            command_collar_mark_id=user_data["command_collar_mark_id"],
+            command_collar_mark_rank_id=user_data["command_collar_mark_rank_id"]
         )
-        db.session.add(user)
-        db.session.commit()
+        
+        repo = UserRepository(db.session, UserModel)
+        
+        item = repo.add(user, 1)
+        print("api: ",item.id)
+        # if UserModel.query.filter(UserModel.username == user_data["username"]).first():
+        #     abort(409, message="A user with that username already exists.")
 
-        return {"message": "User created successfully."}, 201
+        # user = UserModel(
+        #     username=user_data["username"],
+        #     password=pbkdf2_sha256.hash(user_data["password"]),
+        # )
+        # db.session.add(user)
+        # db.session.commit()
+        return dict(item)
+        #return make_response(jsonify(item), 200)
+        #return {"message": "User created successfully.", "item": jsonify(item)}, 201
 
     
 @blp.route("/login")

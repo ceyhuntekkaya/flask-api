@@ -1,0 +1,37 @@
+app:
+  port: 8080
+  version: v1.0.0
+  software_version: v1
+  date: 2022-11-20 00:00
+  logout: false
+  test: false
+  environment: production
+postgres:
+  database: postgres
+  user: postgres
+  password: postgres
+  host: 127.0.0.1 #database
+  port: 5432
+  min_size: 1
+  max_size: 2
+  max_inactive_connection_lifetime: 30
+  command_timeout: 60
+mirsad_postgres:
+  database: testgolbek
+  user: postgres
+  password: aselsan
+  host: 192.168.1.14
+  port: '25432'
+  min_size: 1
+  max_size: 2
+  max_inactive_connection_lifetime: 30
+  command_timeout: 60
+auth:
+  JWT_SECRET: 4IN)rONsEEVOp)LV$DtCSL5J!t2H9!WH
+  JWT_ALGORITHM: HS256
+  JWT_EXP_DELTA_SECONDS: 604800
+  REFRESH_JWT_SECRET: lh&0d0O3oi8tGdX!K9#$eMr4zXAg4PrJ
+  REFRESH_JWT_ALGORITHM: HS256
+  REFRESH_JWT_EXP_DELTA_SECONDS: 2592000
+ai:
+  ip_address: http://ai:9000

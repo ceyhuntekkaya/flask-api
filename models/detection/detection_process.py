@@ -13,7 +13,7 @@ class DetectionProcessModel(db.Model):
     create_at = db.Column(db.Integer)
     update_at = db.Column(db.Integer)
     delete_at = db.Column(db.Integer)
-    active = db.Column(db.Boolean)
+    is_active = db.Column(db.Boolean)
 
     create_by = db.Column(db.Integer)
     update_by = db.Column(db.Integer)
