@@ -179,5 +179,4 @@ def create_app(db_url=None):
     api.register_blueprint(UserPreferenceBlueprint)
     api.register_blueprint(UserRecentBlueprint)
 
-
     return app

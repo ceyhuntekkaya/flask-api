@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from project.repository.person.user import UserRepository
+from project.service.person.user import UserService
 
 from flask_jwt_extended import (
     create_access_token,
@@ -17,16 +17,28 @@ from passlib.hash import pbkdf2_sha256
 blp = Blueprint("Users", "users", description="Operations on user")
 
 
+@blp.route("/user/name/<string:item_name>")
+class WithName(MethodView):
+    # @jwt_required()
+    @blp.response(200, UserSchema(many=True))
+    def get(self, item_name):
+        service = UserService(db.session)
+        return service.getByName(item_name)
+
+
 @blp.route("/user/<string:item_id>")
 class WithId(MethodView):
-    @jwt_required()
+    # @jwt_required()
     @blp.response(200, UserSchema)
     def get(self, item_id):
-        item = UserModel.query.get_or_404(item_id)
-        return item
+        service = UserService(db.session)
+        return service.getById(item_id)
 
     @jwt_required()
     def delete(self, item_id):
+        service = UserService(db.session)
+        return service.delete(item_id)
+
         item = UserModel.query.get_or_404(item_id)
         db.session.delete(item)
         db.session.commit()
@@ -43,16 +55,16 @@ class WithId(MethodView):
             item = UserModel(id=item_id, **item_data)
         db.session.add(item)
         db.session.commit()
-
         return item
 
 
 @blp.route("/user")
 class Plain(MethodView):
-    @jwt_required()
+    # @jwt_required()
     @blp.response(200, UserSchema(many=True))
     def get(self):
-        return UserModel.query.all()
+        service = UserService(db.session)
+        return service.getAll()
 
     # @jwt_required(fresh=True)
 
@@ -61,34 +73,8 @@ class Plain(MethodView):
 class UserRegister(MethodView):
     @blp.arguments(UserSchema)
     def post(self, user_data):
-        user = UserModel(
-            username=user_data["username"],
-            password=pbkdf2_sha256.hash(user_data["password"]),
-            name=user_data["name"],
-            surname=user_data["surname"],
-            role_id=user_data["role_id"],
-            hierarchy_id=user_data["hierarchy_id"],
-            command_id=user_data["command_id"],
-            command_collar_mark_id=user_data["command_collar_mark_id"],
-            command_collar_mark_rank_id=user_data["command_collar_mark_rank_id"]
-        )
-
-        repo = UserRepository(db.session, UserModel)
-
-        item = repo.add(user, 1)
-        print("api: ", item.id)
-        # if UserModel.query.filter(UserModel.username == user_data["username"]).first():
-        #     abort(409, message="A user with that username already exists.")
-
-        # user = UserModel(
-        #     username=user_data["username"],
-        #     password=pbkdf2_sha256.hash(user_data["password"]),
-        # )
-        # db.session.add(user)
-        # db.session.commit()
-        return dict(item)
-        # return make_response(jsonify(item), 200)
-        # return {"message": "User created successfully.", "item": jsonify(item)}, 201
+        service = UserService(db.session)
+        return service.add(user_data, 1)
 
 
 @blp.route("/login")

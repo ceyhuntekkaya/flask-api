@@ -29,7 +29,7 @@ https://dashboard.render.com/web/srv-chqa7fu7avjb90ml3log/events
 https://flask-api-dlhg.onrender.com/swagger-ui
 
 flask db init
-flask db migrate -m "Initial migration."
+flask db migrate -m "control"
 flask db upgrade
 flask db --help
 migrate = Migrate(app, db, command='migrate')

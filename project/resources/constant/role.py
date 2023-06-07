@@ -43,7 +43,7 @@ class WithId(MethodView):
 
 @blp.route("/role")
 class Plain(MethodView):
-    @jwt_required()
+    # @jwt_required()
     @blp.response(200, RoleSchema(many=True))
     def get(self):
         return RoleModel.query.all()
