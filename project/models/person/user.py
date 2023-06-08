@@ -39,5 +39,6 @@ class UserModel(db.Model):
         db.Integer, db.ForeignKey("command_collar_marks.id"), unique=False, nullable=False
     )
     command_collar_mark_rank_id = db.Column(
-        db.Integer, db.ForeignKey("command_collar_mark_rakss.id"), unique=False, nullable=False
+        db.Integer, db.ForeignKey("command_collar_mark_ranks.id"), unique=False, nullable=False
     )
+
