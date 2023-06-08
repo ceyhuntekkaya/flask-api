@@ -43,7 +43,7 @@ from project.resources.material.unity import blp as UnityBlueprint
 from project.resources.log.log import blp as LogBlueprint
 
 from project.resources.material.sign import blp as SingBlueprint
-from project.resources.material.sensor import blp as SensorBlueprint
+from project.resources.map.sensor import blp as SensorBlueprint
 from project.resources.material.symbol import blp as SymbolBlueprint
 from project.resources.map.map import blp as MapBlueprint
 from project.resources.map.layer import blp as LayerBlueprint

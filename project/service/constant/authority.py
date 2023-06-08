@@ -6,7 +6,7 @@ from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 
-class LayerService:
+class AuthorityService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
@@ -22,16 +22,7 @@ class LayerService:
                 )
             )
 
-        new_item = AuthorityModel(
-            name=item_data["name"],
-            description=item_data["description"],
-            hierarchy_id=item_data["hierarchy_id"],
-            official_user_id=item_data["official_user_id"],
-            color=item_data["color"],
-            layer_type=item_data["layer_type"],
-            critical_area_type=item_data["critical_area_type"],
-            create_by=item_data["create_by"]
-        )
+        new_item = AuthorityModel(**item_data)
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_layer_to_data(item_created)

@@ -6,7 +6,7 @@ from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 
-class LayerService:
+class UserRecentService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):

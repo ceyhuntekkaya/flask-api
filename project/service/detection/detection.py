@@ -1,17 +1,17 @@
 from sqlalchemy.orm import Session
-from project.models.map.sensor import SensorModel
-from project.repository.material.sensor import SensorRepository
+from project.models.detection.detection import DetectionModel
+from project.repository.detection.detection import DetectionRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 
-class LayerService:
+class DetectionService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, SensorModel)
-        self.repo = SensorRepository(session, SensorModel)
+        super().__init__(session, DetectionModel)
+        self.repo = DetectionRepository(session, DetectionModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -22,7 +22,7 @@ class LayerService:
                 )
             )
 
-        new_item = SensorModel(**item_data )
+        new_item = DetectionModel(**item_data )
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_layer_to_data(item_created)

@@ -26,7 +26,10 @@ class WithName(MethodView):
     @blp.response(200, UserSchema(many=True))
     def get(self, item_name):
         service = UserService(db.session)
-        return service.getByName(item_name)
+        item = service.getByName(item_name)
+        if type(item) == EntityNotFoundException:
+            abort(409, message="Error: {}".format(item))
+        return item
 
 
 @blp.route(f"/{main_route}/<string:item_id>")
@@ -55,16 +58,6 @@ class WithId(MethodView):
         item = service.update(item_data, item_id, 1)
         if type(item) == EntityNotFoundException:
             abort(409, message="Error: {}".format(item))
-        return item
-
-        item = UserModel.query.get(item_id)
-        if item:
-            item.price = item_data["price"]
-            item.name = item_data["name"]
-        else:
-            item = UserModel(id=item_id, **item_data)
-        db.session.add(item)
-        db.session.commit()
         return item
 
 

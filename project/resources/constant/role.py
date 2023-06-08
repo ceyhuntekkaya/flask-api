@@ -1,67 +1,60 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from sqlalchemy.exc import SQLAlchemyError, IntegrityError
-
+from project.service.constant.role import RoleService
 from flask_jwt_extended import jwt_required
-
+from project.exception.entity_not_found import EntityNotFoundException
+from project.exception.unexpected_entity import UnexpectedEntityException
 from db import db
-from project.models.constant.role import RoleModel
 from project.schemas.constant.role import RoleSchema
 
 blp = Blueprint("Roles", "roles", description="Operations on roles")
 
+main_route = "role"
 
-@blp.route("/role/<string:item_id>")
+
+@blp.route(f"/{main_route}/<string:item_id>")
 class WithId(MethodView):
     @jwt_required()
     @blp.response(200, RoleSchema)
     def get(self, item_id):
-        item = RoleModel.query.get_or_404(item_id)
+        service = RoleService(db.session)
+        item = service.getById(item_id)
+        if type(item) == EntityNotFoundException:
+            abort(409, message="Error: {}".format(item))
         return item
 
     @jwt_required()
     def delete(self, item_id):
-        item = RoleModel.query.get_or_404(item_id)
-        db.session.delete(item)
-        db.session.commit()
-        return {"message": "Role deleted"}, 200
+        service = RoleService(db.session)
+        item = service.delete(item_id, 1)
+        if type(item) == EntityNotFoundException:
+            abort(409, message="Error: {}".format(item))
+        return item
 
     @blp.arguments(RoleSchema)
     @blp.response(201, RoleSchema)
     def put(self, item_data, item_id):
-        item = RoleModel.query.get(item_id)
-        if item:
-            item.price = item_data["price"]
-            item.name = item_data["name"]
-        else:
-            item = RoleModel(id=item_id, **item_data)
-        db.session.add(item)
-        db.session.commit()
-
+        service = RoleService(db.session)
+        item = service.update(item_data, item_id, 1)
+        if type(item) == EntityNotFoundException:
+            abort(409, message="Error: {}".format(item))
         return item
 
 
-@blp.route("/role")
+@blp.route(f"/{main_route}")
 class Plain(MethodView):
-    # @jwt_required()
+    @jwt_required()
     @blp.response(200, RoleSchema(many=True))
     def get(self):
-        return RoleModel.query.all()
+        service = RoleService(db.session)
+        return service.getAll()
 
     @jwt_required(fresh=True)
     @blp.arguments(RoleSchema)
     @blp.response(201, RoleSchema)
     def post(self, item_data):
-        item = RoleModel(**item_data)
-        try:
-            db.session.add(item)
-            db.session.commit()
-        except IntegrityError:
-            abort(
-                400,
-                message="A role with that name already exists.",
-            )
-        except SQLAlchemyError:
-            abort(500, message="An error occurred creating the role.")
-
+        service = RoleService(db.session)
+        item = service.add(item_data, 1)
+        if type(item) == UnexpectedEntityException:
+            abort(409, message="Error: {}".format(item))
         return item
