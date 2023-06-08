@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from project.models.material.sensor import SensorModel
+from project.models.map.sensor import SensorModel
 from project.repository.material.sensor import SensorRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException

@@ -5,7 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from flask_jwt_extended import jwt_required
 
 from db import db
-from project.models.material.sensor import SensorModel
+from project.models.map.sensor import SensorModel
 from project.schemas.material.sensor import SensorSchema
 
 blp = Blueprint("Sensors", "sensors", description="Operations on sensor")

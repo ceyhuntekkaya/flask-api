@@ -2,7 +2,7 @@ from db import db
 
 
 class CommandCollarMarkRankModel(db.Model):
-    __tablename__ = "command_collar_mark_rakss"
+    __tablename__ = "command_collar_mark_ranks"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)

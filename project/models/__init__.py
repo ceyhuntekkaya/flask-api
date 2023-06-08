@@ -5,7 +5,7 @@
 # from models.item_tags import ItemsTags
 
 
-from project.models.material.sensor import SensorModel
+#from project.models.material.sensor import SensorModel
 
 
 
