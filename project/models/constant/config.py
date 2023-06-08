@@ -1,11 +1,13 @@
 from db import db
 
 
-class RoleModel(db.Model):
-    __tablename__ = "roles"
+class ConfigModel(db.Model):
+    __tablename__ = "aselsan_config"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
+
+    status = db.Column(db.Integer, default=1)
+    config_json = db.Column(db.JSON)
 
     create_at = db.Column(db.Integer, nullable=True)
     update_at = db.Column(db.Integer, nullable=True)
@@ -15,4 +17,3 @@ class RoleModel(db.Model):
     create_by = db.Column(db.Integer, nullable=True)
     update_by = db.Column(db.Integer, nullable=True)
     delete_by = db.Column(db.Integer, nullable=True)
-

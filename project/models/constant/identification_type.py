@@ -1,11 +1,13 @@
 from db import db
 
 
-class RoleModel(db.Model):
-    __tablename__ = "roles"
+class IdentificationTypeModel(db.Model):
+    __tablename__ = "identification_type"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
+
+    identification_id = db.Column(db.Integer)
+    identification = db.Column(db.String)
 
     create_at = db.Column(db.Integer, nullable=True)
     update_at = db.Column(db.Integer, nullable=True)
@@ -15,4 +17,3 @@ class RoleModel(db.Model):
     create_by = db.Column(db.Integer, nullable=True)
     update_by = db.Column(db.Integer, nullable=True)
     delete_by = db.Column(db.Integer, nullable=True)
-

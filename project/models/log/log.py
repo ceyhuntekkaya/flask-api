@@ -6,8 +6,8 @@ class LogModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-    event_type = db.Column(db.String, nullable=False)
-    event_at = db.Column(db.String, nullable=False)
+    key = db.Column(db.String, nullable=False)
+    log = db.Column(db.JSON)
+    created_at = db.Column(db.Integer)
     user_ip = db.Column(db.String, nullable=False)
-    unity_id = db.Column(db.Integer, db.ForeignKey("unities.id"), nullable=True)
-    description = db.Column(db.String, nullable=True)
+
