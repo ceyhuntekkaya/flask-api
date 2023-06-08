@@ -4,7 +4,7 @@ from project.service.library.media import MediaSourceService
 from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
-from db import db
+from setting.db import db
 from project.schemas.library.media import MediaSchema
 
 blp = Blueprint("Media", "media", description="Operations on media")

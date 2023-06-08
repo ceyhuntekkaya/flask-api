@@ -10,7 +10,7 @@ from faker import Faker
 from project.resources.database import orm_session_add
 from project.models.data.anomaly import Anomaly
 
-from setting.socket import sio
+from project.socket.socket import sio
 
 fake = Faker("tr_TR")
 

@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 import os
 
-from db import db
+from setting.db import db
 from blocklist import BLOCKLIST
 
 from project.resources.communication.data_package import blp as DataPackageBlueprint

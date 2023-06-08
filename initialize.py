@@ -1,4 +1,4 @@
-from db import db
+from setting.db import db
 from project.models.constant.role import RoleModel
 from project.models.constant.hierarchy import HierarchyModel
 from project.models.constant.command import CommandModel

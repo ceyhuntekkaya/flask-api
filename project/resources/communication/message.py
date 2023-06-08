@@ -4,7 +4,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 
 from flask_jwt_extended import jwt_required
 
-from db import db
+from setting.db import db
 from project.models.communication.message import MessageModel
 from project.schemas.communication.message import MessageSchema
 

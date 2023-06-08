@@ -6,7 +6,7 @@ from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
-from db import db
+from setting.db import db
 from project.schemas.constant.system import SystemSchema
 
 blp = Blueprint("Systems", "systems", description="Operations on systems")

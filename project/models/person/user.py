@@ -1,4 +1,4 @@
-from db import db
+from setting.db import db
 from project.models.base_model import BaseModelClass
 
 

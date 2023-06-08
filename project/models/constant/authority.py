@@ -1,4 +1,4 @@
-from db import db
+from setting.db import db
 
 
 class AuthorityModel(db.Model):

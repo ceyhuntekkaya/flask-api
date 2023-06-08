@@ -1,5 +1,5 @@
 from project.models.constant.role import RoleModel
-from db import db
+from setting.db import db
 
 
 

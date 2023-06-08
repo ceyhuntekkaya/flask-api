@@ -1,6 +1,6 @@
 import pytest
 from app import create_app
-from db import db
+from setting.db import db
 
 
 @pytest.fixture()

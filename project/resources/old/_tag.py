@@ -2,7 +2,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError
 from flask_jwt_extended import jwt_required 
-from db import db
+from setting.db import db
 from project.models import TagModel, StoreModel, ItemModel
 from old_schemas import TagSchema, TagAndItemSchema
 

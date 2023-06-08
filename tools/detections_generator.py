@@ -7,7 +7,7 @@ from datetime import datetime
 from faker import Faker
 
 from project.resources.database import orm_session_add
-from project.resources import Detection
+from project.models.detection.detection import DetectionModel as Detection
 
 fake = Faker("tr_TR")
 
@@ -22,9 +22,9 @@ static_elevation = 1059.0
 
 async def generate_single_detection(app, lat, lng, unique_id):
     data = {
-        "detectionstarttime": unique_id,
-        "detectionlat": lat,
-        "detectionlon": lng,
+        "detection_start_time": unique_id,
+        "detection_lat": lat,
+        "detection_lon": lng,
     }
 
     await orm_session_add(app, Detection(**data))

@@ -4,7 +4,7 @@ from project.service.detection.anomaly_note import AnomalyNoteService
 from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
-from db import db
+from setting.db import db
 from project.schemas.detection.anomaly_note import AnomalyNoteSchema
 
 blp = Blueprint("AnomalyNotes", "anomaly_notes", description="Operations on anomaly note")

@@ -11,8 +11,7 @@ from flask_jwt_extended import (
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
-from db import db
-from project.models.person.user import UserModel
+from setting.db import db
 from project.schemas.person.user import UserSchema, UserLoginSchema
 
 blp = Blueprint("Users", "users", description="Operations on user")

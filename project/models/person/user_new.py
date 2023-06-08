@@ -1,19 +1,11 @@
-from db import db
 from project.models.base_model import BaseModelClass
 from sqlalchemy import (
-    JSON,
-    REAL,
-    TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
 )
-from sqlalchemy.dialects.postgresql import ARRAY
-from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
 
 class UserModel(BaseModelClass):

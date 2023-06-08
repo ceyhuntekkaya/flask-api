@@ -4,7 +4,7 @@ from project.service.report.detection_report import DetectionReportService
 from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
-from db import db
+from setting.db import db
 from project.schemas.report.detection_report import DetectionReportSchema
 
 blp = Blueprint("DetectionReports", "detection_reports", description="Operations on detection_report")
