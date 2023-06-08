@@ -1,16 +1,16 @@
 from marshmallow import Schema, fields
 
 
-class PlainDetectionProcessSchema(Schema):
+class PlainAnomalyProcessSchema(Schema):
     id = fields.Int()
-    detection_id = fields.Int()
+    anomaly_id = fields.Int()
     user_id = fields.Int()
     process_at = fields.Int()
     process = fields.Str()
     create_at = fields.Int()
 
 
-class DetectionProcessSchema(PlainDetectionProcessSchema):
+class AnomalyProcessSchema(PlainAnomalyProcessSchema):
     update_at = fields.Int()
     delete_at = fields.Int()
     is_active = fields.Bool()
@@ -18,23 +18,23 @@ class DetectionProcessSchema(PlainDetectionProcessSchema):
     delete_by = fields.Int()
 
 
-class DetectionProcessUpdateSchema(Schema):
+class AnomalyProcessUpdateSchema(Schema):
     id = fields.Int()
-    detection_id = fields.Int()
+    anomaly_id = fields.Int()
     user_id = fields.Int()
     process_at = fields.Int()
     process = fields.Str()
     update_by = fields.Int()
 
 
-class DetectionProcessDeleteSchema(PlainDetectionProcessSchema):
+class AnomalyProcessDeleteSchema(PlainAnomalyProcessSchema):
     id = fields.Int()
     delete_by = fields.Int()
 
 
-class DetectionProcessCreateSchema(PlainDetectionProcessSchema):
+class AnomalyProcessCreateSchema(PlainAnomalyProcessSchema):
     id = fields.Int()
-    detection_id = fields.Int()
+    anomaly_id = fields.Int()
     user_id = fields.Int()
     process_at = fields.Int()
     process = fields.Str()

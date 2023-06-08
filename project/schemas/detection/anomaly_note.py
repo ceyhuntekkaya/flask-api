@@ -1,16 +1,16 @@
 from marshmallow import Schema, fields
 
 
-class PlainDetectionNoteSchema(Schema):
+class PlainAnomalyNoteSchema(Schema):
     id = fields.Int()
-    detection_id = fields.Int()
+    anomaly_id = fields.Int()
     user_id = fields.Int()
     note_at = fields.Int()
     content = fields.Str()
     create_at = fields.Int()
 
 
-class DetectionNoteSechema(PlainDetectionNoteSchema):
+class AnomalyNoteSchema(PlainAnomalyNoteSchema):
     update_at = fields.Int()
     delete_at = fields.Int()
     is_active = fields.Bool()
@@ -18,23 +18,23 @@ class DetectionNoteSechema(PlainDetectionNoteSchema):
     delete_by = fields.Int()
 
 
-class DetectionNoteUpdateSchema(Schema):
+class AnomalyNoteUpdateSchema(Schema):
     id = fields.Int()
-    detection_id = fields.Int()
+    anomaly_id = fields.Int()
     user_id = fields.Int()
     note_at = fields.Int()
     content = fields.Str()
     update_by = fields.Int()
 
 
-class DetectionNoteDeleteSchema(PlainDetectionNoteSchema):
+class AnomalyNoteDeleteSchema(PlainAnomalyNoteSchema):
     id = fields.Int()
     delete_by = fields.Int()
 
 
-class DetectionNoteCreateSchema(PlainDetectionNoteSchema):
+class AnomalyNoteCreateSchema(PlainAnomalyNoteSchema):
     id = fields.Int()
-    detection_id = fields.Int()
+    anomaly_id = fields.Int()
     user_id = fields.Int()
     note_at = fields.Int()
     content = fields.Str()

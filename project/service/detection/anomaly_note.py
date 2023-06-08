@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from project.models.detection.detection import DetectionModel
-from project.repository.detection.detection import DetectionRepository
+from project.models.detection.anomaly_note import AnomalyNoteModel
+from project.repository.detection.anomaly_note import AnomalyNoteRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
@@ -10,8 +10,8 @@ class LayerService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, DetectionModel)
-        self.repo = DetectionRepository(session, DetectionModel)
+        super().__init__(session, AnomalyNoteModel)
+        self.repo = AnomalyNoteRepository(session, AnomalyNoteModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -22,7 +22,7 @@ class LayerService:
                 )
             )
 
-        new_item = DetectionModel(**item_data )
+        new_item = AnomalyNoteModel(**item_data)
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_layer_to_data(item_created)

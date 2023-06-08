@@ -23,10 +23,10 @@ from project.resources.constant.hierarchy import blp as HierarchyBlueprint
 from project.resources.constant.preference import blp as PreferenceBlueprint
 from project.resources.constant.role import blp as RoleBlueprint
 
-from project.resources.detection.detection import blp as DetectionPrint
-from project.resources.detection.detection_note import blp as DetectionNotePrint
-from project.resources.detection.detection_process import blp as DetectionProcessPrint
-from project.resources.detection.detection_route import blp as DetectionRoutePrint
+from project.resources.detection.anomaly import blp as AnomalyBlueprint
+from project.resources.detection.anomaly_note import blp as AnomalyNoteBlueprint
+from project.resources.detection.anomaly_process import blp as AnomalyProcessBlueprint
+from project.resources.detection.anomaly_route import blp as AnomalyRouteBlueprint
 
 from project.resources.library.media import blp as MediaBlueprint
 from project.resources.library.media_source import blp as MediaSourceBlueprint
@@ -152,10 +152,10 @@ def create_app(db_url=None):
     api.register_blueprint(PreferenceBlueprint)
     api.register_blueprint(RoleBlueprint)
 
-    api.register_blueprint(DetectionPrint)
-    api.register_blueprint(DetectionRoutePrint)
-    api.register_blueprint(DetectionNotePrint)
-    api.register_blueprint(DetectionProcessPrint)
+    api.register_blueprint(AnomalyBlueprint)
+    api.register_blueprint(AnomalyRouteBlueprint)
+    api.register_blueprint(AnomalyNoteBlueprint)
+    api.register_blueprint(AnomalyProcessBlueprint)
 
     api.register_blueprint(MediaBlueprint)
     api.register_blueprint(MediaSourceBlueprint)

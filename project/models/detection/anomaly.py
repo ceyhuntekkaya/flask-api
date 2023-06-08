@@ -1,8 +1,8 @@
 from db import db
 
 
-class DetectionModel(db.Model):
-    __tablename__ = "detections"
+class AnomalyModel(db.Model):
+    __tablename__ = "anomalies"
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True, nullable=False)
@@ -10,7 +10,7 @@ class DetectionModel(db.Model):
 
     latitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
     longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
-    detection_at = db.Column(db.Integer, nullable=False)
+    anomaly_at = db.Column(db.Integer, nullable=False)
     anomaly_level = db.Column(db.Integer, nullable=False)
     anomaly_color = db.Column(db.String, nullable=True)
 

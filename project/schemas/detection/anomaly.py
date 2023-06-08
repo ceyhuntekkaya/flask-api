@@ -1,13 +1,13 @@
 from marshmallow import Schema, fields
 
 
-class PlainDetectionSchema(Schema):
+class PlainAnomalySchema(Schema):
     id = fields.Int()
     name = fields.Str()
     description = fields.Str()
     latitude = fields.Float()
     longitude = fields.Float()
-    detection_at = fields.Int()
+    anomaly_at = fields.Int()
     anomaly_level = fields.Int()
     anomaly_color = fields.Str()
     map_id = fields.Int()
@@ -19,7 +19,7 @@ class PlainDetectionSchema(Schema):
     create_at = fields.Int()
 
 
-class DetectionSchema(PlainDetectionSchema):
+class AnomalySchema(PlainAnomalySchema):
     update_at = fields.Int()
     delete_at = fields.Int()
     is_active = fields.Bool()
@@ -27,14 +27,14 @@ class DetectionSchema(PlainDetectionSchema):
     delete_by = fields.Int()
 
 
-class DetectionUpdateSchema(PlainDetectionSchema):
+class AnomalyUpdateSchema(PlainAnomalySchema):
     update_by = fields.Int()
 
 
-class DetectionDeleteSchema(Schema):
+class AnomalyDeleteSchema(Schema):
     id = fields.Int()
     delete_by = fields.Int()
 
 
-class DetectionCreateSchema(PlainDetectionSchema):
+class AnomalyCreateSchema(PlainAnomalySchema):
     create_at = fields.Int()
