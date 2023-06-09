@@ -10,13 +10,13 @@ class PlainMessageSchema(Schema):
     content = fields.Str()
     message_from = fields.Int()
     original_message_id = fields.Int()
-    create_by = fields.Int()
+    created_by = fields.Int()
 
 
 class MessageSchema(PlainMessageSchema):
     send_ip = fields.Str()
-    create_at = fields.Int()
-    delete_at = fields.Int()
+    created_at = fields.Int()
+    deleted_at = fields.Int()
     
 
 class MessageUpdateSchema(Schema):
@@ -32,7 +32,7 @@ class MessageUpdateSchema(Schema):
 
 class MessageDeleteSchema(PlainMessageSchema):
     id = fields.Int()
-    delete_at = fields.Int()
+    deleted_at = fields.Int()
 
 
 class MessageCreateSchema(PlainMessageSchema):
@@ -44,5 +44,5 @@ class MessageCreateSchema(PlainMessageSchema):
     content = fields.Str()
     message_from = fields.Int()
     original_message_id = fields.Int()
-    create_by = fields.Int()
+    created_by = fields.Int()
     send_ip = fields.Str()

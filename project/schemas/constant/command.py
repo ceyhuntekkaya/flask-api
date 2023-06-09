@@ -8,26 +8,26 @@ class PlainCommandSchema(Schema):
 
 
 class CommandSchema(PlainCommandSchema):
-    create_at = fields.Int()
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Bool()
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    created_at = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class CommandUpdateSchema(Schema):
     id = fields.Int()
     name = fields.Str()
     hierarchical_order = fields.Int()
-    is_active = fields.Bool()
-    update_by = fields.Int()
+    status = fields.Int()
+    updated_by = fields.Int()
 
 
 class CommandDeleteSchema(PlainCommandSchema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class CommandCreateSchema(PlainCommandSchema):

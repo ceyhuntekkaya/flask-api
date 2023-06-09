@@ -1,5 +1,5 @@
 from setting.db import db
-
+from datetime import datetime
 
 class AnomalyProcessModel(db.Model):
     __tablename__ = "anomaly_process"
@@ -7,14 +7,14 @@ class AnomalyProcessModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     anomaly_id = db.Column(db.Integer, db.ForeignKey("anomalies.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    process_at = db.Column(db.Integer)
+    process_at = db.Column(db.TIMESTAMP)
     process = db.Column(db.String, nullable=False)
 
-    create_at = db.Column(db.Integer)
-    update_at = db.Column(db.Integer)
-    delete_at = db.Column(db.Integer)
-    is_active = db.Column(db.Boolean)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
+    updated_at = db.Column(db.TIMESTAMP)
+    deleted_at = db.Column(db.TIMESTAMP)
+    status = db.Column(db.Integer)
 
-    create_by = db.Column(db.Integer)
-    update_by = db.Column(db.Integer)
-    delete_by = db.Column(db.Integer)
+    created_by = db.Column(db.Integer)
+    updated_by = db.Column(db.Integer)
+    deleted_by = db.Column(db.Integer)

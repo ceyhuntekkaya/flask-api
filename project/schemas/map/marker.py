@@ -17,28 +17,28 @@ class PlainMarkerSchema(Schema):
     layer_id = fields.Int()
     hierarchy_id = fields.Int()
     official_user_id = fields.Int()
-    create_at = fields.Int()
+    created_at = fields.Int()
 
 
 class MarkerSchema(PlainMarkerSchema):
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Boolean()
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MarkerUpdateSchema(PlainMarkerSchema):
-    update_by = fields.Int()
-    is_active = fields.Boolean()
+    updated_by = fields.Int()
+    status = fields.Int()
 
 
 class MarkerDeleteSchema(Schema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MarkerCreateSchema(PlainMarkerSchema):
-    create_by = fields.Int()
-    is_active = fields.Boolean()
+    created_by = fields.Int()
+    status = fields.Int()

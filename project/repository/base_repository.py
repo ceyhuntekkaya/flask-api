@@ -37,7 +37,7 @@ class BaseRepository:
         return result
 
     def get_actives(self):
-        return self.session.query(self.entity).filter(self.entity.is_active == True)
+        return self.session.query(self.entity).filter(self.entity.status == 1)
 
     def add(self, data, created_by: int = None):
         data.created_by = created_by
@@ -61,11 +61,9 @@ class BaseRepository:
         self.session.commit()
 
     def delete(self, entity, deleted_by: int = None):
-        entity.is_active = False
-        entity.deleted_by = deleted_by
+        print(entity.deleted_by)
         self.session.add(entity)
         self.session.commit()
-
 
     def permanent_delete(self, entity):
         self.session.delete(entity)

@@ -52,7 +52,7 @@ class MapService:
             item.color = item_data["color"],
             item.layer_type = item_data["layer_type"],
             item.critical_area_type = item_data["critical_area_type"],
-            item.update_by = item_data["update_by"],
+            item.updated_by = item_data["updated_by"],
             item_updated = self.repo.update(item, updated_by)
 
             Converter.convert_object(item_updated)
@@ -68,7 +68,7 @@ class MapService:
     def delete(self, item_id, deleted_by):
         item = self.repo.get_by_id(item_id)
         if item:
-            item.update_by = deleted_by
+            item.updated_by = deleted_by
             item_deleted = self.repo.delete(item, deleted_by)
             return Converter.convert_object(item_deleted)
         else:

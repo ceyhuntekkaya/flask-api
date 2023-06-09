@@ -4,28 +4,28 @@ from marshmallow import Schema, fields
 class PlainAuthoritySchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str()
-    create_by = fields.Int()
+    created_by = fields.Int()
 
 
 class AuthoritySchema(PlainAuthoritySchema):
-    create_at = fields.Int()
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    created_at = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class AuthorityUpdateSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str()
-    update_by = fields.Int()
+    updated_by = fields.Int()
 
 
 class AuthorityDeleteSchema(PlainAuthoritySchema):
     id = fields.Int(dump_only=True)
     name = fields.Str()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class AuthorityCreateSchema(PlainAuthoritySchema):

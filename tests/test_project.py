@@ -18,7 +18,7 @@ def test_registration(client, app):
         "command_collar_mark_rank_id": 1,
         "command_id": 1,
         "hierarchy_id": 1,
-        "is_active": True
+        "status": 1
     })
     with app.app_context():
         assert UserModel.query.count == 1

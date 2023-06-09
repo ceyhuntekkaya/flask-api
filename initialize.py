@@ -94,8 +94,8 @@ class FirstRecords:
     def add_user(role_id):
         user = {"name": "Ceyhun", "surname": "Tekkaya", "registration_number": "123456", "phone": "3123121212",
                 "phone_extension_line": "0101", "mail": "ceyhun@genixo.ai", "code": "007", "username": "admin",
-                "password": "123", "create_at": 1685791783117, "update_at": None,
-                "delete_at": None, "active": True, "create_by": None, "update_by": None, "delete_by": None,
+                "password": "123", "created_at": 1685791783117, "updated_at": None,
+                "deleted_at": None, "active": True, "created_by": None, "updated_by": None, "deleted_by": None,
                 "last_login": None, "last_login_ip": None,
                 "role_id": role_id, "hierarchy_id": 0, "command_id": 0, "command_collar_mark_id": 0,
                 "command_collar_mark_rank_id": 0}

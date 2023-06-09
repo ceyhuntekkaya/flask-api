@@ -26,7 +26,7 @@ class UserService:
 
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
-        return Converter.convert_user_to_data(item_created)
+        return Converter.convert_object(item_created)
 
     def getById(self, item_id):
         try:
@@ -57,9 +57,9 @@ class UserService:
             item.command_id = item_data["command_id"],
             item.command_collar_mark_id = item_data["command_collar_mark_id"],
             item.command_collar_mark_rank_id = item_data["command_collar_mark_rank_id"],
-            item.update_by = updated_by
+            item.updated_by = updated_by
             item_updated = self.repo.update(item, updated_by)
-            Converter.convert_user_to_data(item_updated)
+            Converter.convert_object(item_updated)
             return str(item_updated.id)
         else:
             return EntityNotFoundException(
@@ -69,17 +69,14 @@ class UserService:
             )
 
     def delete(self, item_id, deleted_by):
-        print("ceyhun 2")
         item = self.repo.get_by_id(item_id)
-        print("ceyhun 3")
         if item:
-            print("ceyhun 4")
             item.deleted_by = deleted_by
-            item.is_active = False
+            item.status = 0
             self.repo.delete(item, deleted_by)
             item_created = self.repo.get_by_id(item_id)
-            print("ceyhun 5", item_created.name)
-            return Converter.convert_user_to_data(item_created)
+            print(Converter.convert_object(item))
+            return Converter.convert_object(item_created)
         else:
             return EntityNotFoundException(
                 'with item {} was found.'.format(

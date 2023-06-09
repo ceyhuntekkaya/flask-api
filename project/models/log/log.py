@@ -1,5 +1,5 @@
 from setting.db import db
-
+from datetime import datetime
 
 class LogModel(db.Model):
     __tablename__ = "logs"
@@ -8,6 +8,6 @@ class LogModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     key = db.Column(db.String, nullable=False)
     log = db.Column(db.JSON)
-    created_at = db.Column(db.Integer)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
     user_ip = db.Column(db.String, nullable=False)
 

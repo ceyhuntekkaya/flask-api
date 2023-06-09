@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from setting.db import db
 from project.models.base_model import BaseModelClass
 
+import time
 
 class UserModel(db.Model, BaseModelClass):
     __tablename__ = "users"
@@ -16,14 +19,14 @@ class UserModel(db.Model, BaseModelClass):
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
 
-    create_at = db.Column(db.Integer, nullable=True)
-    update_at = db.Column(db.Integer, nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
-    is_active = db.Column(db.Boolean, nullable=True)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
+    updated_at = db.Column(db.TIMESTAMP, nullable=True)
+    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
+    status = db.Column(db.Integer, default=1)
 
-    create_by = db.Column(db.Integer, nullable=True)
-    update_by = db.Column(db.Integer, nullable=True)
-    delete_by = db.Column(db.Integer, nullable=True)
+    created_by = db.Column(db.Integer, nullable=True)
+    updated_by = db.Column(db.Integer, nullable=True)
+    deleted_by = db.Column(db.Integer, nullable=True)
     last_login = db.Column(db.Integer, nullable=True)
     last_login_ip = db.Column(db.String, unique=False, nullable=True)
 

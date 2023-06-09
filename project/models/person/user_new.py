@@ -8,6 +8,7 @@ from sqlalchemy import (
 )
 from datetime import datetime
 
+
 class UserModel(BaseModelClass):
     __tablename__ = "user_news"
 
@@ -24,14 +25,14 @@ class UserModel(BaseModelClass):
     username = Column(String, unique=True, nullable=False)
     password = Column(String(255), nullable=False)
 
-    create_at = Column(TIMESTAMP, default=datetime.now())
-    update_at = Column(TIMESTAMP, nullable=True)
-    delete_at = Column(TIMESTAMP, nullable=True)
-    is_active = Column(TIMESTAMP, nullable=True)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    updated_at = Column(TIMESTAMP, nullable=True)
+    deleted_at = Column(TIMESTAMP, nullable=True)
+    status = Column(Integer, nullable=True)
 
-    create_by = Column(Integer, nullable=True)
-    update_by = Column(Integer, nullable=True)
-    delete_by = Column(Integer, nullable=True)
+    created_by = Column(Integer, nullable=True)
+    updated_by = Column(Integer, nullable=True)
+    deleted_by = Column(Integer, nullable=True)
     last_login = Column(TIMESTAMP, nullable=True)
     last_login_ip = Column(String, unique=False, nullable=True)
 

@@ -21,25 +21,25 @@ class PlainMediaSchema(Schema):
 
 
 class MediaSchema(PlainMediaSchema):
-    create_at = fields.Int()
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Boolean()
+    created_at = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
     status = fields.Str()
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MediaUpdateSchema(Schema):
-    update_by = fields.Int()
+    updated_by = fields.Int()
 
 
 class MediaDeleteSchema(Schema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MediaCreateSchema(PlainMediaSchema):
-    create_by = fields.Int()
-    is_active = fields.Boolean()
+    created_by = fields.Int()
+    status = fields.Int()

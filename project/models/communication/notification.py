@@ -1,4 +1,5 @@
 from setting.db import db
+from datetime import datetime
 
 
 class NotificationModel(db.Model):
@@ -14,6 +15,6 @@ class NotificationModel(db.Model):
 
     notification_from = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-    create_at = db.Column(db.Integer,nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
-    create_by = db.Column(db.Integer,nullable=True)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
+    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
+    created_by = db.Column(db.Integer,nullable=True)

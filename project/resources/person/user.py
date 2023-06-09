@@ -12,7 +12,7 @@ from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 from setting.db import db
-from project.schemas.person.user import UserSchema, UserLoginSchema
+from project.schemas.person.user import UserSchema, UserLoginSchema, RegisterSchema
 import os
 from project.service.converters import convert_object
 
@@ -50,7 +50,6 @@ class WithId(MethodView):
     # @jwt_required()
     @blp.response(200, UserSchema)
     def delete(self, item_id):
-        print("ceyhun 1")
         service = UserService(db.session)
         item = service.delete(item_id, 1)
         print(item)
@@ -81,7 +80,7 @@ class Plain(MethodView):
 
 @blp.route("/auth/register")
 class UserRegister(MethodView):
-    @blp.arguments(UserSchema)
+    @blp.arguments(RegisterSchema)
     @blp.response(200, UserSchema)
     def post(self, item_data):
         service = UserService(db.session)

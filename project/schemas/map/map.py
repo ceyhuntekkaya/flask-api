@@ -7,16 +7,16 @@ class PlainMapSchema(Schema):
     description = fields.Str()
     hierarchy_id = fields.Int()
     official_user_id = fields.Int()
-    create_at = fields.Int()
+    created_at = fields.Int()
 
 
 class MapSchema(PlainMapSchema):
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Boolean()
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MapUpdateSchema(Schema):
@@ -25,12 +25,12 @@ class MapUpdateSchema(Schema):
     description = fields.Str()
     hierarchy_id = fields.Int()
     official_user_id = fields.Int()
-    update_by = fields.Int()
+    updated_by = fields.Int()
 
 
 class MapDeleteSchema(PlainMapSchema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MapCreateSchema(PlainMapSchema):
@@ -39,4 +39,4 @@ class MapCreateSchema(PlainMapSchema):
     description = fields.Str()
     hierarchy_id = fields.Int()
     official_user_id = fields.Int()
-    create_by = fields.Int()
+    created_by = fields.Int()

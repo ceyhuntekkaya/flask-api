@@ -7,25 +7,25 @@ class PlainPreferenceSchema(Schema):
 
 
 class PreferenceSchema(PlainPreferenceSchema):
-    create_at = fields.Int()
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Int()
+    created_at = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
 
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class PreferenceUpdateSchema(Schema):
     id = fields.Int()
     name = fields.Str()
-    update_by = fields.Int()
+    updated_by = fields.Int()
 
 
 class PreferenceDeleteSchema(PlainPreferenceSchema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class PreferenceCreateSchema(PlainPreferenceSchema):

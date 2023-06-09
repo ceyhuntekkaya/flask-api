@@ -1,5 +1,5 @@
 from setting.db import db
-
+from datetime import datetime
 
 class MediaModel(db.Model):
     __tablename__ = "media"
@@ -10,8 +10,8 @@ class MediaModel(db.Model):
 
     latitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
     longitude = db.Column(db.Float(precision=5), unique=False, nullable=False)
-    begin_at = db.Column(db.Integer, nullable=False)
-    end_at = db.Column(db.Integer, nullable=False)
+    begin_at = db.Column(db.TIMESTAMP, nullable=False)
+    end_at = db.Column(db.TIMESTAMP, nullable=False)
 
     media_type = db.Column(db.String, unique=True, nullable=False)
     credential = db.Column(db.String)
@@ -25,11 +25,11 @@ class MediaModel(db.Model):
     official_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     status = db.Column(db.String, unique=True, nullable=False)
 
-    create_at = db.Column(db.Integer,nullable=True)
-    update_at = db.Column(db.Integer, nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
-    is_active = db.Column(db.Boolean, nullable=True)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
+    updated_at = db.Column(db.TIMESTAMP, nullable=True)
+    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
+    status = db.Column(db.Integer, default=1)
 
-    create_by = db.Column(db.Integer,nullable=True)
-    update_by = db.Column(db.Integer, nullable=True)
-    delete_by = db.Column(db.Integer, nullable=True)
+    created_by = db.Column(db.Integer,nullable=True)
+    updated_by = db.Column(db.Integer, nullable=True)
+    deleted_by = db.Column(db.Integer, nullable=True)

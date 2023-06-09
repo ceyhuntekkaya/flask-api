@@ -9,13 +9,13 @@ class PlainMessageTemplateSchema(Schema):
 
 
 class MessageTemplateSchema(Schema):
-    create_at = fields.Int()
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Boolean()
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    created_at = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MessageTemplateUpdateSchema(Schema):
@@ -23,13 +23,13 @@ class MessageTemplateUpdateSchema(Schema):
     name = fields.Str()
     header = fields.Str()
     content = fields.Str()
-    is_active = fields.Boolean()
-    update_by = fields.Int()
+    status = fields.Int()
+    updated_by = fields.Int()
 
 
 class MessageTemplateDeleteSchema(Schema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class MessageTemplateCreateSchema(Schema):

@@ -1,4 +1,5 @@
 from setting.db import db
+from datetime import datetime
 
 
 class MessageModel(db.Model):
@@ -16,7 +17,7 @@ class MessageModel(db.Model):
 
     original_message_id = db.Column(db.Integer, db.ForeignKey("messages.id"), nullable=True)
 
-    create_at = db.Column(db.Integer,nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
-    create_by = db.Column(db.Integer,nullable=True)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
+    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
+    created_by = db.Column(db.Integer,nullable=True)
 

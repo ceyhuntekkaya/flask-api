@@ -1,3 +1,12 @@
+from datetime import datetime;
+
+# ct stores current time
+ct = datetime.datetime.now()
+print("current time:-", ct)
+
+# ts store timestamp of current time
+ts = ct.timestamp()
+print("timestamp:-", ts)
 name = "Ceyhun"
 full_name = f"Person: {name}"
 print(full_name)

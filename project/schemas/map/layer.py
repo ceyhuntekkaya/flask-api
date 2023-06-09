@@ -10,28 +10,28 @@ class PlainLayerSchema(Schema):
     color = fields.Str()
     layer_type = fields.Str()
     critical_area_type = fields.Str()
-    create_at = fields.Int()
+    created_at = fields.Int()
 
 
 class LayerSchema(PlainLayerSchema):
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Boolean()
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class LayerUpdateSchema(PlainLayerSchema):
-    update_by = fields.Int()
-    is_active = fields.Boolean()
+    updated_by = fields.Int()
+    status = fields.Int()
 
 
 class LayerDeleteSchema(Schema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class LayerCreateSchema(PlainLayerSchema):
-    create_by = fields.Int()
-    is_active = fields.Boolean()
+    created_by = fields.Int()
+    status = fields.Int()

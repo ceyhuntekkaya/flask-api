@@ -1,5 +1,5 @@
 from setting.db import db
-
+from datetime import datetime
 
 class UserAuthorityModel(db.Model):
     __tablename__ = "user_authorities"
@@ -7,13 +7,13 @@ class UserAuthorityModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     authority_type = db.Column(db.String, unique=False, nullable=True)
-    create_at = db.Column(db.Integer,nullable=True)
-    update_at = db.Column(db.Integer, nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
-    is_active = db.Column(db.Boolean, nullable=True)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
+    updated_at = db.Column(db.TIMESTAMP, nullable=True)
+    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
+    status = db.Column(db.Integer, default=1)
 
-    create_by = db.Column(db.Integer,nullable=True)
-    update_by = db.Column(db.Integer, nullable=True)
-    delete_by = db.Column(db.Integer, nullable=True)
+    created_by = db.Column(db.Integer,nullable=True)
+    updated_by = db.Column(db.Integer, nullable=True)
+    deleted_by = db.Column(db.Integer, nullable=True)
 
     authority_id = db.Column(db.Integer, db.ForeignKey("authorities.id"))

@@ -21,14 +21,14 @@ class PlainScreenshotSchema(Schema):
 
 
 class ScreenshotSchema(PlainScreenshotSchema):
-    create_at = fields.Int()
-    update_at = fields.Int()
-    delete_at = fields.Int()
-    is_active = fields.Boolean()
+    created_at = fields.Int()
+    updated_at = fields.Int()
+    deleted_at = fields.Int()
+    status = fields.Int()
     status = fields.Str()
-    create_by = fields.Int()
-    update_by = fields.Int()
-    delete_by = fields.Int()
+    created_by = fields.Int()
+    updated_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class ScreenshotUpdateSchema(Schema):
@@ -49,12 +49,12 @@ class ScreenshotUpdateSchema(Schema):
     unity_id = fields.Int()
     official_user_id = fields.Int()
     status = fields.Str()
-    update_by = fields.Int()
+    updated_by = fields.Int()
 
 
 class ScreenshotDeleteSchema(PlainScreenshotSchema):
     id = fields.Int()
-    delete_by = fields.Int()
+    deleted_by = fields.Int()
 
 
 class ScreenshotCreateSchema(PlainScreenshotSchema):

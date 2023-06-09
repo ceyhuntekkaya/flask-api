@@ -1,5 +1,5 @@
 from setting.db import db
-
+from datetime import datetime
 
 class SensorImageModel(db.Model):
     __tablename__ = "sensor_images"
@@ -10,9 +10,9 @@ class SensorImageModel(db.Model):
     image_order = db.Column(db.Integer)
 
     # Timing
-    create_at = db.Column(db.Integer, nullable=True)
-    update_at = db.Column(db.Integer, nullable=True)
-    delete_at = db.Column(db.Integer, nullable=True)
+    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
+    updated_at = db.Column(db.TIMESTAMP, nullable=True)
+    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
 
     # Relation
     sensor_id = db.Column(db.Integer, db.ForeignKey("sensors.id"))

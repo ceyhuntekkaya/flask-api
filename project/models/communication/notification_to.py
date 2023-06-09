@@ -6,6 +6,6 @@ class NotificationToListModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     notification_id = db.Column(db.Integer, db.ForeignKey("notifications.id"))
-    read_at = db.Column(db.Integer, nullable=True)
+    read_at = db.Column(db.TIMESTAMP, nullable=True)
     read_ip = db.Column(db.String)
     

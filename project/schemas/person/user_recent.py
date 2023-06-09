@@ -8,29 +8,29 @@ class PlainUserRecentSchema(Schema):
 
 
 class UserRecentSchema(PlainUserRecentSchema):
-    create_at = fields.Int(required=False)
-    update_at = fields.Int(required=False)
-    delete_at = fields.Int(required=False)
-    is_active = fields.Bool(required=True)
-    create_by = fields.Int(required=False)
-    update_by = fields.Int(required=False)
-    delete_by = fields.Int(required=False)
+    created_at = fields.Int(required=False)
+    updated_at = fields.Int(required=False)
+    deleted_at = fields.Int(required=False)
+    status = fields.Int(required=True)
+    created_by = fields.Int(required=False)
+    updated_by = fields.Int(required=False)
+    deleted_by = fields.Int(required=False)
 
 
 class UserRecentUpdateSchema(Schema):
     id = fields.Int(required=True)
     type = fields.Str()
     value = fields.Str()
-    update_by = fields.Int(required=True)
+    updated_by = fields.Int(required=True)
 
 
 class UserRecentDeleteSchema(PlainUserRecentSchema):
     id = fields.Int(required=True)
-    delete_by = fields.Int(required=True)
+    deleted_by = fields.Int(required=True)
 
 
 class UserRecentCreateSchema(PlainUserRecentSchema):
     id = fields.Int(required=True)
     type = fields.Str()
     value = fields.Str()
-    create_by = fields.Int(required=True)
+    created_by = fields.Int(required=True)
