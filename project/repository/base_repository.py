@@ -15,12 +15,11 @@ class BaseRepository:
         return self.session.query(self.entity)
 
     def get_by_id(self, id: int):
-        print('id li')
         result = self.session.query(self.entity).filter(self.entity.id == id).one()
         if not result:
             raise EntityNotFoundException(
                 '{} with id {} was not found.'.format(
-                    self.entity.__name__,
+                    "Item",
                     id
                 )
             )
@@ -31,7 +30,7 @@ class BaseRepository:
         if not result:
             raise EntityNotFoundException(
                 '{} with id {} was not found.'.format(
-                    self.entity.__name__,
+                    "Item",
                     id
                 )
             )
@@ -57,13 +56,16 @@ class BaseRepository:
 
     def update(self, entity, updated_by: int = None):
         entity.updated_by = updated_by
-        self.update(entity, updated_by=updated_by)
+        print("____________________________________")
+        self.session.add(entity)
         self.session.commit()
 
     def delete(self, entity, deleted_by: int = None):
         entity.is_active = False
-        self.update(entity, deleted_by=deleted_by)
+        entity.deleted_by = deleted_by
+        self.session.add(entity)
         self.session.commit()
+
 
     def permanent_delete(self, entity):
         self.session.delete(entity)

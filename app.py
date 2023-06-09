@@ -4,6 +4,7 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 import os
 
+
 from setting.db import db
 from blocklist import BLOCKLIST
 
@@ -55,10 +56,13 @@ from project.resources.person.user_authority import blp as UserAuthorityBlueprin
 from project.resources.person.user_preference import blp as UserPreferenceBlueprint
 from project.resources.person.user_recent import blp as UserRecentBlueprint
 
+from project.resources.base_route import blp as BaseRouteBlueprint
+
 from initialize import FirstRecords
 
 
-def create_app(db_url=None):
+
+def create_app(db_url=None, test=False):
     app = Flask(__name__)
     app.config["API_TITLE"] = "Stores REST API"
     app.config["API_VERSION"] = "v1"
@@ -142,6 +146,7 @@ def create_app(db_url=None):
         db.create_all()
         FirstRecords.check()
 
+    api.register_blueprint(BaseRouteBlueprint)
     api.register_blueprint(DataPackageBlueprint)
     api.register_blueprint(MessageBlueprint)
     api.register_blueprint(MessageTemplateBlueprint)
@@ -189,4 +194,9 @@ def create_app(db_url=None):
     api.register_blueprint(UserPreferenceBlueprint)
     api.register_blueprint(UserRecentBlueprint)
 
+    # setup_middlewares(app)
+    # app["config"] = config
+    # app["test"] = test
+    # sio.attach(app)
+    # app.cleanup_ctx.extend([init_asyncpg, init_sqlalchemy])
     return app

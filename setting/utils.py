@@ -10,7 +10,7 @@ import psycopg2
 import requests
 from psycopg2.extras import RealDictCursor
 
-from setting import logger
+from setting import log_setting
 from .settings import config
 from project.socket.socket import sio
 

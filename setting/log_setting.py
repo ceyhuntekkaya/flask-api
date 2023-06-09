@@ -4,12 +4,12 @@
 import logging
 from os import path
 
-from tools import CustomFormatter
+from setting import CustomFormatter
 from setting.settings import config
 
-APP_PATH = path.dirname(__file__)
-VERSION = config["app"]["version"]
-TEST = config["app"]["test"]
+#APP_PATH = path.dirname(__file__)
+#VERSION = config["app"]["version"]
+#TEST = config["app"]["test"]
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

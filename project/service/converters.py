@@ -1,6 +1,13 @@
-def convert_user_to_data(user_object):
-    return str(user_object.id)
+import json
 
 
-def convert_layer_to_data(self, layer_object):
-    return str(layer_object.id)
+def convert_object(obj):
+    fields = {}
+    for field in [x for x in obj.__dict__ if not x.startswith('_') and x != 'metadata']:
+        data = obj.__getattribute__(field)
+        try:
+            json.dumps(data)
+            fields[field] = data
+        except TypeError:
+            fields[field] = None
+    return fields

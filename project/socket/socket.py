@@ -2,7 +2,7 @@ from project.socket.response import Response
 
 import socketio
 from sqlalchemy import func, select, or_
-from setting import logger
+from setting.settings import logger
 import json
 from project.socket.database import async_fetch, orm_fetch, orm_session_add
 from project.models.detection.anomaly import AnomalyModel as Anomaly

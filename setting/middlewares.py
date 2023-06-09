@@ -7,7 +7,7 @@ from aiohttp import web
 from aiohttp.web_middlewares import middleware
 from jwt import ExpiredSignatureError
 
-from setting import logger
+from setting import log_setting
 from project.socket.database import async_fetch
 from project.socket.response import Response
 from settings import config

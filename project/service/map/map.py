@@ -17,7 +17,7 @@ class MapService:
         if self.repo.get_by_name(item_data["name"]):
             return UnexpectedEntityException(
                 '{} with name {} was found.'.format(
-                    self.entity.__name__,
+                    "Item",
                     item_data["name"]
                 )
             )
@@ -25,7 +25,7 @@ class MapService:
         new_item = MapModel(**item_data)
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
-        return Converter.convert_layer_to_data(item_created)
+        return Converter.convert_object(item_created)
 
     def getById(self, item_id):
         try:
@@ -33,7 +33,7 @@ class MapService:
         except Exception as e:
             return EntityNotFoundException(
                 '{} with id {} was found.'.format(
-                    self.entity.__name__,
+                    "Item",
                     item_id
                 )
             )
@@ -55,12 +55,12 @@ class MapService:
             item.update_by = item_data["update_by"],
             item_updated = self.repo.update(item, updated_by)
 
-            Converter.convert_layer_to_data(item_updated)
+            Converter.convert_object(item_updated)
             return str(item_updated.id)
         else:
             return EntityNotFoundException(
                 '{} with item {} was found.'.format(
-                    self.entity.__name__,
+                    "Item",
                     item_id
                 )
             )
@@ -70,11 +70,11 @@ class MapService:
         if item:
             item.update_by = deleted_by
             item_deleted = self.repo.delete(item, deleted_by)
-            return Converter.convert_layer_to_data(item_deleted)
+            return Converter.convert_object(item_deleted)
         else:
             return EntityNotFoundException(
                 '{} with item {} was found.'.format(
-                    self.entity.__name__,
+                    "Item",
                     item_id
                 )
             )

@@ -11,7 +11,6 @@ class PlainUserSchema(Schema):
     command_collar_mark_id = fields.Int(required=True)
     command_collar_mark_rank_id = fields.Int(required=True)
     username = fields.Str(required=True)
-    password = fields.Str(required=True)
 
 
 class UserSchema(PlainUserSchema):
@@ -34,25 +33,8 @@ class UserSchema(PlainUserSchema):
 
 
 class UserLoginSchema(Schema):
-    id = fields.Int(dump_only=False)
-    name = fields.Str(required=False)
-    surname = fields.Str(required=False)
-    role_id = fields.Int(required=False)
-    hierarchy_id = fields.Int(required=False)
-    command_id = fields.Int(required=False)
-    command_collar_mark_id = fields.Int(required=False)
-    command_collar_mark_rank_id = fields.Int(required=False)
     username = fields.Str(required=True)
-    registration_number = fields.Str(required=False)
-    phone = fields.Str(required=False)
-    mail = fields.Str(required=False)
-    code = fields.Str(required=False)
-    phone_extension_line = fields.Str(required=False)
-
-    is_active = fields.Bool(required=False)
-
-    last_login = fields.Int(required=False)
-    last_login_ip = fields.Int(required=False)
+    password = fields.Str(required=True)
 
 
 class UserUpdateSchema(PlainUserSchema):

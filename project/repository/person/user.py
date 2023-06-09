@@ -10,4 +10,5 @@ class UserRepository(BaseRepository):
         super().__init__(session, entity)
 
     def get_by_username(self, username: str):
-        return self.session.query(self.entity).filter(self.entity.username == username).first()
+        item = self.session.query(self.entity).filter(self.entity.username == username).first()
+        return item

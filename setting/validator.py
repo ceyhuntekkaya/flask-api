@@ -1,6 +1,6 @@
 from json import JSONDecodeError
 from project.socket.response import Response
-from setting import logger
+from setting import log_setting
 
 resp = Response()
 

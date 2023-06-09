@@ -16,15 +16,15 @@ class UserModel(db.Model, BaseModelClass):
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
 
-    create_at = db.Column(db.Integer,nullable=True)
+    create_at = db.Column(db.Integer, nullable=True)
     update_at = db.Column(db.Integer, nullable=True)
     delete_at = db.Column(db.Integer, nullable=True)
     is_active = db.Column(db.Boolean, nullable=True)
 
-    create_by = db.Column(db.Integer,nullable=True)
+    create_by = db.Column(db.Integer, nullable=True)
     update_by = db.Column(db.Integer, nullable=True)
     delete_by = db.Column(db.Integer, nullable=True)
-    last_login = db.Column(db.Integer,nullable=True)
+    last_login = db.Column(db.Integer, nullable=True)
     last_login_ip = db.Column(db.String, unique=False, nullable=True)
 
     role_id = db.Column(

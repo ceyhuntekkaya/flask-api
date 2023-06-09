@@ -11,46 +11,35 @@ class UserService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, UserModel)
         self.repo = UserRepository(session, UserModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_username(item_data["username"]):
             return UnexpectedEntityException(
-                '{} with username {} was found.'.format(
-                    self.entity.__name__,
+                'Username {} was found.'.format(
                     item_data["username"]
                 )
             )
             # return "A user with that username already exists."
-        new_item = UserModel(**item_data, password=pbkdf2_sha256.hash(item_data["password"]))
-        """
-        new_item = UserModel(
-            username=item_data["username"],
-            password=pbkdf2_sha256.hash(item_data["password"]),
-            name=item_data["name"],
-            surname=item_data["surname"],
-            role_id=item_data["role_id"],
-            hierarchy_id=item_data["hierarchy_id"],
-            command_id=item_data["command_id"],
-            command_collar_mark_id=item_data["command_collar_mark_id"],
-            command_collar_mark_rank_id=item_data["command_collar_mark_rank_id"]
-        )
-        """
+        new_item = UserModel(**item_data)
+        new_item.password= pbkdf2_sha256.hash(item_data["password"])
+
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_user_to_data(item_created)
 
     def getById(self, item_id):
         try:
-            return self.repo.get_by_id(item_id)
+            item = self.repo.get_by_id(item_id)
+            if item:
+                return item
         except Exception as e:
-            return EntityNotFoundException(
-                '{} with username {} was found.'.format(
-                    self.entity.__name__,
-                    item_id
-                )
+            pass
+        return EntityNotFoundException(
+            'User {} was not found.'.format(
+                id
             )
+        )
 
     def getByName(self, name):
         item = self.repo.get_by_name(name)
@@ -74,22 +63,26 @@ class UserService:
             return str(item_updated.id)
         else:
             return EntityNotFoundException(
-                '{} with item {} was found.'.format(
-                    self.entity.__name__,
+                'Update {} was found.'.format(
                     item_id
                 )
             )
 
     def delete(self, item_id, deleted_by):
+        print("ceyhun 2")
         item = self.repo.get_by_id(item_id)
+        print("ceyhun 3")
         if item:
-            item.update_by = deleted_by
-            item_deleted = self.repo.delete(item, deleted_by)
-            return Converter.convert_user_to_data(item_deleted)
+            print("ceyhun 4")
+            item.deleted_by = deleted_by
+            item.is_active = False
+            self.repo.delete(item, deleted_by)
+            item_created = self.repo.get_by_id(item_id)
+            print("ceyhun 5", item_created.name)
+            return Converter.convert_user_to_data(item_created)
         else:
             return EntityNotFoundException(
-                '{} with item {} was found.'.format(
-                    self.entity.__name__,
+                'with item {} was found.'.format(
                     item_id
                 )
             )
@@ -109,13 +102,13 @@ class UserService:
 
     def getByUsername(self, username, password):
         try:
-            item = self.repo.get_by_username(username).first()
+            item = self.repo.get_by_username(username)
             if item and pbkdf2_sha256.verify(password, item.password):
                 return item
         except Exception as e:
-            return EntityNotFoundException(
-                '{} with username {} was found.'.format(
-                    self.entity.__name__,
-                    id
-                )
+            pass
+        return EntityNotFoundException(
+            'With username {} was found.'.format(
+                id
             )
+        )

@@ -2,7 +2,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
 from project.service.person.user import UserService
-
+from json import JSONEncoder
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
@@ -13,10 +13,15 @@ from project.exception.unexpected_entity import UnexpectedEntityException
 
 from setting.db import db
 from project.schemas.person.user import UserSchema, UserLoginSchema
+import os
+from project.service.converters import convert_object
 
 blp = Blueprint("Users", "users", description="Operations on user")
 
-main_route = "user"
+APP_PATH = os.getenv("APP_PATH")
+version = os.getenv("VERSION")
+route = "user"
+main_route = f"/{APP_PATH}/{version}/{route}"
 
 
 @blp.route(f"/{main_route}/name/<string:item_name>")
@@ -42,10 +47,13 @@ class WithId(MethodView):
             abort(409, message="Error: {}".format(item))
         return item
 
-    @jwt_required()
+    # @jwt_required()
+    @blp.response(200, UserSchema)
     def delete(self, item_id):
+        print("ceyhun 1")
         service = UserService(db.session)
         item = service.delete(item_id, 1)
+        print(item)
         if type(item) == EntityNotFoundException:
             abort(409, message="Error: {}".format(item))
         return item
@@ -71,18 +79,21 @@ class Plain(MethodView):
     # @jwt_required(fresh=True)
 
 
-@blp.route("/register")
+@blp.route("/auth/register")
 class UserRegister(MethodView):
     @blp.arguments(UserSchema)
+    @blp.response(200, UserSchema)
     def post(self, item_data):
         service = UserService(db.session)
         item = service.add(item_data, 1)
+        print(item)
         if type(item) == UnexpectedEntityException:
             abort(409, message="Error: {}".format(item))
-        return item
+        item_created = service.getById(item)
+        return item_created
 
 
-@blp.route("/login")
+@blp.route("/auth/login")
 class UserLogin(MethodView):
     @blp.arguments(UserLoginSchema)
     def post(self, item_data):
@@ -92,7 +103,8 @@ class UserLogin(MethodView):
             abort(401, message="Invalid credentials.")
         access_token = create_access_token(identity=item.id, fresh=True)
         refresh_token = create_refresh_token(item.id)
-        return {"user": item,
+        item_converted = convert_object(item)
+        return {"user": item_converted,
                 "user_preferences": {},
                 "user_authorities": {},
                 "user_recent": {},
