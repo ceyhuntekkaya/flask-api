@@ -1,20 +1,31 @@
 from setting.db import db
 from datetime import datetime
-
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+)
 
 class NotificationModel(db.Model):
     __tablename__ = "notifications"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     
-    header = db.Column(db.String, nullable=False)
-    content = db.Column(db.String, nullable=False)
-    priority = db.Column(db.Integer)
-    send_ip = db.Column(db.String)
-    notification_type = db.Column(db.String)
+    header = Column(String, nullable=False)
+    content = Column(String, nullable=False)
+    priority = Column(Integer)
+    send_ip = Column(String)
+    notification_type = Column(String)
 
-    notification_from = db.Column(db.Integer, db.ForeignKey("users.id"))
+    notification_from = Column(Integer, db.ForeignKey("users.id"))
 
-    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
-    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
-    created_by = db.Column(db.Integer,nullable=True)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    deleted_at = Column(TIMESTAMP, nullable=True)
+    created_by = Column(Integer,nullable=True)

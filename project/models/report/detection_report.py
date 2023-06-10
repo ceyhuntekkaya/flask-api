@@ -1,21 +1,34 @@
 from setting.db import db
 from datetime import datetime
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+)
+
 
 class DetectionReportModel(db.Model):
     __tablename__ = "detection_reports"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True, nullable=False)
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=True, nullable=False)
 
-    header = db.Column(db.String, nullable=False)
-    content = db.Column(db.String, nullable=False)
-    format = db.Column(db.String, nullable=False)
+    header = Column(String, nullable=False)
+    content = Column(String, nullable=False)
+    format = Column(String, nullable=False)
 
-    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
-    updated_at = db.Column(db.TIMESTAMP, nullable=True)
-    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
-    status = db.Column(db.Integer, default=1)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    updated_at = Column(TIMESTAMP, nullable=True)
+    deleted_at = Column(TIMESTAMP, nullable=True)
+    status = Column(Integer, default=1)
 
-    created_by = db.Column(db.Integer,nullable=True)
-    updated_by = db.Column(db.Integer, nullable=True)
-    deleted_by = db.Column(db.Integer, nullable=True)
+    created_by = Column(Integer, nullable=True)
+    updated_by = Column(Integer, nullable=True)
+    deleted_by = Column(Integer, nullable=True)

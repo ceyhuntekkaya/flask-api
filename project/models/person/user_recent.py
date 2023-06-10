@@ -1,18 +1,37 @@
 from setting.db import db
 from datetime import datetime
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+)
+from sqlalchemy.orm import declarative_base, relationship
 
-class UserRecentModel(db.Model):
+Base = declarative_base()
+
+
+class UserRecentModel(Base, db.Model):
     __tablename__ = "user_recent"
 
-    id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String, unique=False, nullable=True)
-    value = db.Column(db.String, unique=False, nullable=True)
+    id = Column(Integer, primary_key=True)
+    type = Column(String, unique=False, nullable=True)
+    value = Column(String, unique=False, nullable=True)
 
-    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
-    updated_at = db.Column(db.TIMESTAMP, nullable=True)
-    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
-    status = db.Column(db.Integer, default=1)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    updated_at = Column(TIMESTAMP, nullable=True)
+    deleted_at = Column(TIMESTAMP, nullable=True)
+    status = Column(Integer, default=1)
 
-    created_by = db.Column(db.Integer,nullable=True)
-    updated_by = db.Column(db.Integer, nullable=True)
-    deleted_by = db.Column(db.Integer, nullable=True)
+    created_by = Column(Integer, nullable=True)
+    updated_by = Column(Integer, nullable=True)
+    deleted_by = Column(Integer, nullable=True)
+
+    user_id = Column(Integer, ForeignKey('countries.id'))
+    user = relationship('User', back_populates='user_recent')

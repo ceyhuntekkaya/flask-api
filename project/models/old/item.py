@@ -1,16 +1,30 @@
 from setting.db import db
 
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+    Float,
+)
+
 
 class ItemModel(db.Model):
     __tablename__ = "items"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=False, nullable=False)
-    description = db.Column(db.String)
-    price = db.Column(db.Float(precision=2), unique=False, nullable=False)
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=False, nullable=False)
+    description = Column(String)
+    price = Column(Float(precision=2), unique=False, nullable=False)
 
     store_id = db.Column(
-        db.Integer, db.ForeignKey("stores.id"), unique=False, nullable=False
+        Integer, ForeignKey("stores.id"), unique=False, nullable=False
     )
     store = db.relationship("StoreModel", back_populates="items")
 

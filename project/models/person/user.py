@@ -3,46 +3,61 @@ from datetime import datetime
 from setting.db import db
 from project.models.base_model import BaseModelClass
 
-import time
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+)
+from sqlalchemy.orm import declarative_base, relationship
 
-class UserModel(db.Model, BaseModelClass):
+Base = declarative_base()
+
+
+class UserModel(Base, db.Model, BaseModelClass):
     __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=False, nullable=False)
-    surname = db.Column(db.String, unique=False, nullable=False)
-    registration_number = db.Column(db.String, unique=True, nullable=True)
-    phone = db.Column(db.String, unique=False, nullable=True)
-    mail = db.Column(db.String, unique=True, nullable=True)
-    code = db.Column(db.String, unique=False, nullable=True)
-    phone_extension_line = db.Column(db.String, unique=False, nullable=True)
-    username = db.Column(db.String, unique=True, nullable=False)
-    password = db.Column(db.String(255), nullable=False)
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=False, nullable=False)
+    surname = Column(String, unique=False, nullable=False)
+    registration_number = Column(String, unique=True, nullable=True)
+    phone = Column(String, unique=False, nullable=True)
+    mail = Column(String, unique=True, nullable=True)
+    code = Column(String, unique=False, nullable=True)
+    phone_extension_line = Column(String, unique=False, nullable=True)
+    username = Column(String, unique=True, nullable=False)
+    password = Column(String(255), nullable=False)
 
-    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
-    updated_at = db.Column(db.TIMESTAMP, nullable=True)
-    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
-    status = db.Column(db.Integer, default=1)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    updated_at = Column(TIMESTAMP, nullable=True)
+    deleted_at = Column(TIMESTAMP, nullable=True)
+    status = Column(Integer, default=1)
 
-    created_by = db.Column(db.Integer, nullable=True)
-    updated_by = db.Column(db.Integer, nullable=True)
-    deleted_by = db.Column(db.Integer, nullable=True)
-    last_login = db.Column(db.Integer, nullable=True)
-    last_login_ip = db.Column(db.String, unique=False, nullable=True)
+    created_by = Column(Integer, nullable=True)
+    updated_by = Column(Integer, nullable=True)
+    deleted_by = Column(Integer, nullable=True)
+    last_login = Column(Integer, nullable=True)
+    last_login_ip = Column(String, unique=False, nullable=True)
 
-    role_id = db.Column(
-        db.Integer, db.ForeignKey("roles.id"), unique=False, nullable=True
+    role_id = Column(
+        Integer, ForeignKey("roles.id"), unique=False, nullable=True
     )
-    hierarchy_id = db.Column(
-        db.Integer, db.ForeignKey("hierarchies.id"), unique=False, nullable=False
+    hierarchy_id = Column(
+        Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
     )
-    command_id = db.Column(
-        db.Integer, db.ForeignKey("commands.id"), unique=False, nullable=False
+    command_id = Column(
+        Integer, ForeignKey("commands.id"), unique=False, nullable=False
     )
-    command_collar_mark_id = db.Column(
-        db.Integer, db.ForeignKey("command_collar_marks.id"), unique=False, nullable=False
+    command_collar_mark_id = Column(
+        Integer, ForeignKey("command_collar_marks.id"), unique=False, nullable=False
     )
-    command_collar_mark_rank_id = db.Column(
-        db.Integer, db.ForeignKey("command_collar_mark_ranks.id"), unique=False, nullable=False
+    command_collar_mark_rank_id = Column(
+        Integer, ForeignKey("command_collar_mark_ranks.id"), unique=False, nullable=False
     )
 

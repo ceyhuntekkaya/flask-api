@@ -1,18 +1,29 @@
 from setting.db import db
 from datetime import datetime
-
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+)
 class SensorImageModel(db.Model):
     __tablename__ = "sensor_images"
 
     # Information
-    id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(db.TEXT)
-    image_order = db.Column(db.Integer)
+    id = Column(Integer, primary_key=True)
+    image = Column(TEXT)
+    image_order = Column(Integer)
 
     # Timing
-    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
-    updated_at = db.Column(db.TIMESTAMP, nullable=True)
-    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    updated_at = Column(TIMESTAMP, nullable=True)
+    deleted_at = Column(TIMESTAMP, nullable=True)
 
     # Relation
-    sensor_id = db.Column(db.Integer, db.ForeignKey("sensors.id"))
+    sensor_id = Column(Integer, db.ForeignKey("sensors.id"))

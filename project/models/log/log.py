@@ -1,13 +1,24 @@
 from setting.db import db
 from datetime import datetime
-
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+)
 class LogModel(db.Model):
     __tablename__ = "logs"
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
-    key = db.Column(db.String, nullable=False)
-    log = db.Column(db.JSON)
-    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
-    user_ip = db.Column(db.String, nullable=False)
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    key = Column(String, nullable=False)
+    log = Column(JSON)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    user_ip = Column(String, nullable=False)
 

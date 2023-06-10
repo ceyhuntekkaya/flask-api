@@ -1,20 +1,31 @@
 from setting.db import db
 from datetime import datetime
-
+from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
+    TIMESTAMP,
+    Boolean,
+    Column,
+    Enum,
+    Integer,
+    String,
+    ForeignKey,
+)
 
 class IdentificationTypeModel(db.Model):
     __tablename__ = "identification_type"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
 
-    identification_id = db.Column(db.Integer)
-    identification = db.Column(db.String)
+    identification_id = Column(Integer)
+    identification = Column(String)
 
-    created_at = db.Column(db.TIMESTAMP, default=datetime.now())
-    updated_at = db.Column(db.TIMESTAMP, nullable=True)
-    deleted_at = db.Column(db.TIMESTAMP, nullable=True)
-    status = db.Column(db.Integer, default=1)
+    created_at = Column(TIMESTAMP, default=datetime.now())
+    updated_at = Column(TIMESTAMP, nullable=True)
+    deleted_at = Column(TIMESTAMP, nullable=True)
+    status = Column(Integer, default=1)
 
-    created_by = db.Column(db.Integer, nullable=True)
-    updated_by = db.Column(db.Integer, nullable=True)
-    deleted_by = db.Column(db.Integer, nullable=True)
+    created_by = Column(Integer, nullable=True)
+    updated_by = Column(Integer, nullable=True)
+    deleted_by = Column(Integer, nullable=True)
