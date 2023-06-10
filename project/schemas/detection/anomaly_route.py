@@ -12,8 +12,8 @@ class PlainAnomalyRouteSchema(Schema):
 
 
 class AnomalyRouteSchema(PlainAnomalyRouteSchema):
-    created_at = fields.Int()
-    deleted_at = fields.Int()
+    created_at = fields.Str()
+    deleted_at = fields.Str()
     deleted_by = fields.Int()
 
 

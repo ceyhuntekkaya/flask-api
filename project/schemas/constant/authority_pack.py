@@ -17,12 +17,12 @@ class AuthorityPackUpdateSchema(Schema):
     name = fields.Str()
     authority_id = fields.Int()
     role_id = fields.Int()
-    updated_at = fields.Int()
+    updated_at = fields.Str()
 
 
 class AuthorityPackDeleteSchema(PlainAuthorityPackSchema):
     id = fields.Int()
-    deleted_at = fields.Int()
+    deleted_at = fields.Str()
 
 
 class AuthorityPackCreateSchema(PlainAuthorityPackSchema):

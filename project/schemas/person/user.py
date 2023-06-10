@@ -33,9 +33,9 @@ class UserSchema(PlainUserSchema):
     code = fields.Str(required=False)
     phone_extension_line = fields.Str(required=False)
 
-    created_at = fields.Int(required=False)
-    updated_at = fields.Int(required=False)
-    deleted_at = fields.Int(required=False)
+    created_at = fields.Str(required=False)
+    updated_at = fields.Str(required=False)
+    deleted_at = fields.Str(required=False)
     status = fields.Int(required=True)
 
     created_by = fields.Int(required=False)

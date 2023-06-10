@@ -29,9 +29,14 @@ class UserRecentModel(Base, db.Model):
     deleted_at = Column(TIMESTAMP, nullable=True)
     status = Column(Integer, default=1)
 
-    created_by = Column(Integer, nullable=True)
-    updated_by = Column(Integer, nullable=True)
-    deleted_by = Column(Integer, nullable=True)
+    created_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    updated_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    deleted_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
 
-    user_id = Column(Integer, ForeignKey('countries.id'))
-    user = relationship('User', back_populates='user_recent')
+    user_id = Column(Integer, ForeignKey('users.id'))

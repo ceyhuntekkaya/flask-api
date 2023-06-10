@@ -24,7 +24,7 @@ class PlainSchema(Schema):
     unity_id = fields.Int()
     official_user_id = fields.Int()
     status = fields.Str()
-    created_at = fields.Int()
+    created_at = fields.Str()
 
 
 @blp.route("/")

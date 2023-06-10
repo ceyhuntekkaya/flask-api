@@ -10,12 +10,12 @@ class PlainLayerSchema(Schema):
     color = fields.Str()
     layer_type = fields.Str()
     critical_area_type = fields.Str()
-    created_at = fields.Int()
+    created_at = fields.Str()
 
 
 class LayerSchema(PlainLayerSchema):
-    updated_at = fields.Int()
-    deleted_at = fields.Int()
+    updated_at = fields.Str()
+    deleted_at = fields.Str()
     status = fields.Int()
     created_by = fields.Int()
     updated_by = fields.Int()

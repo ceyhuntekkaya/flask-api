@@ -39,9 +39,15 @@ class UserModel(Base, db.Model, BaseModelClass):
     deleted_at = Column(TIMESTAMP, nullable=True)
     status = Column(Integer, default=1)
 
-    created_by = Column(Integer, nullable=True)
-    updated_by = Column(Integer, nullable=True)
-    deleted_by = Column(Integer, nullable=True)
+    created_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    updated_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    deleted_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
     last_login = Column(Integer, nullable=True)
     last_login_ip = Column(String, unique=False, nullable=True)
 

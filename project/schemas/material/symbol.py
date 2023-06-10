@@ -8,12 +8,12 @@ class PlainSymbolSchema(Schema):
     description = fields.Str()
     hierarchy_id = fields.Int()
     official_user_id = fields.Int()
-    created_at = fields.Int()
+    created_at = fields.Str()
 
 
 class SymbolSchema(PlainSymbolSchema):
-    updated_at = fields.Int()
-    deleted_at = fields.Int()
+    updated_at = fields.Str()
+    deleted_at = fields.Str()
     status = fields.Int()
     created_by = fields.Int()
     updated_by = fields.Int()

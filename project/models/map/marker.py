@@ -28,7 +28,7 @@ class MarkerModel(db.Model):
     symbol_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
     unity_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
 
-    description = Column(String)
+    description = Column(TEXT)
     latitude = Column(Float(precision=5), unique=False, nullable=False)
     longitude = Column(Float(precision=5), unique=False, nullable=False)
 
@@ -44,6 +44,12 @@ class MarkerModel(db.Model):
     deleted_at = Column(TIMESTAMP, nullable=True)
     status = Column(Integer, default=1)
 
-    created_by = Column(Integer, nullable=True)
-    updated_by = Column(Integer, nullable=True)
-    deleted_by = Column(Integer, nullable=True)
+    created_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    updated_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    deleted_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )

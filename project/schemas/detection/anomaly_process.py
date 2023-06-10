@@ -7,12 +7,12 @@ class PlainAnomalyProcessSchema(Schema):
     user_id = fields.Int()
     process_at = fields.Int()
     process = fields.Str()
-    created_at = fields.Int()
+    created_at = fields.Str()
 
 
 class AnomalyProcessSchema(PlainAnomalyProcessSchema):
-    updated_at = fields.Int()
-    deleted_at = fields.Int()
+    updated_at = fields.Str()
+    deleted_at = fields.Str()
     status = fields.Int()
     updated_by = fields.Int()
     deleted_by = fields.Int()

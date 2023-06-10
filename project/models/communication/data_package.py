@@ -17,7 +17,7 @@ class DataPackageModel(db.Model):
     __tablename__ = "data_packages"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)
+    name = Column(String, nullable=False)
     data_from = Column(Integer, db.ForeignKey("users.id"))
     data_to = Column(Integer, db.ForeignKey("users.id"))
 
@@ -33,5 +33,9 @@ class DataPackageModel(db.Model):
     status = Column(Integer, default=1)
 
     created_by = Column(Integer,nullable=True)
-    updated_by = Column(Integer, nullable=True)
-    deleted_by = Column(Integer, nullable=True)
+    updated_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    deleted_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )

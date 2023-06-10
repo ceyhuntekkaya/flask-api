@@ -17,8 +17,8 @@ class AnomalyModel(db.Model):
     __tablename__ = "anomalies"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)
-    description = Column(TEXT, unique=True, nullable=False)
+    name = Column(String, nullable=False)
+    description = Column(TEXT)
 
     latitude = Column(Float(precision=5), unique=False, nullable=False)
     longitude = Column(Float(precision=5), unique=False, nullable=False)
@@ -36,7 +36,7 @@ class AnomalyModel(db.Model):
     class_name = Column(String, nullable=True)
     confidence = Column(REAL, nullable=True)
     is_approved = Column(Integer, nullable=True)
-    editable_description = Column(String, nullable=True)
+    editable_description = Column(TEXT)
     elevation = Column(REAL, nullable=True)
 
     map_id = Column(Integer, db.ForeignKey("maps.id"), nullable=True)
@@ -44,12 +44,16 @@ class AnomalyModel(db.Model):
     sensor_id = Column(Integer, db.ForeignKey("sensors.id"), nullable=True)
     unity_id = Column(Integer, db.ForeignKey("unities.id"), nullable=True)
     official_user_id = Column(Integer, db.ForeignKey("users.id"), nullable=True)
-    status = Column(String, unique=True, nullable=False)
+    status = Column(String, nullable=False)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)
     status = Column(Integer, default=1)
 
-    updated_by = Column(Integer, nullable=True)
-    deleted_by = Column(Integer, nullable=True)
+    updated_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    deleted_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )

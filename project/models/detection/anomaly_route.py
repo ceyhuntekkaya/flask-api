@@ -21,7 +21,7 @@ class AnomalyRouteModel(db.Model):
 
     latitude = Column(Float(precision=5), unique=False, nullable=False)
     longitude = Column(Float(precision=5), unique=False, nullable=False)
-    description = Column(String, unique=True, nullable=False)
+    description = Column(TEXT)
     anomaly_level = Column(Integer, nullable=False)
     created_at = Column(TIMESTAMP, default=datetime.now())
     deleted_at = Column(TIMESTAMP)

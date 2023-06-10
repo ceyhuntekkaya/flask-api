@@ -20,7 +20,7 @@ class ItemModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=False, nullable=False)
-    description = Column(String)
+    description = Column(TEXT)
     price = Column(Float(precision=2), unique=False, nullable=False)
 
     store_id = db.Column(

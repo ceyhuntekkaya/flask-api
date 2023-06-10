@@ -7,12 +7,12 @@ class PlainMediaSourceSchema(Schema):
     credential = fields.Str()
     latitude = fields.Float()
     longitude = fields.Float()
-    created_at = fields.Int()
+    created_at = fields.Str()
 
 
 class MediaSourceSchema(PlainMediaSourceSchema):
-    updated_at = fields.Int()
-    deleted_at = fields.Int()
+    updated_at = fields.Str()
+    deleted_at = fields.Str()
     status = fields.Int()
     status = fields.Str()
     created_by = fields.Int()

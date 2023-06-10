@@ -85,11 +85,9 @@ class UserRegister(MethodView):
     def post(self, item_data):
         service = UserService(db.session)
         item = service.add(item_data, 1)
-        print(item)
         if type(item) == UnexpectedEntityException:
             abort(409, message="Error: {}".format(item))
-        item_created = service.getById(item)
-        return item_created
+        return item
 
 
 @blp.route("/auth/login")

@@ -16,12 +16,12 @@ class PlainAnomalySchema(Schema):
     unity_id = fields.Int()
     official_user_id = fields.Int()
     status = fields.Str()
-    created_at = fields.Int()
+    created_at = fields.Str()
 
 
 class AnomalySchema(PlainAnomalySchema):
-    updated_at = fields.Int()
-    deleted_at = fields.Int()
+    updated_at = fields.Str()
+    deleted_at = fields.Str()
     status = fields.Int()
     updated_by = fields.Int()
     deleted_by = fields.Int()
@@ -37,4 +37,4 @@ class AnomalyDeleteSchema(Schema):
 
 
 class AnomalyCreateSchema(PlainAnomalySchema):
-    created_at = fields.Int()
+    created_at = fields.Str()

@@ -17,7 +17,7 @@ class LayerModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=False, nullable=False)
-    description = Column(String)
+    description = Column(TEXT)
     hierarchy_id = Column(
         Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
     )
@@ -32,6 +32,12 @@ class LayerModel(db.Model):
     deleted_at = Column(TIMESTAMP, nullable=True)
     status = Column(Integer, default=1)
 
-    created_by = Column(Integer, nullable=True)
-    updated_by = Column(Integer, nullable=True)
-    deleted_by = Column(Integer, nullable=True)
+    created_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    updated_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
+    deleted_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )

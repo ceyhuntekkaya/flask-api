@@ -14,7 +14,7 @@ class FirstRecords:
         pass
 
     def check():
-        role_data = {"name": "Ceyhun"}
+        role_data = {"name": "admin"}
         role_id = 0
         is_found = RoleModel.query.filter(RoleModel.name == role_data["name"]).first()
         if not is_found:
@@ -25,7 +25,7 @@ class FirstRecords:
             db.session.commit()
             role_id = role.id
 
-        hierarchy_data = {"name": "Ceyhun", "hierarchical_order": 1}
+        hierarchy_data = {"name": "Hierarchy 1", "hierarchical_order": 1}
         hierarchy_id = 0
         is_found = HierarchyModel.query.filter(HierarchyModel.name == hierarchy_data["name"]).first()
         if not is_found:
@@ -36,7 +36,7 @@ class FirstRecords:
             db.session.commit()
             hierarchy_id = hierarchy.id
 
-        command_data = {"name": "Ceyhun", "hierarchical_order": 1}
+        command_data = {"name": "Kara Kuvvetleri", "hierarchical_order": 1}
         command_id = 0
         is_found = CommandModel.query.filter(CommandModel.name == command_data["name"]).first()
         if not is_found:
@@ -47,7 +47,7 @@ class FirstRecords:
             db.session.commit()
             command_id = command.id
 
-        command_coolar_mark_data = {"name": "Ceyhun", "hierarchical_order": 1, "command_id": command_id}
+        command_coolar_mark_data = {"name": "Kurmay", "hierarchical_order": 1, "command_id": command_id}
         command_coolar_mark_id = 0
         is_found = CommandCollarMarkModel.query.filter(
             CommandCollarMarkModel.name == command_coolar_mark_data["name"]).first()
@@ -59,7 +59,7 @@ class FirstRecords:
             db.session.commit()
             command_coolar_mark_id = ommand_coolar_mark.id
 
-        command_coolar_mark_rank_data = {"name": "Ceyhun", "hierarchical_order": 1,
+        command_coolar_mark_rank_data = {"name": "Subay", "hierarchical_order": 1,
                                          "command_collar_mark_id": command_coolar_mark_id}
         ommand_coolar_mark_rank_id = 0
         is_found = CommandCollarMarkRankModel.query.filter(
@@ -72,7 +72,7 @@ class FirstRecords:
             db.session.commit()
             ommand_coolar_mark_rank_id = command_coolar_mark_rank.id
 
-        user_data = {"name": "Ceyhun", "surname": "Tekkaya",
+        user_data = {"name": "Admin", "surname": "Admin",
                      "username": "admin", "password": "admin",
                      "role_id": 1,
                      "hierarchy_id": 1,
