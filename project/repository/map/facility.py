@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from project.repository.base_repository import BaseRepository
 
 
-class SignRepository(BaseRepository):
+class FacilityRepository(BaseRepository):
     entity: object = NotImplementedError
     db: Session = NotImplementedError
 

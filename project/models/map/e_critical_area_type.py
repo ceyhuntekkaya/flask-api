@@ -1,5 +1,7 @@
 from enum import Enum
- 
+
+
 class CriticalAreaType(Enum):
-    LINE = "LINE"
-    DOT = "DOT"
+    FRIEND = "FRIEND"
+    ENEMY = "ENEMY"
+    UNKNOWN = "UNKNOWN"

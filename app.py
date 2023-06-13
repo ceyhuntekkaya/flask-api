@@ -39,11 +39,11 @@ from project.resources.library.media import blp as MediaBlueprint
 from project.resources.library.media_source import blp as MediaSourceBlueprint
 from project.resources.library.screenshot import blp as ScreenshotBlueprint
 
-from project.resources.material.unit import blp as UnitBlueprint
+from project.resources.map.unit import blp as UnitBlueprint
 
 from project.resources.log.log import blp as LogBlueprint
 
-from project.resources.material.sign import blp as SingBlueprint
+from project.resources.map.facility import blp as FacilityBlueprint
 from project.resources.map.sensor import blp as SensorBlueprint
 from project.resources.material.symbol import blp as SymbolBlueprint
 from project.resources.map.layer import blp as LayerBlueprint
@@ -185,7 +185,7 @@ def create_app(db_url=None, test=False):
     api.register_blueprint(AreaBlueprint)
     api.register_blueprint(AreaCoordinatesBlueprint)
 
-    api.register_blueprint(SingBlueprint)
+    api.register_blueprint(FacilityBlueprint)
     api.register_blueprint(SensorBlueprint)
     api.register_blueprint(SymbolBlueprint)
 

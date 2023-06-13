@@ -12,8 +12,10 @@ from sqlalchemy import (
     String,
     ForeignKey,
 )
-class SingModel(db.Model):
-    __tablename__ = "sings"
+
+
+class FacilityModel(db.Model):
+    __tablename__ = "facilities"
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=False, nullable=False)

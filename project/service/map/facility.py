@@ -1,17 +1,17 @@
 from sqlalchemy.orm import Session
-from project.models.map.unit import UnitModel
-from project.repository.material.unit import UnitRepository
+from project.models.map.facility import FacilityModel
+from project.repository.map.facility import FacilityRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 
-class UnitService:
+class FacilityService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, UnitModel)
-        self.repo = UnitRepository(session, UnitModel)
+        super().__init__(session, FacilityModel)
+        self.repo = FacilityRepository(session, FacilityModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -22,7 +22,7 @@ class UnitService:
                 )
             )
 
-        new_item = UnitModel(**item_data)
+        new_item = FacilityModel(**item_data)
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_object(item_created)
@@ -46,8 +46,8 @@ class UnitService:
         item = self.repo.get_by_id(item_id)
         if item:
             item.name = item_data["name"],
-            item.description = item_data["description"],
 
+            item.updated_by = item_data["updated_by"],
             item_updated = self.repo.update(item, updated_by)
 
             Converter.convert_object(item_updated)

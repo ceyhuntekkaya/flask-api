@@ -26,7 +26,7 @@ class MarkerModel(db.Model):
     color = Column(String, unique=False, nullable=False)
 
     sensor_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
-    sign_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
+    facility_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
     symbol_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
     unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
     layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)

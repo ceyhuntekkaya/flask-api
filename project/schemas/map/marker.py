@@ -7,7 +7,7 @@ class PlainMarkerSchema(Schema):
     type = fields.Str()
     color = fields.Str()
     sensor_id = fields.Int()
-    sign_id = fields.Int()
+    facility_id = fields.Int()
     symbol_id = fields.Int()
     unit_id = fields.Int()
     description = fields.Str()

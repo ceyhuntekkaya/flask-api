@@ -1,11 +1,11 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from project.service.material.unit import UnitService
+from project.service.map.unit import UnitService
 from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from setting.db import db
-from project.schemas.material.unit import UnitSchema
+from project.schemas.map.unit import UnitSchema
 
 blp = Blueprint("Units", "unites", description="Operations on unit")
 

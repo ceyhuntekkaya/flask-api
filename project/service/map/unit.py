@@ -1,17 +1,17 @@
 from sqlalchemy.orm import Session
-from project.models.material.sign import SingModel
-from project.repository.material.sign import SignRepository
+from project.models.map.unit import UnitModel
+from project.repository.map.unit import UnitRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 
-class SignService:
+class UnitService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, SingModel)
-        self.repo = SignRepository(session, SingModel)
+        super().__init__(session, UnitModel)
+        self.repo = UnitRepository(session, UnitModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -22,7 +22,7 @@ class SignService:
                 )
             )
 
-        new_item = SingModel(**item_data)
+        new_item = UnitModel(**item_data)
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_object(item_created)
@@ -46,8 +46,8 @@ class SignService:
         item = self.repo.get_by_id(item_id)
         if item:
             item.name = item_data["name"],
+            item.description = item_data["description"],
 
-            item.updated_by = item_data["updated_by"],
             item_updated = self.repo.update(item, updated_by)
 
             Converter.convert_object(item_updated)

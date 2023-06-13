@@ -1,7 +1,7 @@
 from marshmallow import Schema, fields
 
 
-class PlainSignSchema(Schema):
+class PlainFacilitySchema(Schema):
     id = fields.Int()
     name = fields.Str()
     source = fields.Str()
@@ -11,7 +11,7 @@ class PlainSignSchema(Schema):
     created_at = fields.Str()
 
 
-class SignSchema(PlainSignSchema):
+class FacilitySchema(PlainFacilitySchema):
     updated_at = fields.Str()
     deleted_at = fields.Str()
     status = fields.Int()
@@ -20,16 +20,16 @@ class SignSchema(PlainSignSchema):
     deleted_by = fields.Int()
 
 
-class SignUpdateSchema(Schema):
+class FacilityUpdateSchema(Schema):
     updated_by = fields.Int()
     status = fields.Int()
 
 
-class SignDeleteSchema(Schema):
+class FacilityDeleteSchema(Schema):
     id = fields.Int()
     deleted_by = fields.Int()
 
 
-class SignCreateSchema(PlainSignSchema):
+class FacilityCreateSchema(PlainFacilitySchema):
     created_by = fields.Int()
     status = fields.Int()
