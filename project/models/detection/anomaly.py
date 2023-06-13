@@ -39,10 +39,10 @@ class AnomalyModel(db.Model):
     editable_description = Column(TEXT)
     elevation = Column(REAL, nullable=True)
 
-    map_id = Column(Integer, db.ForeignKey("maps.id"), nullable=True)
     layer_id = Column(Integer, db.ForeignKey("layers.id"), nullable=True)
+    area_id = Column(Integer, db.ForeignKey("areas.id"), nullable=True)
     sensor_id = Column(Integer, db.ForeignKey("sensors.id"), nullable=True)
-    unity_id = Column(Integer, db.ForeignKey("unities.id"), nullable=True)
+    unit_id = Column(Integer, db.ForeignKey("units.id"), nullable=True)
     official_user_id = Column(Integer, db.ForeignKey("users.id"), nullable=True)
     status = Column(String, nullable=False)
 

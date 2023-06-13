@@ -12,6 +12,8 @@ from sqlalchemy import (
     String,
     ForeignKey,
 )
+
+
 class SensorImageModel(db.Model):
     __tablename__ = "sensor_images"
 

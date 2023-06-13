@@ -12,6 +12,18 @@ blp = Blueprint("UserAuthorities", "user_authorities", description="Operations o
 main_route = "user_authority"
 
 
+@blp.route(f"/{main_route}/user/<string:item_id>")
+class WithUserId(MethodView):
+    @jwt_required()
+    @blp.response(200, UserAuthoritySchema)
+    def get(self, item_id):
+        service = UserAuthorityService(db.session)
+        item = service.getById(item_id)
+        if type(item) == EntityNotFoundException:
+            abort(409, message="Error: {}".format(item))
+        return item
+
+
 @blp.route(f"/{main_route}/<string:item_id>")
 class WithId(MethodView):
     @jwt_required()

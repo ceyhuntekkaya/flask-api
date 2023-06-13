@@ -1,4 +1,5 @@
 from setting.db import db
+
 from datetime import datetime
 from sqlalchemy import (
     JSON,
@@ -12,6 +13,8 @@ from sqlalchemy import (
     String,
     ForeignKey,
 )
+
+
 class LayerModel(db.Model):
     __tablename__ = "layers"
 
@@ -22,10 +25,6 @@ class LayerModel(db.Model):
         Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
     )
     official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
-
-    color = Column(String, unique=False, nullable=False)
-    layer_type = Column(String, unique=False, nullable=False)
-    critical_area_type = Column(String, unique=False, nullable=True)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)

@@ -1,5 +1,5 @@
 from enum import Enum
  
-class LayerType(Enum):
+class AreaType(Enum):
     LINE = "LINE"
     DOT = "DOT"

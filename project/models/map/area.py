@@ -12,25 +12,38 @@ from sqlalchemy import (
     String,
     ForeignKey,
 )
-class UnityModel(db.Model):
-    __tablename__ = "unities"
+
+
+class AreaModel(db.Model):
+    __tablename__ = "areas"
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=False, nullable=False)
-    source = Column(String, unique=False, nullable=False)
     description = Column(TEXT)
-
     hierarchy_id = Column(
         Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
     )
     official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
+    layer_by = Column(
+        Integer, ForeignKey("layers.id"), unique=False, nullable=True
+    )
+
+    area_type = Column(String)  # dost düşman
+    area_parent = Column(String)  # motorize kara deniz
+    area_sub = Column(String)  # piyade
+    symbol_code = Column(String)  # app code
+    critical_area_type = Column(String, unique=False, nullable=True)
+    color = Column(String, unique=False, nullable=False)
+    status = Column(Integer, default=1)
+
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)
-    status = Column(Integer, default=1)
 
-    created_by = Column(Integer,nullable=True)
+    created_by = Column(
+        Integer, ForeignKey("users.id"), unique=False, nullable=True
+    )
     updated_by = Column(
         Integer, ForeignKey("users.id"), unique=False, nullable=True
     )

@@ -30,10 +30,10 @@ class MediaModel(db.Model):
     storage_address = Column(String)
     
     media_source_id = Column(Integer, ForeignKey("media_sources.id"), nullable=True)
-    map_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
     layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
+    area_id = Column(Integer, ForeignKey("areas.id"), nullable=True)
     sensor_id = Column(Integer, ForeignKey("sensors.id"), nullable=True)
-    unity_id = Column(Integer, ForeignKey("unities.id"), nullable=True)
+    unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
     official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     status = Column(String, nullable=False)
 

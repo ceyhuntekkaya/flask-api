@@ -12,6 +12,8 @@ from sqlalchemy import (
     String,
     ForeignKey,
 )
+
+
 class SensorImagePointModel(db.Model):
     __tablename__ = "sensor_image_points"
 
@@ -26,4 +28,4 @@ class SensorImagePointModel(db.Model):
     deleted_at = Column(TIMESTAMP, nullable=True)
 
     # Relation
-    sensor_id = Column(Integer, db.ForeignKey("aselsan_sensors.id"))
+    sensor_image_id = Column(Integer, db.ForeignKey("sensor_images.id"))

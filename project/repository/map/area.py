@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from project.repository.base_repository import BaseRepository
 
 
-class LayerCoordinateRepository(BaseRepository):
+class AreaRepository(BaseRepository):
     entity: object = NotImplementedError
     db: Session = NotImplementedError
 

@@ -69,7 +69,7 @@ async def auth_middleware(request, handler):
             )
             # {'user_id': 1, 'role': 'user', 'exp': 1654084729}
 
-            sql = "SELECT * FROM aselsan_users WHERE id = $1;"
+            sql = "SELECT * FROM users WHERE id = $1;"
             user = await async_fetch(
                 request.app, sql, payload["user_id"], fetch_one=True, return_type=None
             )

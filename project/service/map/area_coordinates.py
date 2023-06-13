@@ -1,17 +1,17 @@
 from sqlalchemy.orm import Session
-from project.models.map.layer_coordinates import LayerCoordinateModel
-from project.repository.map.layer_coordinates import LayerCoordinateRepository
+from project.models.map.area_coordinates import AreaCoordinateModel
+from project.repository.map.area_coordinates import AreaCoordinateRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 
-class LayerCoordinateService:
+class AreaCoordinateService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, LayerCoordinateModel)
-        self.repo = LayerCoordinateRepository(session, LayerCoordinateModel)
+        super().__init__(session, AreaCoordinateModel)
+        self.repo = AreaCoordinateRepository(session, AreaCoordinateModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -22,7 +22,7 @@ class LayerCoordinateService:
                 )
             )
 
-        new_item = LayerCoordinateModel(**item_data )
+        new_item = AreaCoordinateModel(**item_data )
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_object(item_created)
@@ -46,13 +46,7 @@ class LayerCoordinateService:
         item = self.repo.get_by_id(item_id)
         if item:
             item.name = item_data["name"],
-            item.description = item_data["description"],
-            item.hierarchy_id = item_data["hierarchy_id"],
-            item.official_user_id = item_data["official_user_id"],
-            item.color = item_data["color"],
-            item.layer_type = item_data["layer_type"],
-            item.critical_area_type = item_data["critical_area_type"],
-            item.updated_by = item_data["updated_by"],
+
             item_updated = self.repo.update(item, updated_by)
 
             Converter.convert_object(item_updated)

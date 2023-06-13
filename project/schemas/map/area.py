@@ -1,17 +1,19 @@
 from marshmallow import Schema, fields
 
 
-class PlainUnitySchema(Schema):
+class PlainAreaSchema(Schema):
     id = fields.Int()
     name = fields.Str()
-    source = fields.Str()
     description = fields.Str()
     hierarchy_id = fields.Int()
     official_user_id = fields.Int()
+    color = fields.Str()
+    area_type = fields.Str()
+    critical_area_type = fields.Str()
     created_at = fields.Str()
 
 
-class UnitySchema(PlainUnitySchema):
+class AreaSchema(PlainAreaSchema):
     updated_at = fields.Str()
     deleted_at = fields.Str()
     status = fields.Int()
@@ -20,16 +22,16 @@ class UnitySchema(PlainUnitySchema):
     deleted_by = fields.Int()
 
 
-class UnityUpdateSchema(PlainUnitySchema):
-    status = fields.Int()
+class AreaUpdateSchema(PlainAreaSchema):
     updated_by = fields.Int()
+    status = fields.Int()
 
 
-class UnityDeleteSchema(Schema):
+class AreaDeleteSchema(Schema):
     id = fields.Int()
     deleted_by = fields.Int()
 
 
-class UnityCreateSchema(PlainUnitySchema):
-    status = fields.Int()
+class AreaCreateSchema(PlainAreaSchema):
     created_by = fields.Int()
+    status = fields.Int()

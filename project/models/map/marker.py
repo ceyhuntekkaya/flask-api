@@ -14,6 +14,8 @@ from sqlalchemy import (
     ForeignKey,
     Float,
 )
+
+
 class MarkerModel(db.Model):
     __tablename__ = "markers"
 
@@ -23,17 +25,16 @@ class MarkerModel(db.Model):
     type = Column(String, unique=False, nullable=False)
     color = Column(String, unique=False, nullable=False)
 
-    sensor_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
-    sign_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
-    symbol_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
-    unity_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
-
+    sensor_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
+    sign_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
+    symbol_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
+    unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
+    layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
+    area_id = Column(Integer, ForeignKey("areas.id"), nullable=True)
     description = Column(TEXT)
     latitude = Column(Float(precision=5), unique=False, nullable=False)
     longitude = Column(Float(precision=5), unique=False, nullable=False)
 
-    map_id = Column(Integer, ForeignKey("maps.id"), nullable=True)
-    layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
     hierarchy_id = Column(
         Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
     )

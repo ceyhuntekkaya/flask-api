@@ -71,6 +71,13 @@ class BaseRepository:
 
     def get_by_name(self, name: str):
         result = self.session.query(self.entity).filter(self.entity.name == name)
+        if not result:
+            raise EntityNotFoundException(
+                '{} with id {} was not found.'.format(
+                    "Item",
+                    id
+                )
+            )
         return result
 
 

@@ -46,12 +46,7 @@ class CommandCollarMarkRankService:
         item = self.repo.get_by_id(item_id)
         if item:
             item.name = item_data["name"],
-            item.description = item_data["description"],
-            item.hierarchy_id = item_data["hierarchy_id"],
-            item.official_user_id = item_data["official_user_id"],
-            item.color = item_data["color"],
-            item.layer_type = item_data["layer_type"],
-            item.critical_area_type = item_data["critical_area_type"],
+
             item.updated_by = item_data["updated_by"],
             item_updated = self.repo.update(item, updated_by)
 

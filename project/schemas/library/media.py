@@ -13,10 +13,10 @@ class PlainMediaSchema(Schema):
     credential = fields.Str()
     storage_address = fields.Str()
     media_source_id = fields.Int()
-    map_id = fields.Int()
     layer_id = fields.Int()
+    area_id = fields.Int()
     sensor_id = fields.Int()
-    unity_id = fields.Int()
+    unit_id = fields.Int()
     official_user_id = fields.Int()
 
 

@@ -7,7 +7,7 @@ class PlainLogSchema(Schema):
     event_type = fields.Str()
     event_at = fields.Str()
     user_ip = fields.Str()
-    unity_id = fields.Int()
+    unit_id = fields.Int()
 
 
 class LogSchema(PlainLogSchema):
@@ -20,7 +20,7 @@ class LogUpdateSchema(Schema):
     event_type = fields.Str()
     event_at = fields.Str()
     user_ip = fields.Str()
-    unity_id = fields.Int()
+    unit_id = fields.Int()
     description = fields.Str()
 
 
@@ -34,5 +34,5 @@ class LogCreateSchema(PlainLogSchema):
     event_type = fields.Str()
     event_at = fields.Str()
     user_ip = fields.Str()
-    unity_id = fields.Int()
+    unit_id = fields.Int()
     description = fields.Str()

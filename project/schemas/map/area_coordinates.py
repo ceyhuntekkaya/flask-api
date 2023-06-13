@@ -1,16 +1,16 @@
 from marshmallow import Schema, fields
 
 
-class PlainLayerCoordinateSchema(Schema):
+class PlainAreaCoordinateSchema(Schema):
     id = fields.Int()
     row_number = fields.Int()
     latitude = fields.Float()
     longitude = fields.Float()
-    layer_id = fields.Int()
+    area_id = fields.Int()
     created_at = fields.Str()
 
 
-class LayerCoordinateSchema(PlainLayerCoordinateSchema):
+class AreaCoordinateSchema(PlainAreaCoordinateSchema):
     updated_at = fields.Str()
     deleted_at = fields.Str()
     status = fields.Int()
@@ -19,24 +19,24 @@ class LayerCoordinateSchema(PlainLayerCoordinateSchema):
     deleted_by = fields.Int()
 
 
-class LayerCoordinateUpdateSchema(Schema):
+class AreaCoordinateUpdateSchema(Schema):
     id = fields.Int()
     row_number = fields.Int()
     latitude = fields.Float()
     longitude = fields.Float()
-    layer_id = fields.Int()
+    area_id = fields.Int()
     updated_by = fields.Int()
 
 
-class LayerCoordinateDeleteSchema(PlainLayerCoordinateSchema):
+class AreaCoordinateDeleteSchema(PlainAreaCoordinateSchema):
     id = fields.Int()
     deleted_at = fields.Str()
 
 
-class LayerCoordinateCreateSchema(PlainLayerCoordinateSchema):
+class AreaCoordinateCreateSchema(PlainAreaCoordinateSchema):
     id = fields.Int()
     row_number = fields.Int()
     latitude = fields.Float()
     longitude = fields.Float()
-    layer_id = fields.Int()
+    area_id = fields.Int()
     created_by = fields.Int()

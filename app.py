@@ -39,16 +39,16 @@ from project.resources.library.media import blp as MediaBlueprint
 from project.resources.library.media_source import blp as MediaSourceBlueprint
 from project.resources.library.screenshot import blp as ScreenshotBlueprint
 
-from project.resources.material.unity import blp as UnityBlueprint
+from project.resources.material.unit import blp as UnitBlueprint
 
 from project.resources.log.log import blp as LogBlueprint
 
 from project.resources.material.sign import blp as SingBlueprint
 from project.resources.map.sensor import blp as SensorBlueprint
 from project.resources.material.symbol import blp as SymbolBlueprint
-from project.resources.map.map import blp as MapBlueprint
 from project.resources.map.layer import blp as LayerBlueprint
-from project.resources.map.layer_coordinates import blp as LayerCoordinatesBlueprint
+from project.resources.map.area import blp as AreaBlueprint
+from project.resources.map.area_coordinates import blp as AreaCoordinatesBlueprint
 from project.resources.map.marker import blp as MarkerBlueprint
 
 from project.resources.person.user import blp as UserBlueprint
@@ -176,14 +176,14 @@ def create_app(db_url=None, test=False):
     api.register_blueprint(MediaSourceBlueprint)
     api.register_blueprint(ScreenshotBlueprint)
 
-    api.register_blueprint(UnityBlueprint)
+    api.register_blueprint(UnitBlueprint)
 
     api.register_blueprint(LogBlueprint)
 
-    api.register_blueprint(MapBlueprint)
-    api.register_blueprint(MarkerBlueprint)
     api.register_blueprint(LayerBlueprint)
-    api.register_blueprint(LayerCoordinatesBlueprint)
+    api.register_blueprint(MarkerBlueprint)
+    api.register_blueprint(AreaBlueprint)
+    api.register_blueprint(AreaCoordinatesBlueprint)
 
     api.register_blueprint(SingBlueprint)
     api.register_blueprint(SensorBlueprint)

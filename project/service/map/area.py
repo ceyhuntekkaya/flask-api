@@ -1,17 +1,17 @@
 from sqlalchemy.orm import Session
-from project.models.material.unity import UnityModel
-from project.repository.material.unity import UnitRepository
+from project.models.map.area import AreaModel
+from project.repository.map.area import AreaRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 
 
-class UnityService:
+class AreaService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, UnityModel)
-        self.repo = UnitRepository(session, UnityModel)
+        super().__init__(session, AreaModel)
+        self.repo = AreaRepository(session, AreaModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -22,7 +22,7 @@ class UnityService:
                 )
             )
 
-        new_item = UnityModel(**item_data)
+        new_item = AreaModel(**item_data)
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_object(item_created)
@@ -47,10 +47,7 @@ class UnityService:
         if item:
             item.name = item_data["name"],
             item.description = item_data["description"],
-            item.hierarchy_id = item_data["hierarchy_id"],
-            item.official_user_id = item_data["official_user_id"],
-            item.color = item_data["color"],
-            item.layer_type = item_data["layer_type"],
+
             item.critical_area_type = item_data["critical_area_type"],
             item.updated_by = item_data["updated_by"],
             item_updated = self.repo.update(item, updated_by)
