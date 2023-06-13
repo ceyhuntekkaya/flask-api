@@ -1,17 +1,14 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
     TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
 )
+
 
 class MessageTemplateModel(db.Model):
     __tablename__ = "message_templates"
@@ -19,7 +16,7 @@ class MessageTemplateModel(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
     header = Column(String, nullable=False)
-    content = Column(String, nullable=False)
+    content = Column(TEXT, nullable=False)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)

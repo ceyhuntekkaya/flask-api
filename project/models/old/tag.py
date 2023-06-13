@@ -6,7 +6,7 @@ class TagModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=False, nullable=False)
-    store_id = Column(Integer(), db.ForeignKey("stores.id"), nullable=False)
+    store_id = Column(Integer(), ForeignKey("stores.id"), nullable=False)
 
     store = db.relationship("StoreModel", back_populates="tags")
     items = db.relationship("ItemModel", back_populates="tags", secondary="items_tags")

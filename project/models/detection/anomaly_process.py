@@ -1,23 +1,20 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
-    TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
 )
+
+
 class AnomalyProcessModel(db.Model):
     __tablename__ = "anomaly_process"
 
     id = Column(Integer, primary_key=True)
-    anomaly_id = Column(Integer, db.ForeignKey("anomalies.id"))
-    user_id = Column(Integer, db.ForeignKey("users.id"))
+    anomaly_id = Column(Integer, ForeignKey("anomalies.id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
     process_at = Column(TIMESTAMP)
     process = Column(String, nullable=False)
 

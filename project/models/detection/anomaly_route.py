@@ -1,23 +1,20 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
     TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
-    String,
     ForeignKey,
     Float,
 )
+
+
 class AnomalyRouteModel(db.Model):
     __tablename__ = "anomaly_routes"
 
     id = Column(Integer, primary_key=True)
-    anomaly_id = Column(Integer, db.ForeignKey("anomalies.id"))
+    anomaly_id = Column(Integer, ForeignKey("anomalies.id"))
 
     latitude = Column(Float(precision=5), unique=False, nullable=False)
     longitude = Column(Float(precision=5), unique=False, nullable=False)

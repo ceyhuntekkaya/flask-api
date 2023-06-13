@@ -1,13 +1,9 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
     TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
@@ -25,7 +21,7 @@ class FacilityModel(db.Model):
     hierarchy_id = Column(
         Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
     )
-    official_user_id = Column(Integer, db.ForeignKey("users.id"), nullable=True)
+    official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)

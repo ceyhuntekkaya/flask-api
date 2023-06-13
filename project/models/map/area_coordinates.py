@@ -19,7 +19,7 @@ class AreaCoordinateModel(db.Model):
     __tablename__ = "area_coordinates"
 
     id = Column(Integer, primary_key=True)
-    row_number = Column(Integer, primary_key=True)
+    row_number = Column(Integer)
     latitude = Column(Float(precision=5), unique=False, nullable=False)
     longitude = Column(Float(precision=5), unique=False, nullable=False)
 

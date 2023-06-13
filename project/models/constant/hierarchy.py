@@ -1,16 +1,12 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
-    TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
+    TEXT
 )
 
 
@@ -20,7 +16,7 @@ class HierarchyModel(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
     hierarchical_order = Column(Integer, unique=True, nullable=False)
-
+    description = Column(TEXT)
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)

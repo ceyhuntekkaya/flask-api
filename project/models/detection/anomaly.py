@@ -1,18 +1,17 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
     REAL,
     TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
     Float,
 )
+
+
 class AnomalyModel(db.Model):
     __tablename__ = "anomalies"
 
@@ -39,11 +38,11 @@ class AnomalyModel(db.Model):
     editable_description = Column(TEXT)
     elevation = Column(REAL, nullable=True)
 
-    layer_id = Column(Integer, db.ForeignKey("layers.id"), nullable=True)
-    area_id = Column(Integer, db.ForeignKey("areas.id"), nullable=True)
-    sensor_id = Column(Integer, db.ForeignKey("sensors.id"), nullable=True)
-    unit_id = Column(Integer, db.ForeignKey("units.id"), nullable=True)
-    official_user_id = Column(Integer, db.ForeignKey("users.id"), nullable=True)
+    layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
+    area_id = Column(Integer, ForeignKey("areas.id"), nullable=True)
+    sensor_id = Column(Integer, ForeignKey("sensors.id"), nullable=True)
+    unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
+    official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     status = Column(String, nullable=False)
 
     created_at = Column(TIMESTAMP, default=datetime.now())

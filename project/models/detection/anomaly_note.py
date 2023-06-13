@@ -1,25 +1,21 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
     TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
-    String,
-    ForeignKey,
+    ForeignKey
 )
+
+
 class AnomalyNoteModel(db.Model):
     __tablename__ = "anomaly_notes"
 
     id = Column(Integer, primary_key=True)
-    anomaly_id = Column(Integer, db.ForeignKey("anomalies.id"))
-    user_id = Column(Integer, db.ForeignKey("users.id"))
-    note_at = Column(TIMESTAMP)
-    content = Column(String, nullable=False)
+    anomaly_id = Column(Integer, ForeignKey("anomalies.id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
+    content = Column(TEXT, nullable=False)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP)

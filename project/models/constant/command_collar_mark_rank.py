@@ -1,17 +1,13 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
-    TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
 )
+
 
 class CommandCollarMarkRankModel(db.Model):
     __tablename__ = "command_collar_mark_ranks"

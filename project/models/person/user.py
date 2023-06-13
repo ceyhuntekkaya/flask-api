@@ -4,13 +4,8 @@ from setting.db import db
 from project.models.base_model import BaseModelClass
 
 from sqlalchemy import (
-    JSON,
-    REAL,
-    TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,

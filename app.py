@@ -4,7 +4,6 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 import os
 
-
 from setting.db import db
 from blocklist import BLOCKLIST
 
@@ -27,7 +26,6 @@ from project.resources.constant.role import blp as RoleBlueprint
 from project.resources.constant.config import blp as ConfigBlueprint
 from project.resources.constant.system import blp as SystemBlueprint
 from project.resources.constant.identification_type import blp as IdentificationTypeBlueprint
-
 
 from project.resources.detection.anomaly import blp as AnomalyBlueprint
 from project.resources.detection.anomaly_note import blp as AnomalyNoteBlueprint
@@ -59,7 +57,6 @@ from project.resources.person.user_recent import blp as UserRecentBlueprint
 from project.resources.base_route import blp as BaseRouteBlueprint
 
 from initialize import FirstRecords
-
 
 
 def create_app(db_url=None, test=False):

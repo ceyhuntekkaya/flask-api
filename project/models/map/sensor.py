@@ -7,7 +7,6 @@ from sqlalchemy import (
     TIMESTAMP,
     Boolean,
     Column,
-    Enum,
     Integer,
     String,
     ForeignKey,
@@ -24,8 +23,8 @@ class SensorModel(db.Model):
     hierarchy_id = Column(Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False)
     sensor_name = Column(String, unique=False, nullable=False)
     sensor_weight = Column(REAL)
-    unit_id = Column(Integer, db.ForeignKey("units.id"), nullable=True)
-    layer_id = Column(Integer, db.ForeignKey("layers.id"), nullable=True)
+    unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
+    layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
     sensor_type = Column(String)
     evaluation_number = Column(Integer)
     rpm = Column(Integer)
@@ -57,7 +56,7 @@ class SensorModel(db.Model):
 
     nvr = Column(String)
 
-    official_user_id = Column(Integer, db.ForeignKey("users.id"), nullable=True)
+    official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)

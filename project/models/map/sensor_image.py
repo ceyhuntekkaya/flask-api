@@ -1,15 +1,10 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
     TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
-    Enum,
     Integer,
-    String,
     ForeignKey,
 )
 
@@ -28,4 +23,4 @@ class SensorImageModel(db.Model):
     deleted_at = Column(TIMESTAMP, nullable=True)
 
     # Relation
-    sensor_id = Column(Integer, db.ForeignKey("sensors.id"))
+    sensor_id = Column(Integer, ForeignKey("sensors.id"))
