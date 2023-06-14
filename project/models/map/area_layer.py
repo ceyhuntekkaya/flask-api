@@ -1,32 +1,23 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    TEXT,
     TIMESTAMP,
     Column,
     Integer,
-    String,
     ForeignKey,
 )
 
 
-class AreaModel(db.Model):
+class AreaLayerModel(db.Model):
     __tablename__ = "areas"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=False, nullable=False)
-    description = Column(TEXT)
-    hierarchy_id = Column(
-        Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
+    area_id = Column(
+        Integer, ForeignKey("areas.id"), unique=False, nullable=True
     )
-
-    area_type = Column(String)  # dost düşman
-    area_parent = Column(String)  # motorize kara deniz
-    area_sub = Column(String)  # piyade
-    symbol_code = Column(String)  # app code
-    critical_area_type = Column(String, unique=False, nullable=True)
-    color = Column(String, unique=False, nullable=False)
-    status = Column(Integer, default=1)
+    layer_id = Column(
+        Integer, ForeignKey("layers.id"), unique=False, nullable=True
+    )
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)

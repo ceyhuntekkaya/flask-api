@@ -24,7 +24,6 @@ class SensorModel(db.Model):
     sensor_name = Column(String, unique=False, nullable=False)
     sensor_weight = Column(REAL)
     unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
-    layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
     sensor_type = Column(String)
     evaluation_number = Column(Integer)
     rpm = Column(Integer)
