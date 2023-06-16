@@ -25,6 +25,9 @@ class BaseRepository:
             )
         return result
 
+    def get_by_name(self, name):
+        return self.session.query(self.entity).filter(self.entity.name == name).all()
+
     def find_by_id(self, id: int):
         result = self.session.query(self.entity).filter(self.entity.id == id).first()
         if not result:
@@ -37,7 +40,8 @@ class BaseRepository:
         return result
 
     def get_actives(self):
-        return self.session.query(self.entity).filter(self.entity.status == 1)
+        students = self.session.query(self.entity).filter(self.entity.status == 1).all
+        return self.session.commit()
 
     def add(self, data, created_by: int = None):
         data.created_by = created_by
@@ -51,12 +55,11 @@ class BaseRepository:
         self.session.add(data)
         self.session.commit()
         self.session.refresh(data)
-        print(data.id)
         return data
 
     def update(self, entity, updated_by: int = None):
+        print(updated_by)
         entity.updated_by = updated_by
-        print("____________________________________")
         self.session.add(entity)
         self.session.commit()
 
@@ -68,17 +71,6 @@ class BaseRepository:
     def permanent_delete(self, entity):
         self.session.delete(entity)
         self.session.commit()
-
-    def get_by_name(self, name: str):
-        result = self.session.query(self.entity).filter(self.entity.name == name)
-        if not result:
-            raise EntityNotFoundException(
-                '{} with id {} was not found.'.format(
-                    "Item",
-                    id
-                )
-            )
-        return result
 
 
 """

@@ -6,37 +6,28 @@ class PlainAreaCoordinateSchema(Schema):
     row_number = fields.Int()
     latitude = fields.Float()
     longitude = fields.Float()
-    area_id = fields.Int()
-    created_at = fields.Str()
 
 
 class AreaCoordinateSchema(PlainAreaCoordinateSchema):
+    area_id = fields.Int()
+    created_at = fields.Str()
     updated_at = fields.Str()
     deleted_at = fields.Str()
-    status = fields.Int()
     created_by = fields.Int()
     updated_by = fields.Int()
     deleted_by = fields.Int()
 
 
-class AreaCoordinateUpdateSchema(Schema):
-    id = fields.Int()
-    row_number = fields.Int()
-    latitude = fields.Float()
-    longitude = fields.Float()
-    area_id = fields.Int()
+class AreaCoordinateUpdateSchema(PlainAreaCoordinateSchema):
     updated_by = fields.Int()
 
 
-class AreaCoordinateDeleteSchema(PlainAreaCoordinateSchema):
+class AreaCoordinateDeleteSchema(Schema):
     id = fields.Int()
     deleted_at = fields.Str()
 
 
-class AreaCoordinateCreateSchema(PlainAreaCoordinateSchema):
-    id = fields.Int()
+class AreaCoordinateCreateSchema(Schema):
     row_number = fields.Int()
     latitude = fields.Float()
     longitude = fields.Float()
-    area_id = fields.Int()
-    created_by = fields.Int()

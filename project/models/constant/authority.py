@@ -16,6 +16,10 @@ class AuthorityModel(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
     description = Column(TEXT)
+    hierarchy_id = Column(
+        Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
+    )
+
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)

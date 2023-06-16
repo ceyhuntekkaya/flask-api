@@ -5,16 +5,20 @@ from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from setting.db import db
-from project.schemas.map.layer import LayerSchema
+from project.schemas.map.layer import LayerSchema, LayerCreateSchema, PlainLayerSchema, LayerUpdateSchema
+import os
 
 blp = Blueprint("Layers", "layers", description="Operations on layer")
 
-main_route = "layer"
+APP_PATH = os.getenv("APP_PATH")
+version = os.getenv("VERSION")
+route = "layer"
+main_route = f"/{APP_PATH}/{version}/{route}"
 
 
 @blp.route(f"/{main_route}/<string:item_id>")
 class WithId(MethodView):
-    @jwt_required()
+    # @jwt_required()
     @blp.response(200, LayerSchema)
     def get(self, item_id):
         service = LayerService(db.session)
@@ -23,7 +27,8 @@ class WithId(MethodView):
             abort(409, message="Error: {}".format(item))
         return item
 
-    @jwt_required()
+    # @jwt_required()
+    @blp.response(200, LayerSchema)
     def delete(self, item_id):
         service = LayerService(db.session)
         item = service.delete(item_id, 1)
@@ -31,30 +36,50 @@ class WithId(MethodView):
             abort(409, message="Error: {}".format(item))
         return item
 
-    @blp.arguments(LayerSchema)
-    @blp.response(201, LayerSchema)
-    def put(self, item_data, item_id):
-        service = LayerService(db.session)
-        item = service.update(item_data, item_id, 1)
-        if type(item) == EntityNotFoundException:
-            abort(409, message="Error: {}".format(item))
-        return item
-
 
 @blp.route(f"/{main_route}")
 class Plain(MethodView):
-    @jwt_required()
+    # @jwt_required()
     @blp.response(200, LayerSchema(many=True))
     def get(self):
         service = LayerService(db.session)
         return service.getAll()
 
-    @jwt_required(fresh=True)
-    @blp.arguments(LayerSchema)
-    @blp.response(201, LayerSchema)
+    # @jwt_required(fresh=True)
+    @blp.arguments(LayerCreateSchema)
+    @blp.response(201, PlainLayerSchema)
     def post(self, item_data):
         service = LayerService(db.session)
-        item = service.add(item_data, 1)
+        item = service.add(item_data)
         if type(item) == UnexpectedEntityException:
             abort(409, message="Error: {}".format(item))
         return item
+
+    @blp.arguments(LayerUpdateSchema)
+    @blp.response(201, LayerSchema)
+    def put(self, item_data):
+        service = LayerService(db.session)
+        item = service.update(item_data, item_data["updated_by"])
+        if type(item) == EntityNotFoundException:
+            abort(409, message="Error: {}".format(item))
+        return item
+
+
+@blp.route(f"/{main_route}/name/<string:name>")
+class WithByName(MethodView):
+    # @jwt_required()
+    @blp.response(200, LayerSchema(many=True))
+    def get(self, name):
+        service = LayerService(db.session)
+        return service.getByName(name)
+
+
+@blp.route(f"/{main_route}/permanent/<string:item_id>")
+class WithPermanent(MethodView):
+    # @jwt_required()
+    def delete(self, item_id):
+        service = LayerService(db.session)
+        item = service.permanent_delete(item_id)
+        if type(item) == EntityNotFoundException:
+            abort(409, message="Error: {}".format(item))
+        return {"message": "Item deleted"}, 200

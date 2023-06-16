@@ -10,7 +10,8 @@ from sqlalchemy import (
     Integer,
     String,
     ForeignKey,
-    ARRAY
+    ARRAY,
+    Float
 )
 
 
@@ -21,8 +22,9 @@ class SensorModel(db.Model):
     source = Column(String, unique=False, nullable=False)
     description = Column(TEXT)
     hierarchy_id = Column(Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False)
-    sensor_name = Column(String, unique=False, nullable=False)
+    name = Column(String, unique=True, nullable=False)
     sensor_weight = Column(REAL)
+    aselsan_unit_id = Column(Integer)
     unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
     sensor_type = Column(String)
     evaluation_number = Column(Integer)
@@ -36,7 +38,8 @@ class SensorModel(db.Model):
     circle_radius = Column(Integer, default=250)
     circle_time_interval = Column(Integer, default=30)
     is_meteorology_includes = Column(Boolean)
-
+    latitude = Column(Float(precision=5), nullable=False)
+    longitude = Column(Float(precision=5), nullable=False)
     desired_columns = Column(ARRAY(String))
     # Allows "range", "azimuth", "directionangle", "velocity", "tacticaldataid", "snr", "temperature",
     # "humidity", "precipitationtype", "visibility", "roadconditon"
@@ -54,8 +57,6 @@ class SensorModel(db.Model):
     is_approved = Column(Boolean)
 
     nvr = Column(String)
-
-    official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)

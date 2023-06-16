@@ -4,11 +4,17 @@ from marshmallow import Schema, fields
 class PlainUnitSchema(Schema):
     id = fields.Int()
     name = fields.Str()
-    source = fields.Str()
     description = fields.Str()
+    base_unit_id = fields.Int(required=False)
+    unit_type = fields.Str()
+    unit_command = fields.Str()
     hierarchy_id = fields.Int()
-    official_user_id = fields.Int()
-    created_at = fields.Str()
+    unit_parent = fields.Str()
+    unit_sub = fields.Str()
+    symbol_code = fields.Str()
+    critical_unit_type = fields.Str()
+    latitude = fields.Float()
+    longitude = fields.Float()
 
 
 class UnitSchema(PlainUnitSchema):
@@ -33,3 +39,7 @@ class UnitDeleteSchema(Schema):
 class UnitCreateSchema(PlainUnitSchema):
     status = fields.Int()
     created_by = fields.Int()
+
+
+class UnitTreeSchema(PlainUnitSchema):
+    layers = fields.Int()

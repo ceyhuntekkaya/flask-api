@@ -9,7 +9,7 @@ from sqlalchemy import (
 
 
 class AreaLayerModel(db.Model):
-    __tablename__ = "areas"
+    __tablename__ = "area_layers"
 
     id = Column(Integer, primary_key=True)
     area_id = Column(

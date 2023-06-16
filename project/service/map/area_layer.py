@@ -10,8 +10,22 @@ class AreaLayerService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, AreaLayerModel)
         self.repo = AreaLayerRepository(session, AreaLayerModel)
+
+    def add_all(self, item_datas, created_by, area_id):
+        print(item_datas)
+        try:
+            for item_data in item_datas:
+                item_data["area_id"] = area_id
+                item_data["created_by"] = created_by
+                new_item = AreaLayerModel(**item_data)
+                self.repo.add(new_item, created_by)
+        except Exception as e:
+            return EntityNotFoundException(
+                'Error'
+            )
+
+        return True
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -22,7 +36,7 @@ class AreaLayerService:
                 )
             )
 
-        new_item = AreaLayerModel(**item_data )
+        new_item = AreaLayerModel(**item_data)
         item = self.repo.add(new_item, created_by)
         item_created = self.repo.get_by_id(item.id)
         return Converter.convert_object(item_created)

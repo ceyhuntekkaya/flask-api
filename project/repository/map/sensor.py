@@ -8,3 +8,6 @@ class SensorRepository(BaseRepository):
 
     def __init__(self, session: Session, entity: object):
         super().__init__(session, entity)
+
+    def get_by_sensor_name(self, sensor_name):
+        return self.session.query(self.entity).filter(self.entity.sensor_name == sensor_name).all()

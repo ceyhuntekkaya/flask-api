@@ -17,8 +17,10 @@ class AreaModel(db.Model):
     name = Column(String, unique=False, nullable=False)
     description = Column(TEXT)
     hierarchy_id = Column(
-        Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
+        Integer, ForeignKey("hierarchies.id")
     )
+
+
 
     area_type = Column(String)  # dost düşman
     area_parent = Column(String)  # motorize kara deniz
@@ -41,3 +43,4 @@ class AreaModel(db.Model):
     deleted_by = Column(
         Integer, ForeignKey("users.id"), unique=False, nullable=True
     )
+

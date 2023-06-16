@@ -7,6 +7,7 @@ from sqlalchemy import (
     Integer,
     String,
     ForeignKey,
+    Float
 )
 
 
@@ -14,23 +15,28 @@ class UnitModel(db.Model):
     __tablename__ = "units"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=False, nullable=False)
+    name = Column(String)
     description = Column(TEXT)
+    base_unit_id = Column(
+        Integer, ForeignKey("units.id"), nullable=True
+    )
 
     unit_type = Column(String)  # dost düşman
+    unit_command = Column(String)
+    hierarchy_id = Column(
+        Integer, ForeignKey("hierarchies.id"), nullable=False
+    )
     unit_parent = Column(String)  # motorize kara deniz
     unit_sub = Column(String)  # piyade
     symbol_code = Column(String)  # app code
-    critical_unit_type = Column(String, unique=False, nullable=True)
-
-    hierarchy_id = Column(
-        Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
-    )
+    critical_unit_type = Column(String)
+    latitude = Column(Float(precision=5), nullable=False)
+    longitude = Column(Float(precision=5), nullable=False)
+    status = Column(Integer, default=1)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)
-    status = Column(Integer, default=1)
 
     created_by = Column(Integer, nullable=True)
     updated_by = Column(

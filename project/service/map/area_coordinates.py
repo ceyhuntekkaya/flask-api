@@ -10,9 +10,21 @@ class AreaCoordinateService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, AreaCoordinateModel)
         self.repo = AreaCoordinateRepository(session, AreaCoordinateModel)
 
+    def add_all(self, item_datas, created_by, area_id):
+        try:
+            for item_data in item_datas:
+                item_data["area_id"] = area_id
+                item_data["created_by"] = created_by
+                new_item = AreaCoordinateModel(**item_data)
+                self.repo.add(new_item, created_by)
+        except Exception as e:
+            return EntityNotFoundException(
+                'Error: {} '.format(e)
+            )
+
+        return True
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
             return UnexpectedEntityException(
