@@ -1,11 +1,13 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
+
+from project.schemas.map.unit_layer import LayerTreeSchema
 from project.service.map.unit import UnitService
 from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from setting.db import db
-from project.schemas.map.unit import UnitSchema, UnitUpdateSchema, UnitTreeSchema
+from project.schemas.map.unit import UnitSchema, UnitUpdateSchema
 import os
 
 blp = Blueprint("Units", "unites", description="Operations on unit")
@@ -101,7 +103,16 @@ class UpdateWithId(MethodView):
 @blp.route(f"/{main_route}/tree/<string:item_id>")
 class WithTree(MethodView):
     # @jwt_required()
-    @blp.response(200, UnitTreeSchema())
+    @blp.response(200, LayerTreeSchema())
     def get(self, name):
         service = UnitService(db.session)
         return service.getByName(name)
+
+
+@blp.route(f"/{main_route}/recursive")
+class WithByRecursive(MethodView):
+    # @jwt_required()
+
+    def get(self):
+        service = UnitService(db.session)
+        return service.getRecursive()

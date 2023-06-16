@@ -1,5 +1,9 @@
 from marshmallow import Schema, fields
 
+from project.schemas.map.area import AreaForTreeSchema
+from project.schemas.map.layer import PlainLayerSchema
+from project.schemas.map.unit import PlainUnitSchema
+
 
 class PlainUnitLayerSchema(Schema):
     id = fields.Int()
@@ -40,3 +44,9 @@ class UnitLayerCreateSchema(PlainUnitLayerSchema):
     hierarchy_id = fields.Int()
     official_user_id = fields.Int()
     created_by = fields.Int()
+
+
+class LayerTreeSchema(Schema):
+    layer = fields.Nested(PlainLayerSchema())
+    units = fields.List(fields.Nested(PlainUnitSchema()))
+    areas = fields.List(fields.Nested(AreaForTreeSchema()))

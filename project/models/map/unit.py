@@ -1,3 +1,5 @@
+from sqlalchemy.orm import relationship, MappedColumn
+
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
@@ -17,7 +19,7 @@ class UnitModel(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     description = Column(TEXT)
-    base_unit_id = Column(
+    base_unit_id = MappedColumn(
         Integer, ForeignKey("units.id"), nullable=True
     )
 

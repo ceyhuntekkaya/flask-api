@@ -41,5 +41,4 @@ class UnitCreateSchema(PlainUnitSchema):
     created_by = fields.Int()
 
 
-class UnitTreeSchema(PlainUnitSchema):
-    layers = fields.Int()
+

@@ -1,6 +1,5 @@
 from marshmallow import Schema, fields
-from project.schemas.map.area_coordinates import AreaCoordinateSchema, AreaCoordinateCreateSchema, \
-    PlainAreaCoordinateSchema
+from project.schemas.map.area_coordinates import AreaCoordinateSchema, AreaCoordinateCreateSchema, PlainAreaCoordinateSchema
 from project.schemas.map.area_layer import AreaLayerSchema, AreaLayerCreateSchema
 from project.schemas.map.layer import LayerForAreaSchema
 
@@ -64,3 +63,8 @@ class AreaDetailSchema(PlainAreaSchema):
     coordinates = fields.List(fields.Nested(AreaCoordinateSchema()), dump_only=True)
     layers = fields.List(fields.Nested(AreaLayerSchema()), dump_only=True)
     # abc = fields.Nested(AreaLayerSchema(), dump_only=True)
+
+
+class AreaForTreeSchema(Schema):
+    area = fields.Nested(AreaBaseCreateSchema())
+    coordinates = fields.List(fields.Nested(AreaCoordinateCreateSchema()))

@@ -1,11 +1,14 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
+
+from project.schemas.map.unit_layer import LayerTreeSchema
 from project.service.map.layer import LayerService
 from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from setting.db import db
 from project.schemas.map.layer import LayerSchema, LayerCreateSchema, PlainLayerSchema, LayerUpdateSchema
+
 import os
 
 blp = Blueprint("Layers", "layers", description="Operations on layer")
@@ -74,6 +77,15 @@ class WithByName(MethodView):
         return service.getByName(name)
 
 
+@blp.route(f"/{main_route}/tree/<string:item_id>")
+class WithByName(MethodView):
+    # @jwt_required()
+    @blp.response(200, LayerTreeSchema())
+    def get(self, item_id):
+        service = LayerService(db.session)
+        return service.getLayerTree(item_id)
+
+
 @blp.route(f"/{main_route}/permanent/<string:item_id>")
 class WithPermanent(MethodView):
     # @jwt_required()
@@ -83,3 +95,4 @@ class WithPermanent(MethodView):
         if type(item) == EntityNotFoundException:
             abort(409, message="Error: {}".format(item))
         return {"message": "Item deleted"}, 200
+

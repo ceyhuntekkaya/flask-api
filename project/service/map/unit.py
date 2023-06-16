@@ -6,6 +6,7 @@ from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from datetime import datetime
 
+
 class UnitService:
     session: Session = NotImplementedError
 
@@ -106,3 +107,10 @@ class UnitService:
     def getActive(self):
         item_actives = self.repo.get_actives()
         return item_actives
+
+    def getRecursive(self):
+        result = []
+        items = self.repo.get_children_list(3)
+        for item in items:
+            result.append(Converter.convert_object(self.getById(item.id)))
+        return result

@@ -6,6 +6,7 @@ from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from datetime import datetime
 
+
 class LayerService:
     session: Session = NotImplementedError
 
@@ -96,3 +97,7 @@ class LayerService:
     def getActive(self):
         item_actives = self.repo.get_actives()
         return item_actives
+
+    def getLayerTree(self, item_id):
+        item = self.getById(item_id)
+        return {"layer": item}
