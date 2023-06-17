@@ -9,7 +9,7 @@ from sqlalchemy import (
 
 
 class UnitLayerModel(db.Model):
-    __tablename__ = "units"
+    __tablename__ = "unit_layers"
 
     id = Column(Integer, primary_key=True)
     unit_id = Column(

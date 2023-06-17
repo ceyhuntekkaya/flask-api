@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
-from project.schemas.map.unit_layer import LayerTreeSchema
+from project.schemas.map.unit_layer import LayerTreeSchema, UnitWithLayerSchema
 from project.service.map.unit import UnitService
 from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
@@ -116,3 +116,12 @@ class WithByRecursive(MethodView):
     def get(self):
         service = UnitService(db.session)
         return service.getRecursive()
+
+
+@blp.route(f"/{main_route}/layer/<string:item_id>")
+class WithByName(MethodView):
+    # @jwt_required()
+    @blp.response(200, UnitWithLayerSchema(many=True))
+    def get(self, item_id):
+        service = UnitService(db.session)
+        return service.getLayers(item_id)

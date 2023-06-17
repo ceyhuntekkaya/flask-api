@@ -1,13 +1,18 @@
 from sqlalchemy.orm import Session
 
+from project.models.map.layer import LayerModel
 from project.models.map.sensor import SensorModel
 from project.models.map.unit import UnitModel
+from project.models.map.unit_layer import UnitLayerModel
+from project.repository.map.layer import LayerRepository
 from project.repository.map.sensor import SensorRepository
 from project.repository.map.unit import UnitRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from datetime import datetime
+
+from project.repository.map.unit_layer import UnitLayerRepository
 
 
 class UnitService:
@@ -16,6 +21,8 @@ class UnitService:
     def __init__(self, session: Session):
         self.repo = UnitRepository(session, UnitModel)
         self.repoSensor = SensorRepository(session, SensorModel)
+        self.repoUnitLayer = UnitLayerRepository(session, UnitLayerModel)
+        self.repoLayer = LayerRepository(session, LayerModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -129,4 +136,14 @@ class UnitService:
         for item in items:
             result.append(Converter.convert_object(self.getById(item.id)))
         return result
-    # https://stackoverflow.com/questions/38071683/sqlachemy-recursively-fetch-children-and-ancestors-with-relations
+
+    def getLayers(self, item_id):
+        result = []
+        items = self.repo.get_children_list(item_id)
+        for item in items:
+            layer_unit_list = self.repoUnitLayer.get_by_unit(item.id)
+            for layer_unit in layer_unit_list:
+                layer_unit.layer = self.repoLayer.get_by_id(layer_unit.layer_id)
+                layer_unit.unit = self.getById(layer_unit.unit_id)
+                result.append(layer_unit)
+        return result

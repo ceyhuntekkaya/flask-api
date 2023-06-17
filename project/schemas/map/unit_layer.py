@@ -50,3 +50,8 @@ class LayerTreeSchema(Schema):
     layer = fields.Nested(PlainLayerSchema())
     units = fields.List(fields.Nested(PlainUnitSchema()))
     areas = fields.List(fields.Nested(AreaForTreeSchema()))
+
+
+class UnitWithLayerSchema(Schema):
+    layer = fields.Nested(PlainLayerSchema())
+    unit = fields.Nested(PlainUnitSchema())
