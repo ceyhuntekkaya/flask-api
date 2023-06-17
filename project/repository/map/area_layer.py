@@ -15,3 +15,6 @@ class AreaLayerRepository(BaseRepository):
     def delete_by_area(self, area_id):
         self.session.query(self.entity).filter(self.entity.area_id == area_id).delete()
         self.session.commit()
+
+    def get_by_layer(self, layer_id):
+        return self.session.query(self.entity).filter(self.entity.layer_id == layer_id).all()

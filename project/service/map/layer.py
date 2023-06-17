@@ -1,10 +1,22 @@
 from sqlalchemy.orm import Session
+
+from project.models.map.area import AreaModel
+from project.models.map.area_coordinates import AreaCoordinateModel
+from project.models.map.area_layer import AreaLayerModel
 from project.models.map.layer import LayerModel
+from project.models.map.sensor import SensorModel
+from project.models.map.unit import UnitModel
+from project.repository.map.area import AreaRepository
+from project.repository.map.area_coordinates import AreaCoordinateRepository
+from project.repository.map.area_layer import AreaLayerRepository
 from project.repository.map.layer import LayerRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from datetime import datetime
+
+from project.repository.map.sensor import SensorRepository
+from project.repository.map.unit import UnitRepository
 
 
 class LayerService:
@@ -12,6 +24,11 @@ class LayerService:
 
     def __init__(self, session: Session):
         self.repo = LayerRepository(session, LayerModel)
+        self.repoSensor = SensorRepository(session, SensorModel)
+        self.repoUnit = UnitRepository(session, UnitModel)
+        self.repoArea = AreaRepository(session, AreaModel)
+        self.repoAreaLayer = AreaLayerRepository(session, AreaLayerModel)
+        self.repoAreaCoordinate = AreaCoordinateRepository(session, AreaCoordinateModel)
 
     def add(self, item_data):
         name_control = self.repo.get_by_name(item_data["name"])
@@ -29,7 +46,10 @@ class LayerService:
 
     def getById(self, item_id):
         try:
-            return self.repo.get_by_id(item_id)
+            item = self.repo.get_by_id(item_id)
+            item.sensors = self.repoSensor.get_by_unit(item.unit_id)
+            item.units = self.repoUnit.get_children_list(item.unit_id)
+            return item
         except Exception as e:
             return EntityNotFoundException(
                 '{} with id {} was found.'.format(
@@ -39,8 +59,13 @@ class LayerService:
             )
 
     def getByName(self, name):
-        item = self.repo.get_by_name(name)
-        return item
+        item_list = []
+        items = self.repo.get_by_name(name)
+        for item in items:
+            item.sensors = self.repoSensor.get_by_unit(item.unit_id)
+            item.units = self.repoUnit.get_children_list(item.unit_id)
+            item_list.append(item)
+        return item_list
 
     def update(self, item_data, updated_by):
         item = self.repo.get_by_id(item_data["id"])
@@ -91,13 +116,35 @@ class LayerService:
             )
 
     def getAll(self):
-        item_list = self.repo.get_all()
+        item_list = []
+        items = self.repo.get_all()
+        for item in items:
+            item.sensors = self.repoSensor.get_by_unit(item.unit_id)
+            item.units = self.repoUnit.get_children_list(item.unit_id)
+            item_list.append(item)
         return item_list
 
     def getActive(self):
-        item_actives = self.repo.get_actives()
-        return item_actives
+        item_list = []
+        items = self.repo.get_actives()
+        for item in items:
+            item.sensors = self.repoSensor.get_by_unit(item.unit_id)
+            item.units = self.repoUnit.get_children_list(item.unit_id)
+            item_list.append(item)
+        return item_list
 
     def getLayerTree(self, item_id):
         item = self.getById(item_id)
-        return {"layer": item}
+        areas = []
+        units = self.repoUnit.get_children_list(item_id)
+        area_layer_list = self.repoAreaLayer.get_by_layer(item_id)
+        for area_layer in area_layer_list:
+            area_item = {}
+            area_id = area_layer.area_id
+            area = self.repoArea.get_by_id(area_id)
+            area_item["area"] = area
+            area_coordinates = self.repoAreaCoordinate.get_by_area(area_id)
+            area_item["coordinates"] = area_coordinates
+            areas.append(area_item)
+
+        return {"layer": item, "units": units, "areas": areas}

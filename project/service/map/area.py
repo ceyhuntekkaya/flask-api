@@ -58,6 +58,19 @@ class AreaService:
                 )
             )
 
+    def getByCoordinates(self, item_id):
+        try:
+            item = self.repo.get_by_id(item_id)
+            item.coordinates = self.getCoordinates(item_id)
+            return item
+        except Exception as e:
+            return EntityNotFoundException(
+                '{} with id {} was found.'.format(
+                    "Item",
+                    item_id
+                )
+            )
+
     def getCoordinates(self, area_id):
         return self.repoAreaCoordinate.get_by_area(area_id)
 

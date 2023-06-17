@@ -1,5 +1,8 @@
 from marshmallow import Schema, fields
 
+from project.schemas.map.sensor import PlainSensorSchema
+from project.schemas.map.unit import PlainUnitSchema
+
 
 class PlainLayerSchema(Schema):
     id = fields.Int()
@@ -9,6 +12,8 @@ class PlainLayerSchema(Schema):
     created_at = fields.DateTime()
     status = fields.Int()
     unit_id = fields.Int()
+    sensors = fields.List(fields.Nested(PlainSensorSchema()))
+    units = fields.List(fields.Nested(PlainUnitSchema()))
 
 
 class LayerSchema(PlainLayerSchema):
@@ -36,5 +41,3 @@ class LayerForAreaSchema(Schema):
     id = fields.Int()
     name = fields.Str()
     status = fields.Int()
-
-

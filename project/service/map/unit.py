@@ -1,5 +1,8 @@
 from sqlalchemy.orm import Session
+
+from project.models.map.sensor import SensorModel
 from project.models.map.unit import UnitModel
+from project.repository.map.sensor import SensorRepository
 from project.repository.map.unit import UnitRepository
 import project.service.converters as Converter
 from project.exception.entity_not_found import EntityNotFoundException
@@ -12,6 +15,7 @@ class UnitService:
 
     def __init__(self, session: Session):
         self.repo = UnitRepository(session, UnitModel)
+        self.repoSensor = SensorRepository(session, SensorModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -29,7 +33,10 @@ class UnitService:
 
     def getById(self, item_id):
         try:
-            return self.repo.get_by_id(item_id)
+            item = self.repo.get_by_id(item_id)
+            print(item_id)
+            item.sensors = self.repoSensor.get_by_unit(item_id)
+            return item
         except Exception as e:
             return EntityNotFoundException(
                 '{} with id {} was found.'.format(
@@ -110,7 +117,16 @@ class UnitService:
 
     def getRecursive(self):
         result = []
-        items = self.repo.get_children_list(3)
+        items = self.repo.get_children_list(1)
         for item in items:
             result.append(Converter.convert_object(self.getById(item.id)))
         return result
+    # https://stackoverflow.com/questions/38071683/sqlachemy-recursively-fetch-children-and-ancestors-with-relations
+
+    def getChildren(self, item_id):
+        result = []
+        items = self.repo.get_children_list(item_id)
+        for item in items:
+            result.append(Converter.convert_object(self.getById(item.id)))
+        return result
+    # https://stackoverflow.com/questions/38071683/sqlachemy-recursively-fetch-children-and-ancestors-with-relations

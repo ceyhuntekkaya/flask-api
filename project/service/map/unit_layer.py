@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from project.models.map.unit_layer import UnitLayerModel
 from project.repository.map.unit_layer import UnitLayerRepository
 import project.service.converters as Converter
@@ -10,7 +11,6 @@ class UnitLayerService:
     session: Session = NotImplementedError
 
     def __init__(self, session: Session):
-        super().__init__(session, UnitLayerModel)
         self.repo = UnitLayerRepository(session, UnitLayerModel)
 
     def add(self, item_data, created_by):

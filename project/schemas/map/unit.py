@@ -1,5 +1,7 @@
 from marshmallow import Schema, fields
 
+from project.schemas.map.sensor import PlainSensorSchema
+
 
 class PlainUnitSchema(Schema):
     id = fields.Int()
@@ -15,6 +17,7 @@ class PlainUnitSchema(Schema):
     critical_unit_type = fields.Str()
     latitude = fields.Float()
     longitude = fields.Float()
+    sensors = fields.List(fields.Nested(PlainSensorSchema()))
 
 
 class UnitSchema(PlainUnitSchema):
