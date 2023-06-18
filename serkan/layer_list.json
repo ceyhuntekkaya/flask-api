@@ -1,0 +1,539 @@
+[
+  {
+    "id": 0,
+    "name": "Layer 1",
+    "description": "Layer 1 description",
+    "units": [
+      {
+        "id": 1,
+        "name": "T038 1.HD.BL.(TUZLUCA)",
+        "description": "Shelter Sistem Odası Type C",
+        "level": 2,
+        "symbolCode": "SHG-UCI----G",
+        "lat": 39.428116,
+        "lon": 32.92737,
+        "standardIdentityFirstDigit": "0",
+        "standardIdentitySecondDigit": "3",
+        "symbolSet": "10",
+        "entity": "11",
+        "entityType": "110000",
+        "sectorIModifier": "00",
+        "sectorIIModifier": "00",
+        "status": "0",
+        "hqTaskforceDummy": "0",
+        "amplifier": "15",
+        "units": [
+          {
+            "id": 2,
+            "name": "T039 MEHMET YILMAZ KRK.",
+            "description": "Shelter Sistem Odası Type C",
+            "level": 1,
+            "symbolCode": "100310014111105000000",
+            "lat": 39.408116,
+            "lon": 32.90737,
+            "standardIdentityFirstDigit": "0",
+            "standardIdentitySecondDigit": "3",
+            "symbolSet": "10",
+            "entity": "11",
+            "entityType": "110500",
+            "sectorIModifier": "00",
+            "sectorIIModifier": "00",
+            "status": "0",
+            "hqTaskforceDummy": "0",
+            "amplifier": "14",
+            "units": [],
+            "equipments": [
+              {
+                "id": 0,
+                "type": "METEOROLOGY",
+                "name": "Meteorolojik sensör",
+                "description": "Meteorolojik sensör açıklama",
+                "symbolCode": "10011500002203000000",
+                "lat": 39.438116,
+                "lon": 32.93737,
+                "src": null
+              },
+              {
+                "id": 1,
+                "type": "GROUND_SURVAILLANCE_RADAR",
+                "name": "Kara gözetleme radarı",
+                "description": "Kara gözetleme radarı açıklama",
+                "symbolCode": "10011500002203000000",
+                "lat": 39.448116,
+                "lon": 32.94737,
+                "src": null
+              },
+              {
+                "id": 2,
+                "type": "EAGLEEYE_CAMERA",
+                "name": "Şahingöz kamera",
+                "description": "Şahingöz kamera açıklama",
+                "symbolCode": "10031500002203000000",
+                "lat": 39.458116,
+                "lon": 32.95737,
+                "src": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+              },
+              {
+                "id": 6,
+                "type": "OBSERVATION_TOWER",
+                "name": "Gözetleme kulesi",
+                "description": "Gözetleme kulesi açıklama",
+                "symbolCode": "10031500002201000000",
+                "lat": 39.468116,
+                "lon": 32.96737,
+                "src": null
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "name": "T040 SURMELİ KRK.",
+            "description": "Shelter Sistem Odası Type C",
+            "level": 1,
+            "symbolCode": "1003100014111101000000",
+            "lat": 39.280676,
+            "lon": 32.854055,
+            "standardIdentityFirstDigit": "0",
+            "standardIdentitySecondDigit": "3",
+            "symbolSet": "10",
+            "entity": "11",
+            "entityType": "110000",
+            "sectorIModifier": "00",
+            "sectorIIModifier": "00",
+            "status": "0",
+            "hqTaskforceDummy": "0",
+            "amplifier": "14",
+            "units": [],
+            "equipments": [
+              {
+                "id": 3,
+                "type": "EAGLEEYE_CAMERA",
+                "name": "Şahingöz kamera",
+                "description": "Şahingöz kamera",
+                "symbolCode": "10031500002203000000",
+                "lat": 39.290676,
+                "lon": 32.864055,
+                "src": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+              },
+              {
+                "id": 7,
+                "type": "OBSERVATION_TOWER",
+                "name": "Gözetleme kulesi",
+                "description": "Gözetleme kulesi açıklama",
+                "symbolCode": "10031500002201000000",
+                "lat": 39.300676,
+                "lon": 32.874055,
+                "src": null
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "name": "T041 KARAKALE KRK.",
+            "description": "Shelter Sistem Odası Type C",
+            "level": 1,
+            "symbolCode": "1003100014111101000000",
+            "lat": 39.288014,
+            "lon": 33.05346,
+            "standardIdentityFirstDigit": "0",
+            "standardIdentitySecondDigit": "3",
+            "symbolSet": "10",
+            "entity": "11",
+            "entityType": "110000",
+            "sectorIModifier": "00",
+            "sectorIIModifier": "00",
+            "status": "0",
+            "hqTaskforceDummy": "0",
+            "amplifier": "14",
+            "units": [],
+            "equipments": [
+              {
+                "id": 4,
+                "type": "EAGLEEYE_CAMERA",
+                "name": "Şahingöz kamera",
+                "description": "Şahingöz kamera",
+                "symbolCode": "10031500002203000000",
+                "lat": 39.298014,
+                "lon": 33.06346,
+                "src": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "name": "T046 KADIKIŞLAK KRK.",
+            "description": "Shelter Sistem Odası Type C",
+            "level": 1,
+            "symbolCode": "1003100014111101000000",
+            "lat": 39.365379,
+            "lon": 33.0512624,
+            "standardIdentityFirstDigit": "0",
+            "standardIdentitySecondDigit": "3",
+            "symbolSet": "10",
+            "entity": "11",
+            "entityType": "110000",
+            "sectorIModifier": "00",
+            "sectorIIModifier": "00",
+            "status": "0",
+            "hqTaskforceDummy": "0",
+            "amplifier": "14",
+            "units": [],
+            "equipments": [
+              {
+                "id": 8,
+                "type": "OBSERVATION_TOWER",
+                "name": "Gözetleme kulesi",
+                "description": "Gözetleme kulesi açıklama",
+                "symbolCode": "10031500002201000000",
+                "lat": 39.375379,
+                "lon": 33.0612624,
+                "src": null
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "name": "T048 MURŞİTALİ KRK.",
+            "description": "Shelter Sistem Odası Type C",
+            "level": 1,
+            "symbolCode": "1003100014111101000000",
+            "lat": 39.180598,
+            "lon": 32.940309,
+            "standardIdentityFirstDigit": "0",
+            "standardIdentitySecondDigit": "3",
+            "symbolSet": "10",
+            "entity": "11",
+            "entityType": "110000",
+            "sectorIModifier": "00",
+            "sectorIIModifier": "00",
+            "status": "0",
+            "hqTaskforceDummy": "0",
+            "amplifier": "14",
+            "units": [],
+            "equipments": [
+              {
+                "id": 9,
+                "type": "OBSERVATION_TOWER",
+                "name": "Gözetleme kulesi",
+                "description": "Gözetleme kulesi açıklama",
+                "symbolCode": "10031500002201000000",
+                "lat": 39.190598,
+                "lon": 32.950309,
+                "src": null
+              }
+            ]
+          },
+          {
+            "id": 7,
+            "name": "T049 MEHMED EFENDI KRK.",
+            "description": "Shelter Sistem Odası Type C",
+            "level": 1,
+            "symbolCode": "1003100014111101000000",
+            "lat": 39.47961,
+            "lon": 33.029533,
+            "standardIdentityFirstDigit": "0",
+            "standardIdentitySecondDigit": "3",
+            "symbolSet": "10",
+            "entity": "11",
+            "entityType": "110000",
+            "sectorIModifier": "00",
+            "sectorIIModifier": "00",
+            "status": "0",
+            "hqTaskforceDummy": "0",
+            "amplifier": "14",
+            "units": [],
+            "equipments": [
+              {
+                "id": 5,
+                "type": "EAGLEEYE_CAMERA",
+                "name": "Şahingöz kamera",
+                "description": "Şahingöz kamera",
+                "symbolCode": "10031500002203000000",
+                "lat": 39.48961,
+                "lon": 33.039533,
+                "src": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+              },
+              {
+                "id": 10,
+                "type": "OBSERVATION_TOWER",
+                "name": "Gözetleme kulesi",
+                "description": "Gözetleme kulesi açıklama",
+                "symbolCode": "10031500002201000000",
+                "lat": 39.49961,
+                "lon": 33.049533,
+                "src": null
+              }
+            ]
+          },
+          {
+            "id": 8,
+            "name": "T050 MEHMED EFENDI KRK.",
+            "description": "Shelter Sistem Odası Type C",
+            "level": 1,
+            "symbolCode": "10011500002002000000",
+            "lat": 39.50961,
+            "lon": 33.059533,
+            "standardIdentityFirstDigit": "0",
+            "standardIdentitySecondDigit": "3",
+            "symbolSet": "10",
+            "entity": "11",
+            "entityType": "110000",
+            "sectorIModifier": "00",
+            "sectorIIModifier": "00",
+            "status": "0",
+            "hqTaskforceDummy": "0",
+            "amplifier": "14",
+            "units": [],
+            "equipments": [
+              {
+                "id": 11,
+                "type": "OBSERVATION_TOWER",
+                "name": "Gözetleme kulesi",
+                "description": "Gözetleme kulesi açıklama",
+                "symbolCode": "10031500002201000000",
+                "lat": 39.49961,
+                "lon": 33.049533,
+                "src": null
+              }
+            ]
+          }
+        ],
+        "equipments": []
+      }
+    ],
+    "areas": [
+      {
+        "id": 0,
+        "name": "Area 11",
+        "description": "Area 11 description",
+        "type": "FRIENDLY",
+        "coordinates": [
+          {
+            "lat": 39.170034,
+            "lon": 33.136793
+          },
+          {
+            "lat": 39.145195,
+            "lon": 32.960118
+          },
+          {
+            "lat": 38.973753,
+            "lon": 32.924724
+          },
+          {
+            "lat": 39.008867,
+            "lon": 33.028189
+          },
+          {
+            "lat": 39.00636,
+            "lon": 33.143251
+          }
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "id": 0,
+        "name": "Buluntu 1",
+        "description": "Buluntu 1 description",
+        "lat": 39.381028,
+        "lon": 32.683739
+      },
+      {
+        "id": 1,
+        "name": "Buluntu 2",
+        "description": "Buluntu 2 description",
+        "lat": 39.306005,
+        "lon": 32.627901
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Layer 2",
+    "description": "Layer 2 description",
+    "units": [
+      {
+        "id": 3,
+        "name": "T040 SURMELİ KRK.",
+        "description": "Shelter Sistem Odası Type C",
+        "level": 1,
+        "symbolCode": "1003100014111101000000",
+        "lat": 39.280676,
+        "lon": 32.854055,
+        "standardIdentityFirstDigit": "0",
+        "standardIdentitySecondDigit": "3",
+        "symbolSet": "10",
+        "entity": "11",
+        "entityType": "110000",
+        "sectorIModifier": "00",
+        "sectorIIModifier": "00",
+        "status": "0",
+        "hqTaskforceDummy": "0",
+        "amplifier": "14",
+        "units": [],
+        "equipments": [
+          {
+            "id": 3,
+            "type": "EAGLEEYE_CAMERA",
+            "name": "Şahingöz kamera",
+            "description": "Şahingöz kamera",
+            "symbolCode": "10031500002203000000",
+            "lat": 39.290676,
+            "lon": 32.864055,
+            "src": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+          },
+          {
+            "id": 7,
+            "type": "OBSERVATION_TOWER",
+            "name": "Gözetleme kulesi",
+            "description": "Gözetleme kulesi açıklama",
+            "symbolCode": "10031500002201000000",
+            "lat": 39.300676,
+            "lon": 32.874055,
+            "src": null
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "T041 KARAKALE KRK.",
+        "description": "Shelter Sistem Odası Type C",
+        "level": 1,
+        "symbolCode": "1003100014111101000000",
+        "lat": 39.288014,
+        "lon": 33.05346,
+        "standardIdentityFirstDigit": "0",
+        "standardIdentitySecondDigit": "3",
+        "symbolSet": "10",
+        "entity": "11",
+        "entityType": "110000",
+        "sectorIModifier": "00",
+        "sectorIIModifier": "00",
+        "status": "0",
+        "hqTaskforceDummy": "0",
+        "amplifier": "14",
+        "units": [],
+        "equipments": [
+          {
+            "id": 4,
+            "type": "EAGLEEYE_CAMERA",
+            "name": "Şahingöz kamera",
+            "description": "Şahingöz kamera",
+            "symbolCode": "10031500002203000000",
+            "lat": 39.298014,
+            "lon": 33.06346,
+            "src": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "T046 KADIKIŞLAK KRK.",
+        "description": "Shelter Sistem Odası Type C",
+        "level": 1,
+        "symbolCode": "1003100014111101000000",
+        "lat": 39.365379,
+        "lon": 33.0512624,
+        "standardIdentityFirstDigit": "0",
+        "standardIdentitySecondDigit": "3",
+        "symbolSet": "10",
+        "entity": "11",
+        "entityType": "110000",
+        "sectorIModifier": "00",
+        "sectorIIModifier": "00",
+        "status": "0",
+        "hqTaskforceDummy": "0",
+        "amplifier": "14",
+        "units": [],
+        "equipments": [
+          {
+            "id": 8,
+            "type": "OBSERVATION_TOWER",
+            "name": "Gözetleme kulesi",
+            "description": "Gözetleme kulesi açıklama",
+            "symbolCode": "10031500002201000000",
+            "lat": 39.375379,
+            "lon": 33.0612624,
+            "src": null
+          }
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "id": 1,
+        "name": "Area 21",
+        "description": "Area 21 description",
+        "type": "ENEMY",
+        "coordinates": [
+          {
+            "lat": 39.26789,
+            "lon": 32.672882
+          },
+          {
+            "lat": 39.205191,
+            "lon": 32.637561
+          },
+          {
+            "lat": 39.166774,
+            "lon": 32.686912
+          },
+          {
+            "lat": 39.113687,
+            "lon": 32.636606
+          },
+          {
+            "lat": 39.1484,
+            "lon": 32.387948
+          },
+          {
+            "lat": 39.109586,
+            "lon": 32.402841
+          },
+          {
+            "lat": 39.02177,
+            "lon": 32.77263
+          },
+          {
+            "lat": 39.235924,
+            "lon": 32.742568
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Area 22",
+        "description": "Area 22 description",
+        "type": "UNKNOWN",
+        "coordinates": [
+          {
+            "lat": 39.79891,
+            "lon": 32.795273
+          },
+          {
+            "lat": 39.639558,
+            "lon": 32.575511
+          },
+          {
+            "lat": 39.478699,
+            "lon": 32.663123
+          },
+          {
+            "lat": 39.598691,
+            "lon": 32.929445
+          }
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "id": 2,
+        "name": "Buluntu 3",
+        "description": "Buluntu 3 description",
+        "lat": 39.057031,
+        "lon": 32.86495
+      }
+    ]
+  }
+]

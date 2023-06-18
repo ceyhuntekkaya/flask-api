@@ -1,3 +1,5 @@
+from project.models.constant.authority import AuthorityModel
+from project.models.person.user_authority import UserAuthorityModel
 from setting.db import db
 from project.models.constant.role import RoleModel
 from project.models.constant.hierarchy import HierarchyModel
@@ -14,34 +16,19 @@ class FirstRecords:
         pass
 
     def check():
-        role_data = {"name": "admin"}
-        role_id = 0
-        is_found = RoleModel.query.filter(RoleModel.name == role_data["name"]).first()
-        if not is_found:
-            role = RoleModel(**role_data
-                             )
-            db.session.add(role)
-            db.session.flush()
-            db.session.commit()
-            role_id = role.id
-
         hierarchy_data = {"name": "Hierarchy 1", "hierarchical_order": 1}
-        hierarchy_id = 0
         is_found = HierarchyModel.query.filter(HierarchyModel.name == hierarchy_data["name"]).first()
         if not is_found:
-            hierarchy = HierarchyModel(**hierarchy_data
-                                       )
+            hierarchy = HierarchyModel(**hierarchy_data)
             db.session.add(hierarchy)
             db.session.flush()
             db.session.commit()
-            hierarchy_id = hierarchy.id
 
         command_data = {"name": "Kara Kuvvetleri", "hierarchical_order": 1}
         command_id = 0
         is_found = CommandModel.query.filter(CommandModel.name == command_data["name"]).first()
         if not is_found:
-            command = CommandModel(**command_data
-                                   )
+            command = CommandModel(**command_data)
             db.session.add(command)
             db.session.flush()
             db.session.commit()
@@ -52,8 +39,7 @@ class FirstRecords:
         is_found = CommandCollarMarkModel.query.filter(
             CommandCollarMarkModel.name == command_coolar_mark_data["name"]).first()
         if not is_found:
-            ommand_coolar_mark = CommandCollarMarkModel(**command_coolar_mark_data
-                                                        )
+            ommand_coolar_mark = CommandCollarMarkModel(**command_coolar_mark_data)
             db.session.add(ommand_coolar_mark)
             db.session.flush()
             db.session.commit()
@@ -61,16 +47,46 @@ class FirstRecords:
 
         command_coolar_mark_rank_data = {"name": "Subay", "hierarchical_order": 1,
                                          "command_collar_mark_id": command_coolar_mark_id}
-        ommand_coolar_mark_rank_id = 0
         is_found = CommandCollarMarkRankModel.query.filter(
             CommandCollarMarkRankModel.name == command_coolar_mark_rank_data["name"]).first()
         if not is_found:
-            command_coolar_mark_rank = CommandCollarMarkRankModel(**command_coolar_mark_rank_data
-                                                                  )
+            command_coolar_mark_rank = CommandCollarMarkRankModel(**command_coolar_mark_rank_data)
             db.session.add(command_coolar_mark_rank)
             db.session.flush()
             db.session.commit()
-            ommand_coolar_mark_rank_id = command_coolar_mark_rank.id
+
+        authorities = ["TRACK_ANOMALY", "TRACK_CAMERA", "OPERATION_ANOMALY", "OPERATION_CAMERA", "UPSERT_DRAWING",
+                       "UPSERT_ROLE"]
+        for authority in authorities:
+            is_found_role = AuthorityModel.query.filter(AuthorityModel.name == authority).first()
+            if not is_found_role:
+                authority_data = {
+                    "name": authority,
+                    "description": authority,
+                    "hierarchy_id": 1,
+                    "status": 1,
+                    "created_by": 1
+                }
+                new_authority = AuthorityModel(**authority_data)
+                db.session.add(new_authority)
+                db.session.commit()
+        role_id = 1
+        roles = ["ROLE_1", "ROLE_2", "ROLE_3"]
+        for role in roles:
+            is_found_role = RoleModel.query.filter(RoleModel.name == role).first()
+            if not is_found_role:
+                role_data = {
+                    "name": role,
+                    "description": role,
+                    "status": 1,
+                    "created_by": 1
+                }
+                new_role = RoleModel(**role_data)
+                db.session.add(new_role)
+                db.session.flush()
+                db.session.commit()
+                role_id = new_role.id
+                print(role_id)
 
         user_data = {"name": "Admin", "surname": "Admin",
                      "username": "admin", "password": "admin",
@@ -80,34 +96,34 @@ class FirstRecords:
                      "command_collar_mark_id": 1,
                      "command_collar_mark_rank_id": 1
                      }
-        user_id = 0
         is_found = UserModel.query.filter(UserModel.username == user_data["username"]).first()
         if not is_found:
             user_data["password"] = pbkdf2_sha256.hash(user_data["password"])
-            user = UserModel(**user_data
-                             )
+            user = UserModel(**user_data)
             db.session.add(user)
             db.session.flush()
             db.session.commit()
             user_id = user.id
 
-    def add_user(role_id):
-        user = {"name": "Ceyhun", "surname": "Tekkaya", "registration_number": "123456", "phone": "3123121212",
-                "phone_extension_line": "0101", "mail": "ceyhun@genixo.ai", "code": "007", "username": "admin",
-                "password": "123", "created_at": 1685791783117, "updated_at": None,
-                "deleted_at": None, "active": True, "created_by": None, "updated_by": None, "deleted_by": None,
-                "last_login": None, "last_login_ip": None,
-                "role_id": role_id, "hierarchy_id": 0, "command_id": 0, "command_collar_mark_id": 0,
-                "command_collar_mark_rank_id": 0}
-        is_found = UserModel.query.filter(UserModel.username == user["username"]).first()
-        if not is_found:
-            user = UserModel(**user
-                             )
-            db.session.add(user)
-            db.session.commit()
-            print('created user ok.')
+        user_id = 1
+        authorityList = db.session.query(AuthorityModel)
+        for auth in authorityList:
+            is_found = db.session.query(UserAuthorityModel).filter(
+                UserAuthorityModel.user_id == user_id, UserAuthorityModel.authority_id == auth.id).all()
+            if not is_found:
+                user_auth_data = {"user_id": 1,
+                                  "authority_id": auth.id,
+                                  "authority_type": "type",
+                                  "status": 1,
+                                  "created_by": 1
+                                  }
+                user_auth = UserAuthorityModel(**user_auth_data)
+                db.session.add(user_auth)
+                db.session.flush()
+                db.session.commit()
 
-    def check2(self):
+
+    def check2():
         pass
 
     authority_list = [

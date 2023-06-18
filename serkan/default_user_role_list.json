@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Seviye 1",
+    "level": 1,
+    "roles": ["TRACK_ANOMALY", "TRACK_CAMERA"]
+  },
+  {
+    "name": "Seviye 2",
+    "level": 2,
+    "roles": ["OPERATION_ANOMALY", "OPERATION_CAMERA"]
+  },
+  {
+    "name": "Seviye 3",
+    "level": 3,
+    "roles": ["UPSERT_DRAWING", "UPSERT_ROLE"]
+  }
+]

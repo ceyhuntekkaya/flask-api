@@ -72,6 +72,21 @@ class UnitService:
             item.latitude = item_data["latitude"]
             item.longitude = item_data["longitude"]
             item.status = item_data["status"]
+
+            item.standardIdentityFirstDigit = item_data["standardIdentityFirstDigit"]
+            item.standardIdentitySecondDigit = item_data["standardIdentitySecondDigit"]
+            item.symbolSet = item_data["symbolSet"]
+            item.entity = item_data["entity"]
+            item.entityType = item_data["entityType"]
+            item.sectorIModifier = item_data["sectorIModifier"]
+            item.sectorIIModifier = item_data["sectorIIModifier"]
+            item.hqTaskforceDummy = item_data["hqTaskforceDummy"]
+            item.amplifier = item_data["amplifier"]
+
+
+
+
+
             item.updated_at = datetime.now()
 
             self.repo.update(item, updated_by)

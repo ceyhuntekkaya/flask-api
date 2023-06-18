@@ -36,6 +36,17 @@ class UnitModel(db.Model):
     longitude = Column(Float(precision=5), nullable=False)
     status = Column(Integer, default=1)
 
+    standardIdentityFirstDigit = Column(String)
+    standardIdentitySecondDigit = Column(String)
+    symbolSet = Column(String)
+    entity = Column(String)
+    entityType = Column(String)
+    sectorIModifier = Column(String)
+    sectorIIModifier = Column(String)
+    hqTaskforceDummy = Column(String)
+    amplifier = Column(String)
+
+
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)

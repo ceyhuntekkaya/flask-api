@@ -17,6 +17,19 @@ class PlainUnitSchema(Schema):
     critical_unit_type = fields.Str()
     latitude = fields.Float()
     longitude = fields.Float()
+
+    standardIdentityFirstDigit = fields.Str()
+    standardIdentitySecondDigit = fields.Str()
+    symbolSet = fields.Str()
+    entity = fields.Str()
+    entityType = fields.Str()
+    sectorIModifier = fields.Str()
+    sectorIIModifier = fields.Str()
+    hqTaskforceDummy = fields.Str()
+    amplifier = fields.Str()
+
+
+
     sensors = fields.List(fields.Nested(PlainSensorSchema()))
 
 

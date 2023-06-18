@@ -14,6 +14,7 @@ class UserAuthorityModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey("users.id"))
+    authority_id = Column(Integer, ForeignKey("authorities.id"))
     authority_type = Column(String, unique=False, nullable=True)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
@@ -31,4 +32,3 @@ class UserAuthorityModel(db.Model):
         Integer, ForeignKey("users.id"), unique=False, nullable=True
     )
 
-    authority_id = Column(Integer, ForeignKey("authorities.id"))
