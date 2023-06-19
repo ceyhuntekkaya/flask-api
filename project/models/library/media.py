@@ -20,8 +20,8 @@ class MediaModel(db.Model):
     name = Column(String, unique=True, nullable=False)
     description = Column(TEXT)
 
-    latitude = Column(Float(precision=5), unique=False, nullable=False)
-    longitude = Column(Float(precision=5), unique=False, nullable=False)
+    lat = Column(Float(precision=5), unique=False, nullable=False)
+    lon = Column(Float(precision=5), unique=False, nullable=False)
     begin_at = Column(TIMESTAMP, nullable=False)
     end_at = Column(TIMESTAMP, nullable=False)
 

@@ -18,8 +18,8 @@ class MediaSourceModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
-    latitude = Column(Float(precision=5), unique=False, nullable=False)
-    longitude = Column(Float(precision=5), unique=False, nullable=False)
+    lat = Column(Float(precision=5), unique=False, nullable=False)
+    lon = Column(Float(precision=5), unique=False, nullable=False)
     credential = Column(String)
 
     created_at = Column(TIMESTAMP, default=datetime.now())

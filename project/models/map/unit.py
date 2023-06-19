@@ -32,8 +32,8 @@ class UnitModel(db.Model):
     unit_sub = Column(String)  # piyade
     symbol_code = Column(String)  # app code
     critical_unit_type = Column(String)
-    latitude = Column(Float(precision=5), nullable=False)
-    longitude = Column(Float(precision=5), nullable=False)
+    lat = Column(Float(precision=5), nullable=False)
+    lon = Column(Float(precision=5), nullable=False)
     status = Column(Integer, default=1)
 
     standardIdentityFirstDigit = Column(String)

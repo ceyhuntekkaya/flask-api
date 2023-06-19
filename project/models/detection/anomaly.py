@@ -19,8 +19,8 @@ class AnomalyModel(db.Model):
     name = Column(String, nullable=False)
     description = Column(TEXT)
 
-    latitude = Column(Float(precision=5), unique=False, nullable=False)
-    longitude = Column(Float(precision=5), unique=False, nullable=False)
+    lat = Column(Float(precision=5), unique=False, nullable=False)
+    lon = Column(Float(precision=5), unique=False, nullable=False)
     anomaly_at = Column(TIMESTAMP, nullable=False)
     anomaly_level = Column(Integer, nullable=False)
     anomaly_color = Column(String, nullable=True)

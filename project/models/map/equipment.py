@@ -15,13 +15,13 @@ class EquipmentModel(db.Model):
     __tablename__ = "equipments"
 
     id = Column(Integer, primary_key=True)
-    src = Column(String, unique=False, nullable=False)
+    src = Column(String, unique=False)
     description = Column(TEXT)
     unit_id = Column(Integer, ForeignKey("units.id"), unique=False, nullable=False)
     name = Column(String, unique=True, nullable=False)
     equipment_type = Column(String)
-    latitude = Column(Float(precision=5), nullable=False)
-    longitude = Column(Float(precision=5), nullable=False)
+    lat = Column(Float(precision=5), nullable=False)
+    lon = Column(Float(precision=5), nullable=False)
 
     standardIdentityFirstDigit = Column(String)
     standardIdentitySecondDigit = Column(String)

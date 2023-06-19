@@ -28,8 +28,8 @@ class MarkerModel(db.Model):
     layer_id = Column(Integer, ForeignKey("layers.id"), nullable=True)
     area_id = Column(Integer, ForeignKey("areas.id"), nullable=True)
     description = Column(TEXT)
-    latitude = Column(Float(precision=5), unique=False, nullable=False)
-    longitude = Column(Float(precision=5), unique=False, nullable=False)
+    lat = Column(Float(precision=5), unique=False, nullable=False)
+    lon = Column(Float(precision=5), unique=False, nullable=False)
 
     hierarchy_id = Column(
         Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False

@@ -14,8 +14,8 @@ class AreaCoordinateModel(db.Model):
 
     id = Column(Integer, primary_key=True)
     row_number = Column(Integer)
-    latitude = Column(Float(precision=5), unique=False, nullable=False)
-    longitude = Column(Float(precision=5), unique=False, nullable=False)
+    lat = Column(Float(precision=5), unique=False, nullable=False)
+    lon = Column(Float(precision=5), unique=False, nullable=False)
 
     area_id = Column(
         Integer, ForeignKey("areas.id"), unique=False, nullable=False

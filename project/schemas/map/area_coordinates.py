@@ -4,8 +4,8 @@ from marshmallow import Schema, fields
 class PlainAreaCoordinateSchema(Schema):
     id = fields.Int()
     row_number = fields.Int()
-    latitude = fields.Float()
-    longitude = fields.Float()
+    lat = fields.Float()
+    lon = fields.Float()
 
 
 class AreaCoordinateSchema(PlainAreaCoordinateSchema):
@@ -29,5 +29,5 @@ class AreaCoordinateDeleteSchema(Schema):
 
 class AreaCoordinateCreateSchema(Schema):
     row_number = fields.Int()
-    latitude = fields.Float()
-    longitude = fields.Float()
+    lat = fields.Float()
+    lon = fields.Float()

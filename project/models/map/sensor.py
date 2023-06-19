@@ -38,8 +38,8 @@ class SensorModel(db.Model):
     circle_radius = Column(Integer, default=250)
     circle_time_interval = Column(Integer, default=30)
     is_meteorology_includes = Column(Boolean)
-    latitude = Column(Float(precision=5), nullable=False)
-    longitude = Column(Float(precision=5), nullable=False)
+    lat = Column(Float(precision=5), nullable=False)
+    lon = Column(Float(precision=5), nullable=False)
     desired_columns = Column(ARRAY(String))
     # Allows "range", "azimuth", "directionangle", "velocity", "tacticaldataid", "snr", "temperature",
     # "humidity", "precipitationtype", "visibility", "roadconditon"

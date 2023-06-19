@@ -5,8 +5,8 @@ class PlainMediaSourceSchema(Schema):
     id = fields.Int()
     name = fields.Str()
     credential = fields.Str()
-    latitude = fields.Float()
-    longitude = fields.Float()
+    lat = fields.Float()
+    lon = fields.Float()
     created_at = fields.Str()
 
 
@@ -24,8 +24,8 @@ class MediaSourceUpdateSchema(Schema):
     id = fields.Int()
     name = fields.Str()
     credential = fields.Str()
-    latitude = fields.Float()
-    longitude = fields.Float()
+    lat = fields.Float()
+    lon = fields.Float()
     updated_by = fields.Int()
 
 
@@ -38,6 +38,6 @@ class MediaSourceCreateSchema(PlainMediaSourceSchema):
     id = fields.Int()
     name = fields.Str()
     credential = fields.Str()
-    latitude = fields.Float()
-    longitude = fields.Float()
+    lat = fields.Float()
+    lon = fields.Float()
     created_by = fields.Int()

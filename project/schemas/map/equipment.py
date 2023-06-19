@@ -6,11 +6,9 @@ class PlainEquipmentSchema(Schema):
     name = fields.Str()
     description = fields.Str()
     unit_id = fields.Int()
-    created_at = fields.Str()
-    source = fields.Str()
     equipment_type = fields.Str()
-    latitude = fields.Float()
-    longitude = fields.Float()
+    lat = fields.Float()
+    lon = fields.Float()
     standardIdentityFirstDigit = fields.Str()
     standardIdentitySecondDigit = fields.Str()
     symbolSet = fields.Str()
@@ -21,9 +19,7 @@ class PlainEquipmentSchema(Schema):
     hqTaskforceDummy = fields.Str()
     amplifier = fields.Str()
     symbolCode = fields.Str()
-    src = fields.Float()
-
-
+    src = fields.Str()
 
 
 class EquipmentSchema(PlainEquipmentSchema):
@@ -33,6 +29,7 @@ class EquipmentSchema(PlainEquipmentSchema):
     created_by = fields.Int()
     updated_by = fields.Int()
     deleted_by = fields.Int()
+    created_at = fields.Str()
 
 
 class EquipmentUpdateSchema(Schema):
@@ -50,9 +47,4 @@ class EquipmentDeleteSchema(PlainEquipmentSchema):
 
 
 class EquipmentCreateSchema(PlainEquipmentSchema):
-    id = fields.Int()
-    name = fields.Str()
-    description = fields.Str()
-    symbol_code = fields.Str()
-    unit_id = fields.Int()
     created_by = fields.Int()

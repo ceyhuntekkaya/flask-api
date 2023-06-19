@@ -1,9 +1,11 @@
 from sqlalchemy.orm import Session
 
+from project.models.map.equipment import EquipmentModel
 from project.models.map.layer import LayerModel
 from project.models.map.sensor import SensorModel
 from project.models.map.unit import UnitModel
 from project.models.map.unit_layer import UnitLayerModel
+from project.repository.map.equipment import EquipmentRepository
 from project.repository.map.layer import LayerRepository
 from project.repository.map.sensor import SensorRepository
 from project.repository.map.unit import UnitRepository
@@ -23,6 +25,7 @@ class UnitService:
         self.repoSensor = SensorRepository(session, SensorModel)
         self.repoUnitLayer = UnitLayerRepository(session, UnitLayerModel)
         self.repoLayer = LayerRepository(session, LayerModel)
+        self.repoEquipment = EquipmentRepository(session, EquipmentModel)
 
     def add(self, item_data, created_by):
         if self.repo.get_by_name(item_data["name"]):
@@ -43,6 +46,7 @@ class UnitService:
             item = self.repo.get_by_id(item_id)
             print(item_id)
             item.sensors = self.repoSensor.get_by_unit(item_id)
+            item.equipments = self.repoEquipment.get_by_unit(item_id)
             return item
         except Exception as e:
             return EntityNotFoundException(
@@ -69,8 +73,8 @@ class UnitService:
             item.unit_sub = item_data["unit_sub"]
             item.symbol_code = item_data["symbol_code"]
             item.critical_unit_type = item_data["critical_unit_type"]
-            item.latitude = item_data["latitude"]
-            item.longitude = item_data["longitude"]
+            item.lat = item_data["lat"]
+            item.lon = item_data["lon"]
             item.status = item_data["status"]
 
             item.standardIdentityFirstDigit = item_data["standardIdentityFirstDigit"]

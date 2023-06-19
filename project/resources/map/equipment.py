@@ -7,7 +7,7 @@ from flask_jwt_extended import jwt_required
 from project.exception.entity_not_found import EntityNotFoundException
 from project.exception.unexpected_entity import UnexpectedEntityException
 from setting.db import db
-from project.schemas.map.equipment import EquipmentSchema, EquipmentUpdateSchema
+from project.schemas.map.equipment import EquipmentSchema, EquipmentUpdateSchema, EquipmentCreateSchema
 import os
 
 blp = Blueprint("Equipments", "equipments", description="Operations on equipment")
@@ -57,7 +57,7 @@ class Plain(MethodView):
         return service.getAll()
 
     # @jwt_required(fresh=True)
-    @blp.arguments(EquipmentSchema)
+    @blp.arguments(EquipmentCreateSchema)
     @blp.response(201, EquipmentSchema)
     def post(self, item_data):
         service = EquipmentService(db.session)

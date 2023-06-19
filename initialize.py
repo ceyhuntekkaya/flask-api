@@ -88,7 +88,7 @@ class FirstRecords:
 
         user_data = {"name": "Admin", "surname": "Admin",
                      "username": "admin", "password": "admin",
-                     "role_id": 3,
+                     "role_id": 1,
                      "hierarchy_id": 1,
                      "command_id": 1,
                      "command_collar_mark_id": 1,
@@ -109,11 +109,11 @@ class FirstRecords:
             is_found = db.session.query(UserAuthorityModel).filter(
                 UserAuthorityModel.user_id == user_id, UserAuthorityModel.authority_id == auth.id).all()
             if not is_found:
-                user_auth_data = {"user_id": 3,
+                user_auth_data = {"user_id": 1,
                                   "authority_id": auth.id,
                                   "authority_type": "type",
                                   "status": 1,
-                                  "created_by": 3
+                                  "created_by": 1
                                   }
                 user_auth = UserAuthorityModel(**user_auth_data)
                 db.session.add(user_auth)
