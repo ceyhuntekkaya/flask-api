@@ -50,13 +50,23 @@ class EquipmentService:
             item.name = item_data["name"]
             item.description = item_data["description"]
             item.equipment_type = item_data["equipment_type"]
-            item.symbol_code = item_data["symbol_code"]
-            item.source = item_data["source"]
             item.unit_id = item_data["unit_id"]
+            item.latitude = item_data["latitude"]
+            item.longitude = item_data["longitude"]
+            item.standardIdentityFirstDigit = item_data["standardIdentityFirstDigit"]
+            item.standardIdentitySecondDigit = item_data["standardIdentitySecondDigit"]
+            item.symbolSet = item_data["symbolSet"]
+            item.entity = item_data["entity"]
+            item.entityType = item_data["entityType"]
+            item.sectorIModifier = item_data["sectorIModifier"]
+            item.sectorIIModifier = item_data["sectorIIModifier"]
+            item.hqTaskforceDummy = item_data["hqTaskforceDummy"]
+            item.amplifier = item_data["amplifier"]
+            item.symbolCode = item_data["symbolCode"]
+            item.src = item_data["src"]
             item.updated_at = datetime.now()
 
             self.repo.update(item, updated_by)
-
             return self.repo.get_by_id(item.id)
         else:
             return EntityNotFoundException(

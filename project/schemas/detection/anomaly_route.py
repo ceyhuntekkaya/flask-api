@@ -4,7 +4,7 @@ from marshmallow import Schema, fields
 class PlainAnomalyRouteSchema(Schema):
     id = fields.Int()
     anomaly_id = fields.Int()
-    latitude = fields.Int()
+    latitude = fields.Float()
     longitude = fields.Int()
     description = fields.Str()
     anomaly_at = fields.Int()
@@ -20,7 +20,7 @@ class AnomalyRouteSchema(PlainAnomalyRouteSchema):
 class AnomalyRouteUpdateSchema(Schema):
     id = fields.Int()
     anomaly_id = fields.Int()
-    latitude = fields.Int()
+    latitude = fields.Float()
     longitude = fields.Int()
     description = fields.Str()
     anomaly_at = fields.Int()
@@ -35,7 +35,7 @@ class AnomalyRouteDeleteSchema(PlainAnomalyRouteSchema):
 class AnomalyRouteCreateSchema(PlainAnomalyRouteSchema):
     id = fields.Int()
     anomaly_id = fields.Int()
-    latitude = fields.Int()
+    latitude = fields.Float()
     longitude = fields.Int()
     description = fields.Str()
     anomaly_at = fields.Int()

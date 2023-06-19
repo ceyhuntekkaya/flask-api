@@ -64,8 +64,7 @@ class FirstRecords:
                     "name": authority,
                     "description": authority,
                     "hierarchy_id": 1,
-                    "status": 1,
-                    "created_by": 1
+                    "status": 1
                 }
                 new_authority = AuthorityModel(**authority_data)
                 db.session.add(new_authority)
@@ -78,8 +77,7 @@ class FirstRecords:
                 role_data = {
                     "name": role,
                     "description": role,
-                    "status": 1,
-                    "created_by": 1
+                    "status": 1
                 }
                 new_role = RoleModel(**role_data)
                 db.session.add(new_role)
@@ -90,7 +88,7 @@ class FirstRecords:
 
         user_data = {"name": "Admin", "surname": "Admin",
                      "username": "admin", "password": "admin",
-                     "role_id": 1,
+                     "role_id": 3,
                      "hierarchy_id": 1,
                      "command_id": 1,
                      "command_collar_mark_id": 1,
@@ -111,11 +109,11 @@ class FirstRecords:
             is_found = db.session.query(UserAuthorityModel).filter(
                 UserAuthorityModel.user_id == user_id, UserAuthorityModel.authority_id == auth.id).all()
             if not is_found:
-                user_auth_data = {"user_id": 1,
+                user_auth_data = {"user_id": 3,
                                   "authority_id": auth.id,
                                   "authority_type": "type",
                                   "status": 1,
-                                  "created_by": 1
+                                  "created_by": 3
                                   }
                 user_auth = UserAuthorityModel(**user_auth_data)
                 db.session.add(user_auth)

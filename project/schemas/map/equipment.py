@@ -8,8 +8,22 @@ class PlainEquipmentSchema(Schema):
     unit_id = fields.Int()
     created_at = fields.Str()
     source = fields.Str()
-    symbol_code = fields.Str()
     equipment_type = fields.Str()
+    latitude = fields.Float()
+    longitude = fields.Float()
+    standardIdentityFirstDigit = fields.Str()
+    standardIdentitySecondDigit = fields.Str()
+    symbolSet = fields.Str()
+    entity = fields.Str()
+    entityType = fields.Str()
+    sectorIModifier = fields.Str()
+    sectorIIModifier = fields.Str()
+    hqTaskforceDummy = fields.Str()
+    amplifier = fields.Str()
+    symbolCode = fields.Str()
+    src = fields.Float()
+
+
 
 
 class EquipmentSchema(PlainEquipmentSchema):

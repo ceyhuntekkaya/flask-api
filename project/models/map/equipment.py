@@ -1,16 +1,12 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
-    JSON,
-    REAL,
     TEXT,
     TIMESTAMP,
-    Boolean,
     Column,
     Integer,
     String,
     ForeignKey,
-    ARRAY,
     Float
 )
 
@@ -19,11 +15,30 @@ class EquipmentModel(db.Model):
     __tablename__ = "equipments"
 
     id = Column(Integer, primary_key=True)
-    source = Column(String, unique=False, nullable=False)
+    src = Column(String, unique=False, nullable=False)
     description = Column(TEXT)
     unit_id = Column(Integer, ForeignKey("units.id"), unique=False, nullable=False)
     name = Column(String, unique=True, nullable=False)
     equipment_type = Column(String)
+    latitude = Column(Float(precision=5), nullable=False)
+    longitude = Column(Float(precision=5), nullable=False)
+
+    standardIdentityFirstDigit = Column(String)
+    standardIdentitySecondDigit = Column(String)
+    symbolSet = Column(String)
+    entity = Column(String)
+    entityType = Column(String)
+    sectorIModifier = Column(String)
+    sectorIIModifier = Column(String)
+    hqTaskforceDummy = Column(String)
+    amplifier = Column(String)
+    symbolCode = Column(String)
+
+
+
+
+
+
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)
