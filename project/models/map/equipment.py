@@ -1,22 +1,29 @@
 from setting.db import db
 from datetime import datetime
 from sqlalchemy import (
+    JSON,
+    REAL,
+    TEXT,
     TIMESTAMP,
+    Boolean,
     Column,
     Integer,
     String,
     ForeignKey,
+    ARRAY,
+    Float
 )
 
 
-class UserAuthorityModel(db.Model):
-    __tablename__ = "user_authorities"
+class EquipmentModel(db.Model):
+    __tablename__ = "equipments"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
-    authority_id = Column(Integer, ForeignKey("authorities.id"))
-    authority_type = Column(String, unique=False, nullable=True)
-
+    source = Column(String, unique=False, nullable=False)
+    description = Column(TEXT)
+    unit_id = Column(Integer, ForeignKey("units.id"), unique=False, nullable=False)
+    name = Column(String, unique=True, nullable=False)
+    equipment_type = Column(String)
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)
     deleted_at = Column(TIMESTAMP, nullable=True)

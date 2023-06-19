@@ -83,10 +83,6 @@ class UnitService:
             item.hqTaskforceDummy = item_data["hqTaskforceDummy"]
             item.amplifier = item_data["amplifier"]
 
-
-
-
-
             item.updated_at = datetime.now()
 
             self.repo.update(item, updated_by)
@@ -143,6 +139,7 @@ class UnitService:
         for item in items:
             result.append(Converter.convert_object(self.getById(item.id)))
         return result
+
     # https://stackoverflow.com/questions/38071683/sqlachemy-recursively-fetch-children-and-ancestors-with-relations
 
     def getChildren(self, item_id):

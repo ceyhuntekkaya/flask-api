@@ -17,7 +17,6 @@ class PlainMediaSchema(Schema):
     area_id = fields.Int()
     sensor_id = fields.Int()
     unit_id = fields.Int()
-    official_user_id = fields.Int()
 
 
 class MediaSchema(PlainMediaSchema):

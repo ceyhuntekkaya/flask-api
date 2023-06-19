@@ -17,7 +17,6 @@ class PlainScreenshotSchema(Schema):
     area_id = fields.Int()
     sensor_id = fields.Int()
     unit_id = fields.Int()
-    official_user_id = fields.Int()
 
 
 class ScreenshotSchema(PlainScreenshotSchema):
@@ -47,7 +46,6 @@ class ScreenshotUpdateSchema(Schema):
     area_id = fields.Int()
     sensor_id = fields.Int()
     unit_id = fields.Int()
-    official_user_id = fields.Int()
     status = fields.Str()
     updated_by = fields.Int()
 
@@ -73,5 +71,4 @@ class ScreenshotCreateSchema(PlainScreenshotSchema):
     area_id = fields.Int()
     sensor_id = fields.Int()
     unit_id = fields.Int()
-    official_user_id = fields.Int()
     status = fields.Str()

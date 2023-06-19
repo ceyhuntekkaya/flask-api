@@ -28,8 +28,6 @@ class PlainUnitSchema(Schema):
     hqTaskforceDummy = fields.Str()
     amplifier = fields.Str()
 
-
-
     sensors = fields.List(fields.Nested(PlainSensorSchema()))
 
 
@@ -55,8 +53,3 @@ class UnitDeleteSchema(Schema):
 class UnitCreateSchema(PlainUnitSchema):
     status = fields.Int()
     created_by = fields.Int()
-
-
-
-
-

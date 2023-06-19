@@ -7,7 +7,6 @@ class PlainFacilitySchema(Schema):
     source = fields.Str()
     description = fields.Str()
     hierarchy_id = fields.Int()
-    official_user_id = fields.Int()
     created_at = fields.Str()
 
 

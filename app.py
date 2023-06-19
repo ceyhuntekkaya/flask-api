@@ -48,6 +48,9 @@ from project.resources.map.layer import blp as LayerBlueprint
 from project.resources.map.area import blp as AreaBlueprint
 from project.resources.map.area_coordinates import blp as AreaCoordinatesBlueprint
 from project.resources.map.marker import blp as MarkerBlueprint
+from project.resources.map.equipment import blp as EquipmentBlueprint
+
+
 
 from project.resources.person.user import blp as UserBlueprint
 from project.resources.person.user_authority import blp as UserAuthorityBlueprint
@@ -174,6 +177,7 @@ def create_app(db_url=None, test=False):
     api.register_blueprint(ScreenshotBlueprint)
 
     api.register_blueprint(UnitBlueprint)
+    api.register_blueprint(EquipmentBlueprint)
 
     api.register_blueprint(LogBlueprint)
 

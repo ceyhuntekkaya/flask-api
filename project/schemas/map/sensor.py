@@ -32,6 +32,7 @@ class PlainSensorSchema(Schema):
     is_approved = fields.Bool()
     nvr = fields.Str()
     status = fields.Int()
+    symbol_code = fields.Str()
 
 
 class SensorSchema(PlainSensorSchema):

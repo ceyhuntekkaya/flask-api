@@ -21,7 +21,6 @@ class FacilityModel(db.Model):
     hierarchy_id = Column(
         Integer, ForeignKey("hierarchies.id"), unique=False, nullable=False
     )
-    official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
     updated_at = Column(TIMESTAMP, nullable=True)

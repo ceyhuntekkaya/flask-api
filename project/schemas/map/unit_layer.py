@@ -10,7 +10,6 @@ class PlainUnitLayerSchema(Schema):
     name = fields.Str()
     description = fields.Str()
     hierarchy_id = fields.Int()
-    official_user_id = fields.Int()
     created_at = fields.Str()
 
 
@@ -28,7 +27,6 @@ class UnitLayerUpdateSchema(Schema):
     name = fields.Str()
     description = fields.Str()
     hierarchy_id = fields.Int()
-    official_user_id = fields.Int()
     updated_by = fields.Int()
 
 
@@ -42,7 +40,6 @@ class UnitLayerCreateSchema(PlainUnitLayerSchema):
     name = fields.Str()
     description = fields.Str()
     hierarchy_id = fields.Int()
-    official_user_id = fields.Int()
     created_by = fields.Int()
 
 

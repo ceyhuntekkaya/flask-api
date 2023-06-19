@@ -55,6 +55,7 @@ class SensorModel(db.Model):
     training_config = Column(JSON)
     image = Column(TEXT)
     is_approved = Column(Boolean)
+    symbol_code = Column(String)
 
     nvr = Column(String)
 

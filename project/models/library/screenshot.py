@@ -34,7 +34,6 @@ class ScreenshotModel(db.Model):
     area_id = Column(Integer, ForeignKey("areas.id"), nullable=True)
     sensor_id = Column(Integer, ForeignKey("sensors.id"), nullable=True)
     unit_id = Column(Integer, ForeignKey("units.id"), nullable=True)
-    official_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     status = Column(String, nullable=False)
 
     created_at = Column(TIMESTAMP, default=datetime.now())
